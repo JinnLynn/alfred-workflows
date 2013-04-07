@@ -54,7 +54,7 @@ class RealDownloadLink(object):
             'type'      : urltype,
             'org'       : url,
             'real'      : real if real else url,
-            'filename'  : filename if filename else '',
+            'filename'  : urllib.unquote(filename) if filename else '',
             'filesize'  : filesize if filesize else ''
         }
 
@@ -84,7 +84,7 @@ class RealDownloadLink(object):
         size = ''
         try:
             parts = url.split('|')
-            name = urllib.unquote(parts[2])
+            name = parts[2]
             size  = self.humanReadable(parts[3])
         except Exception, e:
             pass
