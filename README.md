@@ -1,5 +1,20 @@
 # Alfred 2 Workflows
 
+## Lyric
+
+Search, Download, Show or Save Lyric.
+
+* ENTER download lyric to `~/Downloads`
+* CMD + ENTER copy lyric to clipboard
+* ALT + ENTER show Alfred Large Type and copy to clipboard
+* CTRL + ENTER save lyric to iTunes current playing track
+
+![Lyric Screenshot](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/lyric.png)
+
+[Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/lyric.alfredworkflow) 
+ / 
+[Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/lyric)
+
 ## Real Download Link
 
 获取国内某些下载工具专用链接的真实下载地址，支持迅雷、快车、QQ旋风，也支持ed2k、http、https、ftp、ftps、sftp等类型链接的基本信息解析。
