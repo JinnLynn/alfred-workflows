@@ -13,7 +13,11 @@ Search, Download, Show or Save Lyric.
 
 [Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/lyric.alfredworkflow) 
  / 
-[Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/lyric)
+[Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/lyric) 
+
+*Last updated: 2013-04-08*
+
+
 
 ## Real Download Link
 
@@ -24,6 +28,10 @@ Search, Download, Show or Save Lyric.
 [Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/real-download-link.alfredworkflow) 
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/real-download-link)
+
+*Last updated: 2013-04-07*
+
+
 
 ## Chinese Dictionary
 
@@ -40,6 +48,10 @@ Search, Download, Show or Save Lyric.
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/chinese-dictionary)
 
 [QQ词典]: http://dict.qq.com/
+
+*Last updated: 2013-04-07*
+
+
 
 
 ## Credits
