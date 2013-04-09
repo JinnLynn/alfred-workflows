@@ -1,5 +1,6 @@
 # temp files
 *.pyc
+tmp/
 
 # Windows
 [Dd]esktop.ini
