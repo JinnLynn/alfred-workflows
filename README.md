@@ -1,5 +1,23 @@
 # Alfred 2 Workflows
 
+### INSTALL ALL
+
+```
+git clone git://github.com/JinnLynn/alfred-workflows.git && cd alfred-workflows && git submodule update --init && python install.py
+```
+
+**NOTE: JUST SYMBOLIC LINKS, SO MUST NOT REMOVE FOLDER alfred-workflows!**
+
+### UPGRADE
+
+```
+cd alfred-workflows && python install.py
+```
+
+*Only new workflow was added.*
+
+---
+
 ## Lyric
 
 Search, Download, Show or Save Lyric.
