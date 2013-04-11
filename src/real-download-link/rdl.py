@@ -8,54 +8,33 @@ sys.setdefaultencoding('utf8')
 import os, base64, urllib
 from urlparse import urlparse
 
-import alfred
-
-from pprint import pprint
-
-DLTypeDesc = {
-    'ed2k'      : 'eMule',
-    'emule'     : 'eMule',
-    'qqdl'      : 'QQ旋风',
-    'thunder'   : '迅雷',
-    'flashget'  : '快车',
-    'magnet'    : '磁力链'
-}
+def rdlTypeToDesc(t):
+    type_desc = {
+        'ed2k'      : 'eMule',
+        'emule'     : 'eMule',
+        'qqdl'      : 'QQ旋风',
+        'thunder'   : '迅雷',
+        'flashget'  : '快车',
+        'magnet'    : '磁力链'
+    }
+    for s in ['http', 'https', 'ftp', 'ftps', 'sftp']:
+        type_desc.update({s:s.upper()})
+    t = t.lower()
+    if t in type_desc.keys():
+        return type_desc[t]
+    return 'UNKNOWN'
 
 class RealDownloadLink(object):
     def __init__(self):
-        pass
-
-    def run(self):
-        url = sys.argv[1]
-        res = self.parse(url)
-        feedback = alfred.Feedback()
-        feedback.addItem(
-            title       = res['real'],
-            subtitle    = '{} {} {}'.format(self.getTypeDesc(res['type']), res['filename'], res['filesize']),
-            arg         = res['real']
-            )
-        feedback.output()
-
-    def die(self, **kwargs):
-        feedback = alfred.Feedback()
-        feedback.addItem(**kwargs)
-        feedback.output()
-        sys.exit(1)
-
-    def getTypeDesc(self, t):
-        if t in DLTypeDesc:
-            return DLTypeDesc[t]
-        elif t in ['http', 'https', 'ftp', 'ftps', 'sftp']:
-            return t.upper()
-        return 'UNKNOWN'
+        pass        
 
     def buildResult(self, url, urltype='UNKNOWN', real=None, filename=None, filesize=None):
         return {
             'type'      : urltype,
-            'org'       : url,
+            'original'  : url,
             'real'      : real if real else url,
-            'filename'  : urllib.unquote(filename) if filename else '',
-            'filesize'  : filesize if filesize else ''
+            'filename'  : urllib.unquote(filename) if filename else '-',
+            'filesize'  : filesize if filesize else '-'
         }
 
     def parse(self, url):
@@ -86,10 +65,10 @@ class RealDownloadLink(object):
             parts = url.split('|')
             name = parts[2]
             size  = self.humanReadable(parts[3])
-        except Exception, e:
-            pass
-        return self.buildResult(url, 'emule', url, name, size)
-
+            return self.buildResult(url, 'emule', url, name, size)
+        except:
+            return self.buildResult(url, 'emule')
+        
     def parseThunder(self, url):
         # 格式: thunder://CODEPART
         # CODEPART = 'AA真实地址ZZ'的base64编码
@@ -103,8 +82,8 @@ class RealDownloadLink(object):
             res = self.parse(real)
             res['type'] = 'thunder'
             return res
-        except Exception, e:
-            self.die(title=url, subtitle=self.getTypeDesc('thunder'))  
+        except:
+            return self.buildResult(url, 'thunder')  
 
     def parseFlashget(self, url):
         # 格式: flashget://CODEPART&HASHCODE
@@ -123,8 +102,8 @@ class RealDownloadLink(object):
             res = self.parse(real)
             res['type'] = 'flashget'
             return res
-        except Exception, e:
-            self.die(title=url, subtitle=self.getTypeDesc('flashget'))
+        except:
+            return self.buildResult(url, 'flashget')
         
     def parseQQdl(self, url):
         # 格式: qqdl://CODEPART
@@ -136,8 +115,8 @@ class RealDownloadLink(object):
             res = self.parse(real)
             res['type'] = 'qqdl'
             return res
-        except Exception, e:
-            self.die(title=url, subtitle=self.getTypeDesc('qqdl'))
+        except:
+            return self.buildResult(url, 'qqdl')
 
     def humanReadable(self, byte):
         if isinstance(byte, (str, unicode)):
@@ -152,5 +131,21 @@ class RealDownloadLink(object):
             unit = 'GB'
         return '{:.2f}{}'.format(size, unit)
 
+def main():
+    import alfred
+    url = sys.argv[1]
+    if not url:
+        alfred.exitWithFeedback(title='UNKNOWN')
+    rdl = RealDownloadLink()
+    res = rdl.parse(url)
+    feedback = alfred.Feedback()
+    res.update({'type_desc' : rdlTypeToDesc(res['type'])})
+    feedback.addItem(
+        title       = res['real'],
+        subtitle    = '{type_desc} {filename} {filesize}'.format(**res),
+        arg         = res['real']
+        )
+    feedback.output()
+
 if __name__ == '__main__':
-    RealDownloadLink().run()
+    main()
