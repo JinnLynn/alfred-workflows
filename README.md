@@ -11,10 +11,16 @@ git clone git://github.com/JinnLynn/alfred-workflows.git && cd alfred-workflows 
 ### UPGRADE
 
 ```
-cd alfred-workflows && python install.py
+python install.py
 ```
 
 *Only new workflow was added.*
+
+### UNINSTALL
+
+```
+python install.py remove
+```
 
 ---
 

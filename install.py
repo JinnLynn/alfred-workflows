@@ -7,10 +7,13 @@ sys.setdefaultencoding('utf8')
 
 import os, json, subprocess, shutil
 
-def die(msg):
+def exit(msg, retcode=0):
     if msg:
         print(msg)
-    sys.exit(1)
+    sys.exit(retcode)
+
+def die(msg):
+    eixt(msg, 1)
 
 def rmAny(path):
     if os.path.isfile(path) or os.path.islink(path):
@@ -42,10 +45,19 @@ def main():
     workflows_path = getAlfredWorkflowsPath()
     src_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src')
 
+    subcmd = ''
+    if len(sys.argv)>=2:
+        subcmd = sys.argv[1].lower()
+        if subcmd !='remove':
+            exit('argument error.')
+
     # 删除所有旧的链接
     for dirname in os.listdir(workflows_path):
         if dirname.startswith(prefix):
             rmAny(os.path.join(workflows_path, dirname))
+
+    if subcmd == 'remove':
+        exit('all workflows removed.')
 
     # 重新链接
     for dirname in os.listdir(src_path):
