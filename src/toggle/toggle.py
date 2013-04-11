@@ -11,10 +11,11 @@ import alfred
 
 def run():
     cmd_map = {
-        'list'      : lambda: showList(),
-        'wifi'      : lambda: toggleWIFI(),
-        'bluetooth' : lambda: toggleBluetooth(),
-        'hidden'    : lambda: toggleHiddenFiles()
+        'list'          : lambda: showList(),
+        'wifi'          : lambda: toggleWIFI(),
+        'bluetooth'     : lambda: toggleBluetooth(),
+        'hidden'        : lambda: toggleHiddenFiles(),
+        'desktop-icons' : lambda: toggleDesktopIcons()
     }
 
     cmd = alfred.argv(1)
@@ -23,25 +24,25 @@ def run():
     cmd_map[cmd]()
 
 def showList():
-    items = [
-        alfred.Item(
-            title   = 'Toggle WIFI',
-            arg     = 'wifi',
-            icon    = 'icons/wifi.png'
-            ),
-        alfred.Item(
-            title   = 'Toggle Bluetooth',
-            arg     = 'bluetooth',
-            icon    = 'icons/bluetooth.png'
-            ),
-        alfred.Item(
-            title   = 'Toggle Hidden Files show/hide',
-            arg     = 'hidden'
-            )
-    ]
     feedback = alfred.Feedback()
-    for item in items:
-        feedback.addItem(item=item)
+    feedback.addItem(
+        title   = 'Toggle WIFI',
+        arg     = 'wifi',
+        icon    = 'icons/wifi.png'
+        ),
+    feedback.addItem(
+        title   = 'Toggle Bluetooth',
+        arg     = 'bluetooth',
+        icon    = 'icons/bluetooth.png'
+        ),
+    feedback.addItem(
+        title   = 'Toggle Hidden Files Show/Hide',
+        arg     = 'hidden'
+        ),
+    feedback.addItem(
+        title   = 'Toggle Desktop Icons Show/Hide',
+        arg     = 'desktop-icons'
+        )
     feedback.output()
 
 def doShellScript(script):
@@ -71,6 +72,9 @@ def toggleBluetooth():
 
 def toggleHiddenFiles():
     doShellScript('. toggle.sh && toggle_hidden_files')
+
+def toggleDesktopIcons():
+    doShellScript('. toggle.sh && toggle_desktop_icons')
 
 if __name__ == '__main__':
     run()

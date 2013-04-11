@@ -12,14 +12,26 @@ function toggle_wifi {
 
 function toggle_hidden_files {
     status=$(defaults read com.apple.finder AppleShowAllFiles)
-    if [[ "$status" = "FALSE" ]]; then
-        defaults write com.apple.finder AppleShowAllFiles TRUE
-        killall Finder
-        echo "Success, 'hidden' files are showing."
-    else
-        defaults write com.apple.finder AppleShowAllFiles FALSE
+    if [[ $status = 1 ]]; then
+        defaults write com.apple.finder AppleShowAllFiles -bool false
         killall Finder
         echo "Success, 'hidden' files are hiding."
+    else
+        defaults write com.apple.finder AppleShowAllFiles -bool true
+        killall Finder
+        echo "Success, 'hidden' files are showing."
     fi
 }
 
+function toggle_desktop_icons {
+    status=$(defaults read com.apple.finder CreateDesktop)
+    if [[ $status = 1 ]]; then
+        defaults write com.apple.finder CreateDesktop -bool false
+        killall Finder
+        echo "Success, all desktop icons are hiding."
+    else
+        defaults write com.apple.finder CreateDesktop -bool true
+        killall Finder
+        echo "Success, all desktop icons are showing."
+    fi
+}
