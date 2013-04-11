@@ -7,12 +7,16 @@ sys.setdefaultencoding('utf8')
 
 import os, json, subprocess, shutil
 
-from pprint import pprint
-
 def die(msg):
     if msg:
         print(msg)
     sys.exit(1)
+
+def rmAny(path):
+    if os.path.isfile(path) or os.path.islink(path):
+        os.remove(path)
+    elif os.path.isdir(path):
+        shutil.rmtree(path)
 
 def getAlfredWorkflowsPath():
     pref_file = os.path.expanduser('~/Library/Preferences/com.runningwithcrayons.Alfred-Preferences.plist')
@@ -33,28 +37,25 @@ def getAlfredWorkflowsPath():
         die('Alfred workflows path is non-existent.')
     return workflows_path
 
-def run():
+def main():
+    prefix = 'net.jeeker.awf'
     workflows_path = getAlfredWorkflowsPath()
     src_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src')
+
+    # 删除所有旧的链接
+    for dirname in os.listdir(workflows_path):
+        if dirname.startswith(prefix):
+            rmAny(os.path.join(workflows_path, dirname))
+
+    # 重新链接
     for dirname in os.listdir(src_path):
         abs_path = os.path.join(src_path, dirname)
         if not os.path.isdir(abs_path):
             continue
-        link_dirname = 'net.jeeker.awf.{}'.format(dirname)
+        link_dirname = '{}.{}'.format(prefix, dirname)
         link_path = os.path.join(workflows_path, link_dirname)
-        if os.path.exists(link_path):
-            if os.path.islink(link_path): 
-                if os.readlink(link_path) == abs_path:
-                    print('workflow alread exists: {}'.format(link_dirname))
-                    continue
-                else:
-                    os.remove(link_path)
-            elif os.path.isfile(link_path):
-                    os.remove(link_path)
-            else:
-                shutil.rmtree(link_path)
         os.symlink(abs_path, link_path)
         print('new workflows added: {}'.format(link_dirname))
 
 if __name__ == '__main__':
-    run()
+    main()
