@@ -80,6 +80,7 @@ class RealDownloadLink(object):
             #去除前后的AA ZZ
             real = real[2:-2]
             res = self.parse(real)
+            res['original'] = url
             res['type'] = 'thunder'
             return res
         except:
@@ -100,6 +101,7 @@ class RealDownloadLink(object):
             # 去除 [FLASHGET] [FLASHGET]
             real = real[10:-10]
             res = self.parse(real)
+            res['original'] = url
             res['type'] = 'flashget'
             return res
         except:
@@ -113,6 +115,7 @@ class RealDownloadLink(object):
             # base64解码
             real = base64.b64decode(uri.netloc)
             res = self.parse(real)
+            res['original'] = url
             res['type'] = 'qqdl'
             return res
         except:
