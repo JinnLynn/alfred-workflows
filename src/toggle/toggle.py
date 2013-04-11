@@ -6,51 +6,36 @@ reload(sys)
 sys.setdefaultencoding('utf8') 
 
 import objc, subprocess
-
 import alfred
 
-def run():
-    cmd_map = {
-        'list'          : lambda: showList(),
-        'wifi'          : lambda: toggleWIFI(),
-        'bluetooth'     : lambda: toggleBluetooth(),
-        'hidden'        : lambda: toggleHiddenFiles(),
-        'desktop-icons' : lambda: toggleDesktopIcons()
+TOGGLES = [
+    {
+        'arg'       : 'wifi',
+        'title'     : 'Toggle WIFI Enable/Disable',
+        'cmd'       : lambda: doShellScript('. toggle.sh && toggle_wifi'),
+        'icon'      : 'icons/wifi.png'
+    },
+    {
+        'arg'       : 'bluetooth',
+        'title'     : 'Toggle Bluetooth Enable/Disable',
+        'cmd'       : lambda: toggleBluetooth(),
+        'icon'      : 'icons/bluetooth.png'
+    },
+    {
+        'arg'       : 'hidden-files',
+        'title'     : 'Toggle Hidden Files Show/Hide',
+        'cmd'       : lambda: doShellScript('. toggle.sh && toggle_hidden_files')
+    },
+    {
+        'arg'       : 'desktop-icons',
+        'title'     : 'Toggle Desktop Icons Show/Hide',
+        'cmd'       : lambda: doShellScript('. toggle.sh && toggle_desktop_icons')
     }
-
-    cmd = alfred.argv(1)
-    if cmd is None or cmd not in cmd_map.keys():
-        cmd = 'list'
-    cmd_map[cmd]()
-
-def showList():
-    feedback = alfred.Feedback()
-    feedback.addItem(
-        title   = 'Toggle WIFI',
-        arg     = 'wifi',
-        icon    = 'icons/wifi.png'
-        ),
-    feedback.addItem(
-        title   = 'Toggle Bluetooth',
-        arg     = 'bluetooth',
-        icon    = 'icons/bluetooth.png'
-        ),
-    feedback.addItem(
-        title   = 'Toggle Hidden Files Show/Hide',
-        arg     = 'hidden'
-        ),
-    feedback.addItem(
-        title   = 'Toggle Desktop Icons Show/Hide',
-        arg     = 'desktop-icons'
-        )
-    feedback.output()
+]
 
 def doShellScript(script):
     res = subprocess.check_output(script, shell=True)
     alfred.exit(res.strip())
-
-def toggleWIFI():
-    doShellScript('. toggle.sh && toggle_wifi')
     
 # base from "http://web.mac.com/nissplus/IslandOfApples/Enable%20Disable%20Mac%20OSX%20Bluetooth%20from%20Python.html"
 def toggleBluetooth():
@@ -70,11 +55,16 @@ def toggleBluetooth():
         ds['IOBluetoothPreferenceSetControllerPowerState'](1)
         alfred.exit('Bluetooth Enable.')
 
-def toggleHiddenFiles():
-    doShellScript('. toggle.sh && toggle_hidden_files')
+def main():
+    cmd = alfred.argv(1)
+    for toggle in TOGGLES:
+        if toggle['arg'] == cmd:
+            return toggle['cmd']()
 
-def toggleDesktopIcons():
-    doShellScript('. toggle.sh && toggle_desktop_icons')
+    feedback = alfred.Feedback()
+    for toggle in TOGGLES:
+        feedback.addItem(**toggle)
+    feedback.output()
 
 if __name__ == '__main__':
-    run()
+    main()
