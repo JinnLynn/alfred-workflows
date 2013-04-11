@@ -169,7 +169,7 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>62</integer>
+				<integer>36</integer>
 				<key>script</key>
 				<string>python action.py {query}</string>
 				<key>type</key>
@@ -186,7 +186,7 @@
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
-				<integer>63</integer>
+				<integer>62</integer>
 				<key>keyword</key>
 				<string>ds status</string>
 				<key>runningsubtext</key>
@@ -215,17 +215,17 @@
 		<key>024B8E49-5CC3-4900-B008-E55FAE7F7126</key>
 		<dict>
 			<key>ypos</key>
-			<real>150</real>
+			<real>180</real>
 		</dict>
 		<key>38226993-DBAA-4010-B7C3-D3AEE879D4D3</key>
 		<dict>
 			<key>ypos</key>
-			<real>150</real>
+			<real>180</real>
 		</dict>
 		<key>5EFA5646-1FE4-4991-A324-3FDD304B4262</key>
 		<dict>
 			<key>ypos</key>
-			<real>150</real>
+			<real>130</real>
 		</dict>
 		<key>79469106-EF40-48B7-B4FD-18D8C19D08FC</key>
 		<dict>
@@ -235,12 +235,12 @@
 		<key>98F8973B-9EE1-431A-BDDC-FD86704D6285</key>
 		<dict>
 			<key>ypos</key>
-			<real>270</real>
+			<real>250</real>
 		</dict>
 		<key>FFE730C6-0341-4C5B-94B6-E6D4E13FB59E</key>
 		<dict>
 			<key>ypos</key>
-			<real>390</real>
+			<real>370</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
