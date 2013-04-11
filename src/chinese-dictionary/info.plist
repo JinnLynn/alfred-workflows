@@ -6,6 +6,25 @@
 	<string>net.jeeker.awf.ChineseDictionary</string>
 	<key>connections</key>
 	<dict>
+		<key>06B45297-5875-40D3-9753-5D1869D09E57</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>64595E64-C2B3-49E1-AD95-944349519AD9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>AA90C9D0-DEAB-4F63-977A-BB820C0ABE97</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>09204506-9016-4039-8240-6AE53530988C</key>
 		<array>
 			<dict>
@@ -18,19 +37,27 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>BB562D1A-B800-4206-A35F-125D201B91A9</string>
-				<key>modifiers</key>
-				<integer>524288</integer>
-				<key>modifiersubtext</key>
-				<string>发音（取决于你系统的Text to Speech）</string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
 				<string>45A93E3D-F638-4DF9-9FE6-94571F195A96</string>
 				<key>modifiers</key>
 				<integer>262144</integer>
 				<key>modifiersubtext</key>
 				<string>在爱词霸中搜索...</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>06B45297-5875-40D3-9753-5D1869D09E57</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Copy to Clipboard</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>BB562D1A-B800-4206-A35F-125D201B91A9</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>发音（取决于你系统的Text to Speech）</string>
 			</dict>
 		</array>
 	</dict>
@@ -62,6 +89,57 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>64595E64-C2B3-49E1-AD95-944349519AD9</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>plusspaces</key>
+				<true/>
+				<key>url</key>
+				<string>http://www.iciba.com/{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>45A93E3D-F638-4DF9-9FE6-94571F195A96</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>`{query}` has copied to clipboard</string>
+				<key>title</key>
+				<string>Chinese Dictionary</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>AA90C9D0-DEAB-4F63-977A-BB820C0ABE97</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>escaping</key>
@@ -89,17 +167,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>plusspaces</key>
-				<true/>
-				<key>url</key>
-				<string>http://www.iciba.com/{query}</string>
-				<key>utf8</key>
-				<true/>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>script</key>
+				<string>echo -n "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>45A93E3D-F638-4DF9-9FE6-94571F195A96</string>
+			<string>06B45297-5875-40D3-9753-5D1869D09E57</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -121,25 +199,40 @@
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>06B45297-5875-40D3-9753-5D1869D09E57</key>
+		<dict>
+			<key>ypos</key>
+			<real>270</real>
+		</dict>
 		<key>09204506-9016-4039-8240-6AE53530988C</key>
 		<dict>
 			<key>ypos</key>
-			<real>160</real>
+			<real>200</real>
 		</dict>
 		<key>45A93E3D-F638-4DF9-9FE6-94571F195A96</key>
 		<dict>
 			<key>ypos</key>
-			<real>310</real>
+			<real>140</real>
+		</dict>
+		<key>64595E64-C2B3-49E1-AD95-944349519AD9</key>
+		<dict>
+			<key>ypos</key>
+			<real>190</real>
 		</dict>
 		<key>7B9A4F01-98AB-43DB-905D-8CDF5FA00525</key>
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
 		</dict>
+		<key>AA90C9D0-DEAB-4F63-977A-BB820C0ABE97</key>
+		<dict>
+			<key>ypos</key>
+			<real>350</real>
+		</dict>
 		<key>BB562D1A-B800-4206-A35F-125D201B91A9</key>
 		<dict>
 			<key>ypos</key>
-			<real>160</real>
+			<real>390</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
