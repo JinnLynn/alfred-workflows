@@ -24,6 +24,20 @@ python install.py remove
 
 ---
 
+## Download Station
+
+Manage Synology Download Station directly from Alfred: view, create, pause, resume or delete tasks, and also can change some settings such as enable/disable eMule or enable/disable schedule.
+
+![Lyric Screenshot](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/download-station.png)
+
+[Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/download-station.alfredworkflow) 
+ / 
+[Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/download-station) 
+
+*last updated: 2013-04-12 version: 1.0*
+
+
+
 ## Lyric
 
 Search, Download, Show or Save Lyric.
@@ -39,7 +53,7 @@ Search, Download, Show or Save Lyric.
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/lyric) 
 
-*Last updated: 2013-04-08*
+*last updated: 2013-04-12 version: 1.0.1*
 
 
 
@@ -53,7 +67,7 @@ Search, Download, Show or Save Lyric.
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/real-download-link)
 
-*Last updated: 2013-04-07*
+*last updated: 2013-04-12 version: 1.1.0*
 
 
 
@@ -64,6 +78,7 @@ Search, Download, Show or Save Lyric.
 * ENTER 打开QQ词典页面
 * CTRL + ENTER 打开爱词霸页面
 * OPTION + ENTER 发音
+* CMD + ENTER 拷贝到剪切板
 
 ![Chinese Dictionary Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/chinese-dictionary.png)
 
@@ -73,7 +88,7 @@ Search, Download, Show or Save Lyric.
 
 [QQ词典]: http://dict.qq.com/
 
-*Last updated: 2013-04-07*
+*last updated: 2013-04-12 version: 1.0.1*
 
 
 
