@@ -30,6 +30,8 @@ Manage Synology Download Station directly from Alfred: view, create, pause, resu
 
 ![Lyric Screenshot](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/download-station.png)
 
+NOTE: Before using, you **MUST** to configure DS login information with the keyword `ds setting auth`.
+
 [Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/download-station.alfredworkflow) 
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/download-station) 
