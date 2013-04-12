@@ -289,21 +289,18 @@ class DSSetting(DSBase):
         pwd = alfred.argv(4)
         host = alfred.argv(5)
 
-        is_ok = True if usr and pwd and host else False
-        title = 'Login Information'
-        subtitle = 'Error. Format: USRNAME PASSWORD HOSTNAME' if not is_ok else 'usr: {} pwd: {} host: {}'.format(usr, pwd, host)
-
         feedback = alfred.Feedback()
-        if is_ok:
+        title = 'Login Information'
+        if usr and pwd and host:
             feedback.addItem(
                 title       = title,
-                subtitle    = subtitle,
+                subtitle    = 'usr: {} pwd: {} dsm_url: {}'.format(usr, pwd, host),
                 arg         = 'authorize {} {} {}'.format(usr, pwd, host)
                 )
         else:
             feedback.addItem(
                 title           = title,
-                subtitle        = subtitle,
+                subtitle        = 'e.g. my_username my_password https://my_ds_ip_address_or_ddns_hostname:5001' ,
                 autocomplete    = '',
                 valid           = False
                 )
