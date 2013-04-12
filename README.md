@@ -42,7 +42,7 @@ NOTE: Before using, you **MUST** to configure DS login information with the keyw
 
 ## Lyric
 
-Search, Download, Show or Save Lyric.
+To search, download, show or save Lyric.
 
 * ENTER download lyric to `~/Downloads`
 * CMD + ENTER copy lyric to clipboard
