@@ -19,13 +19,6 @@ import util
 
 __version__ = (1, 0, 0)
 
-cache_process = None
-
-def safe_pprint(d):
-    print('<!--')
-    pprint(d)
-    print('-->')
-
 def createDownloadStationImp():
     cache = alfred.Cache()
     config = alfred.Config()
@@ -43,13 +36,20 @@ def createDownloadStationImp():
     return ds
 
 def forkCacheProcess(delay=0):
-    global cache_process
-    cache_process = subprocess.Popen(
+    global __cache_process__
+    __cache_process__ = subprocess.Popen(
         ['python', 'cache.py', 'all', '{}'.format(delay)], 
         stdin   = subprocess.PIPE, 
         stdout  = subprocess.PIPE, 
         stderr  = subprocess.PIPE
         )
+
+def waitCacheProcess():
+    global __cache_process__
+    try:
+        __cache_process__.wait()
+    except:
+        pass
 
 class DSBase(object):
     def __init__(self):
@@ -75,17 +75,12 @@ class DSBase(object):
         session = self.cache.get('session')
         return usr and pwd and host and session
 
-    def waitCachePocess(self):
-        if cache_process is None:
-            return
-        cache_process.wait()
-
     def getCache(self, name):
         cache = self.cache.get(name)
         if cache:
             return cache
         # 如果没有获取到，等待缓存进程的结束
-        self.waitCachePocess()
+        waitCacheProcess()
         return self.cache.get(name)
 
     # 获取所有任务

@@ -12,7 +12,7 @@ from pprint import pprint
 
 import alfred
 from dslib import *
-from ds import DSBase, forkCacheProcess
+from ds import DSBase, forkCacheProcess, waitCacheProcess
 import util
 
 class DSAction(DSBase):
@@ -43,6 +43,8 @@ class DSAction(DSBase):
         cmd = cmd.lower()
         if cmd not in self.cmds.keys():
             self.exit('action is missing. {}'.format(cmd))
+        # 进行操作前等待缓存进程
+        waitCacheProcess()
         self.cmds[cmd]()
 
     def exit(self, msg, clear_cache=True):
