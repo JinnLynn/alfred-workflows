@@ -17,7 +17,7 @@ import alfred
 from dslib import *
 import util
 
-CACHE_EXPIRE = 3000
+__version__ = (1, 0, 0)
 
 cache_process = None
 

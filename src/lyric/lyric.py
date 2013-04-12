@@ -13,6 +13,8 @@ import alfred
 
 from pprint import pprint
 
+__version__ = (1, 0, 1)
+
 class Lyric(object):
     def __init__(self):
         self.cache = alfred.Cache()

@@ -11,6 +11,8 @@ from pdb import set_trace
 
 from alfred.feedback import Feedback 
 
+__version__ = (1, 0, 1)
+
 services = {
     'qq'    : {
         'api'   : 'http://dict.qq.com/dict',

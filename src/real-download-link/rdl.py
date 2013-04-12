@@ -8,6 +8,8 @@ sys.setdefaultencoding('utf8')
 import os, base64, urllib
 from urlparse import urlparse
 
+__version__ = (1, 1, 0)
+
 def rdlTypeToDesc(t):
     type_desc = {
         'ed2k'      : 'eMule',
