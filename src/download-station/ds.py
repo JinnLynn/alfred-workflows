@@ -98,7 +98,6 @@ class DSBase(object):
         # 忽略掉做种的任务
         exclude_status = ['seeding']
         tasks = filter(lambda t: t['status'] not in exclude_status, tasks)
-        tasks = filter(lambda t: t['type'] in ['http', 'emule'], tasks)
 
         hr = lambda s: self.ds.humanReadable(s)
         parsed_tasks = []
