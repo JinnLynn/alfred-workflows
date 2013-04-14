@@ -43,13 +43,19 @@ def getAlfredWorkflowsPath():
 def main():
     prefix = 'net.jeeker.awf'
     workflows_path = getAlfredWorkflowsPath()
-    src_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src')
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    src_path = os.path.join(base_path, 'src')
 
     subcmd = ''
     if len(sys.argv)>=2:
         subcmd = sys.argv[1].lower()
-        if subcmd !='remove':
+        if subcmd not in ['remove', 'clean']:
             exit('argument error.')
+
+    if subcmd == 'clean':
+        clean_cmd = "cd {} && find . \( -name '*.pyc' -o -name 'log.txt' \) -exec rm {} \;".format(base_path, '{}')
+        subprocess.check_output(clean_cmd, shell=True)
+        exit('everything is clean.')
 
     # 删除所有旧的链接
     for dirname in os.listdir(workflows_path):
