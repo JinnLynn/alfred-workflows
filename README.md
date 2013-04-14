@@ -30,8 +30,6 @@ A simple way for you to track all apps price, work with [AppShopper][].
 
 ![Lyric Screenshot](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/app-dig.png)
 
-NOTE: Before using, you **MUST** to configure DS login information with the keyword `ds setting auth`.
-
 [Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/app-dig.alfredworkflow) 
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/app-dig) 
