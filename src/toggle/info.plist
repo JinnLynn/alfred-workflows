@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>net.jeeker.awf.toggle</string>
+	<string>net.jeeker.awf.Toggle</string>
 	<key>connections</key>
 	<dict>
 		<key>0D270E40-D689-4AE1-8C6F-133B2B1DE2E9</key>
