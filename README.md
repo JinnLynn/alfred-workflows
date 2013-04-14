@@ -24,6 +24,24 @@ python install.py remove
 
 ---
 
+## App Dig
+
+A simple way for you to track all apps price, work with [AppShopper][].
+
+![Lyric Screenshot](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/app-dig.png)
+
+NOTE: Before using, you **MUST** to configure DS login information with the keyword `ds setting auth`.
+
+[Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/app-dig.alfredworkflow) 
+ / 
+[Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/app-dig) 
+
+*last update: 2013-04-14 version: 1.0*
+
+[AppShopper]: http://appshopper.com/
+
+
+
 ## Download Station
 
 Manage Synology Download Station directly from Alfred: view, create, pause, resume or delete tasks, and also can change some settings such as enable/disable eMule or enable/disable schedule.

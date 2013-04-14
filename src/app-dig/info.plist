@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>net.jeeker.awf.AppDig</string>
+	<key>connections</key>
+	<dict>
+		<key>1EB3E8DC-5ADD-4F42-9FA2-708A5B01C666</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>403AC24C-E651-4912-ACFE-077264262E40</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>403AC24C-E651-4912-ACFE-077264262E40</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2CA38999-27CB-4A95-A211-4BA5B6E69D01</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>JinnLynn</string>
+	<key>description</key>
+	<string>Dig iOS/Mac Apps</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>App Dig</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>AppShopper</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>2CA38999-27CB-4A95-A211-4BA5B6E69D01</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>62</integer>
+				<key>keyword</key>
+				<string>app</string>
+				<key>runningsubtext</key>
+				<string>please wait...</string>
+				<key>script</key>
+				<string>python app.py {query}</string>
+				<key>subtext</key>
+				<string>anything about iOS and Mac app</string>
+				<key>title</key>
+				<string>App Dig</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>1EB3E8DC-5ADD-4F42-9FA2-708A5B01C666</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>python action.py {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>403AC24C-E651-4912-ACFE-077264262E40</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>1EB3E8DC-5ADD-4F42-9FA2-708A5B01C666</key>
+		<dict>
+			<key>ypos</key>
+			<real>220</real>
+		</dict>
+		<key>2CA38999-27CB-4A95-A211-4BA5B6E69D01</key>
+		<dict>
+			<key>ypos</key>
+			<real>220</real>
+		</dict>
+		<key>403AC24C-E651-4912-ACFE-077264262E40</key>
+		<dict>
+			<key>ypos</key>
+			<real>220</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://jeeker.net</string>
+</dict>
+</plist>
