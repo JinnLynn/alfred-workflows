@@ -1,5 +1,6 @@
 # temp files
 *.pyc
+log.txt
 tmp/
 
 # Windows
