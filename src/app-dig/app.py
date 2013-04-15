@@ -6,9 +6,6 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 import os, urllib, urllib2, re, hashlib, subprocess, datetime
-from xml.dom import minidom
-import hashlib
-
 try:
     import xml.etree.cElementTree as et
 except ImportError:
