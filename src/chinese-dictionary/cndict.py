@@ -11,7 +11,7 @@ from pdb import set_trace
 
 from alfred.feedback import Feedback 
 
-__version__ = (1, 0, 1)
+__version__ = '1.0.1'
 
 services = {
     'qq'    : {

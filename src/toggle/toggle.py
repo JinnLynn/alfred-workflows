@@ -8,7 +8,7 @@ sys.setdefaultencoding('utf8')
 import objc, subprocess
 import alfred
 
-__version__ = (1, 0, 0)
+__version__ = '1.0.0'
 
 TOGGLES = [
     {
