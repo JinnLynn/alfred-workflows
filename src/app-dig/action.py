@@ -25,44 +25,6 @@ def clearCache():
     alfred.cache.clean()
     alfred.exit('All cache cleared.')
 
-def downloadSingle():
-    args = alfred.argv(2)
-    if not args:
-        return
-    args = args.split(',')
-    if len(args) < 2:
-        return
-    urllib.urlretrieve(args[0], args[1])
-
-def download():
-    links = alfred.argv(2)
-    if not links:
-        return
-    storage_path = os.path.join('/tmp', alfred.bundleID())
-    if not os.path.exists(storage_path):
-        os.makedirs(storage_path)
-    links = links.split(',')
-    process = []
-    for link in links:
-        _, ext = os.path.splitext(link)
-        if not ext:
-            continue
-        filename = '{}{}'.format( hashlib.md5(link).hexdigest(), ext )
-        filepath = os.path.join(storage_path, filename)
-        if os.path.exists(filepath):
-            continue
-        sub = subprocess.Popen(
-            ['python', 'action.py', 'download-single', '{},{}'.format(link,filepath)], 
-            stdin   = subprocess.PIPE, 
-            stdout  = subprocess.PIPE, 
-            stderr  = subprocess.PIPE
-        )
-        if sub:
-            process.append(sub)
-    # 等待所有的下载进程结束
-    for sub in process:
-        sub.wait()
-
 def toggleAppIconShowing():
     sub = alfred.argv(2)
     if not sub or sub not in ['enable', 'disable']:
@@ -77,8 +39,6 @@ def main():
         'set-username'      : lambda: setUsername(),
         'open-link'         : lambda: openLink(),
         'clean'             : lambda: clearCache(),
-        'download'          : lambda: download(),
-        'download-single'   : lambda: downloadSingle(),
         'app-icon-showing'  : lambda: toggleAppIconShowing()
     }
     if not cmd or cmd.lower() not in cmd_map.keys():

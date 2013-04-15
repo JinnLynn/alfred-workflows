@@ -228,8 +228,7 @@ class App(object):
             if not img_url or self.getLocalAppIcon(img_url):
                 continue
             links.append(img_url)
-        if links:
-            subprocess.check_output(['python', 'action.py', 'download', ','.join(links)])
+        alfred.storage.batchDownload(links)
 
     def getLocalAppIcon(selg, img_url):
         storage_path = os.path.join('/tmp', alfred.bundleID())
@@ -407,7 +406,6 @@ class App(object):
                 cmd = '-'.join(title.lower().split(' '))
                 if sub == cmd:
                     feed = item['feed'].format(**more_apps_types[t])
-                    # print feed
                     self.showAppsFromFeed(feed)
                     alfred.exit()
 
