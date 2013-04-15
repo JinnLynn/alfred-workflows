@@ -12,8 +12,7 @@ def setUsername():
     usr = alfred.argv(2)
     if not usr:
         alfred.exit('no username found.')
-    config = alfred.Config()
-    config.set(username = usr.strip())
+    alfred.config.set(username = usr.strip())
     alfred.exit('AppShopper username has setted.')
 
 def openLink():
@@ -68,9 +67,8 @@ def toggleAppIconShowing():
     sub = alfred.argv(2)
     if not sub or sub not in ['enable', 'disable']:
         alfred.exit('argument error')
-    config = alfred.Config()
     v = True if sub=='enable' else False
-    config.set(app_icon_show = v)
+    alfred.config.set(app_icon_show = v)
     alfred.exit('App Icon Showing {}'.format('Enabled' if v else 'Disabled'))
 
 def main():

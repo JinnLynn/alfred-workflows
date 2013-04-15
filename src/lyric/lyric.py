@@ -17,7 +17,7 @@ __version__ = (1, 0, 1)
 
 class Lyric(object):
     def __init__(self):
-        self.cache = alfred.Cache()
+        pass
 
     def run(self):
         cmd_map = {
@@ -83,7 +83,7 @@ class Lyric(object):
         if artist is None:
             artist = ''
         # 缓存结构 { 'query' : {'title': '', 'artist': ''}, 'list'  : [] }
-        cache = self.cache.get('lyric-list')
+        cache = alfred.cache.get('lyric-list')
         if cache and cache['query']['title'] == title and cache['query']['artist'] == artist:
             return True, cache['list']
         try:
@@ -109,7 +109,7 @@ class Lyric(object):
                 'query' : {'title' : title, 'artist' : artist},
                 'list'  : data
             }
-            self.cache.set('lyric-list', cache)
+            alfred.cache.set('lyric-list', cache)
             return True, data
         except Exception, e:
             return False, '{}'.format(e)
@@ -118,7 +118,7 @@ class Lyric(object):
         if not lyric_id:
             return False, 'Lyric is non-existent.'
         # 缓存结构 { 'id' : '', 'content' : ''}
-        cache = self.cache.get('lyric-content')
+        cache = alfred.cache.get('lyric-content')
         if cache and cache['id'] == lyric_id:
             return True, cache['content']
         info = self.getLyricInfoFromCache(lyric_id)
@@ -137,7 +137,7 @@ class Lyric(object):
                 'id'        : lyric_id,
                 'content'   : content
             }
-            self.cache.set('lyric-content', cache)
+            alfred.cache.set('lyric-content', cache)
             return True, content
         except Exception, e:
             return False, '{}'.format(e)
@@ -158,7 +158,7 @@ class Lyric(object):
         return new_lrc.strip()
 
     def getLyricInfoFromCache(self, lrc_id):
-        cache = self.cache.get('lyric-list')
+        cache = alfred.cache.get('lyric-list')
         if not cache:
             return
         for lrc in cache['list']:

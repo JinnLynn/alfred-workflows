@@ -50,14 +50,14 @@ class DSAction(DSBase):
     def exit(self, msg, clear_cache=True):
         if clear_cache:
             # 删除缓存
-            self.cache.delete('tasks')
+            alfred.cache.delete('tasks')
             #! 延迟时间换取缓存 避免对DS的部分操作为完成造成任务状态错误
             forkCacheProcess(10)
         alfred.exit(msg)
 
     def authorize(self):
-        self.config.clean()
-        self.cache.clean()
+        alfred.config.clean()
+        alfred.cache.clean()
         try:
             usr = sys.argv[2]
             pwd = sys.argv[3]
@@ -68,7 +68,7 @@ class DSAction(DSBase):
             self.exit('Setting fail: {}'.format(e))
 
         if res:
-            self.config.set(
+            alfred.config.set(
                 usr         = usr, 
                 pwd         = pwd, 
                 host        = host,
@@ -79,7 +79,7 @@ class DSAction(DSBase):
         self.exit('Setting fail. {}'.format(ds.last_error), False)
 
     def logout(self):
-        self.cache.delete('session')
+        alfred.cache.delete('session')
         self.ds.logout()
         self.exit('logout')
 
@@ -90,11 +90,11 @@ class DSAction(DSBase):
             stdout  = subprocess.PIPE, 
             stderr  = subprocess.PIPE
         )
-        self.cache.clean()
+        alfred.cache.clean()
         self.exit('Everything is clean.')
 
     def openBrowser(self):
-        host = self.config.get('host', '')
+        host = alfred.config.get('host', '')
         if not host:
             self.exit('DS host url is empty.', False)
         url = os.path.join(host, 'webman/index.cgi?launchApp=SYNO.SDS.DownloadStation.Application')
@@ -108,7 +108,7 @@ class DSAction(DSBase):
             self.exit('arguments error', False)
         data = {key:value}
         success, data = self.ds.sendConfig(data)
-        self.cache.delete('dsconfig')
+        alfred.cache.delete('dsconfig')
         success_msg = {
             'emule_enabled' : 'eMule enabled.' if value == 'true' else 'eMule disabled.'
         }
@@ -125,7 +125,7 @@ class DSAction(DSBase):
             self.exit('arguments error', False)
         data = {key:value}
         success, data = self.ds.setSchedule(data)
-        self.cache.delete('dsconfig')
+        alfred.cache.delete('dsconfig')
         success_msg = {
             'enabled'       : 'Schedule enabled.' if value == 'true' else 'Schedule disabled.',
             'emule_enabled' : 'eMule schedule enabled.' if value == 'true' else 'eMule schedule disabled.',

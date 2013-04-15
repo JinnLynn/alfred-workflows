@@ -38,16 +38,16 @@ class DSCache(DSBase):
            pass
         caching = '{}-caching'.format(cmd)
         # 检查caching
-        if self.cache.get(caching):
+        if alfred.cache.get(caching):
             return
-        self.cache.set(caching, True, 10)
+        alfred.cache.set(caching, True, 10)
         try:
             cmd = cmd.lower()
             if cmd in self.cmds.keys():
                 self.cmds[cmd]()
         except:
             pass
-        self.cache.delete(caching)
+        alfred.cache.delete(caching)
 
     def cacheAll(self):
         for k, v in self.cmds.iteritems():
@@ -55,25 +55,25 @@ class DSCache(DSBase):
                 v()
 
     def cacheTasks(self):
-        if self.cache.get('tasks'):
+        if alfred.cache.get('tasks'):
             return
         success, data = self.ds.fetchTaskList()
         if success:
             #? 有时 data会为None WHY?
-            self.cache.set('tasks', data['tasks'], TASKS_CACHE_EXPIRE)
+            alfred.cache.set('tasks', data['tasks'], TASKS_CACHE_EXPIRE)
         else:
             pass
             #alfred.log(data) #如果未授权 会出现错误: unknown url type: webapi/DownloadStation/task.cgi
 
     def cacheDSInfo(self):
-        if self.cache.get('dsinfo'):
+        if alfred.cache.get('dsinfo'):
             return
         success, data = self.ds.fetchInfo()
         if success:
-            self.cache.set('dsinfo', data, DSINFO_CACHE_EXPIRE)
+            alfred.cache.set('dsinfo', data, DSINFO_CACHE_EXPIRE)
 
     def cacheDSConfig(self):
-        if self.cache.get('dsconfig'):
+        if alfred.cache.get('dsconfig'):
             return
         success, config = self.ds.fetchConfig()
         if not success:
@@ -86,7 +86,7 @@ class DSCache(DSBase):
             'schedule_enabled'          : schedule['enabled'],
             'schedule_emule_enabled'    : schedule['emule_enabled']
             })
-        self.cache.set('dsconfig', data, DSCONFIG_CACHE_EXPIRE)
+        alfred.cache.set('dsconfig', data, DSCONFIG_CACHE_EXPIRE)
 
 if __name__ == '__main__':
     DSCache().run()

@@ -20,19 +20,17 @@ import util
 __version__ = (1, 0, 0)
 
 def createDownloadStationImp():
-    cache = alfred.Cache()
-    config = alfred.Config()
-    session = cache.get('session')
+    session = alfred.cache.get('session')
     ds = DownloadStation(
-        config.get('host', ''),
-        config.get('usr', ''),
-        config.get('pwd', ''),
+        alfred.config.get('host', ''),
+        alfred.config.get('usr', ''),
+        alfred.config.get('pwd', ''),
         session
         )
     if not session:
         session = ds.getSession()
         if session:
-            cache.set('session', session, DS_SESSION_MAX_ALIVE)
+            alfred.cache.set('session', session, DS_SESSION_MAX_ALIVE)
     return ds
 
 def forkCacheProcess(delay=0):
@@ -53,8 +51,6 @@ def waitCacheProcess():
 
 class DSBase(object):
     def __init__(self):
-        self.cache = alfred.Cache()
-        self.config = alfred.Config()
         self.ds = createDownloadStationImp()
 
     def run(self):
@@ -69,19 +65,19 @@ class DSBase(object):
             )
 
     def isAuthorized(self):
-        usr = self.config.get('usr')
-        pwd = self.config.get('pwd')
-        host = self.config.get('host')
-        session = self.cache.get('session')
+        usr = alfred.config.get('usr')
+        pwd = alfred.config.get('pwd')
+        host = alfred.config.get('host')
+        session = alfred.cache.get('session')
         return usr and pwd and host and session
 
     def getCache(self, name):
-        cache = self.cache.get(name)
+        cache = alfred.cache.get(name)
         if cache:
             return cache
         # 如果没有获取到，等待缓存进程的结束
         waitCacheProcess()
-        return self.cache.get(name)
+        return alfred.cache.get(name)
 
     # 获取所有任务
     def getTasks(self):
@@ -217,9 +213,9 @@ class DSSetting(DSBase):
     def showAllSetting(self):
         feedback = alfred.Feedback()
         current_auth_info = '{}:{}@{}'.format(
-            self.config.get('usr', ''),
-            ''.join(['*' for s in self.config.get('pwd', '')]),
-            self.config.get('host', '')
+            alfred.config.get('usr', ''),
+            ''.join(['*' for s in alfred.config.get('pwd', '')]),
+            alfred.config.get('host', '')
             )
         feedback.addItem(
             title           = 'Authorization',
@@ -314,7 +310,7 @@ class DSStatus(DSBase):
         feedback = alfred.Feedback()
 
         # DS 信息
-        ds_info = self.cache.get('dsinfo')
+        ds_info = alfred.cache.get('dsinfo')
         if ds_info:
             total = len(self.getTasks())
             error = len(self.getErroneousTasks())

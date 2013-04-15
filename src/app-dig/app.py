@@ -93,8 +93,7 @@ more_apps_types = {
 
 class App(object):
     def __init__(self):
-        self.config = alfred.Config()
-        self.enable_appiconshow = self.config.get('app_icon_show', True)
+        self.enable_appiconshow = alfred.config.get('app_icon_show', True)
 
     def run(self):
         cmd = alfred.argv(1)
@@ -274,10 +273,10 @@ class App(object):
             autocomplete        = 'search ',
             valid               = False
             )
-        if self.config.get('username'):
+        if alfred.config.get('username'):
             feedback.addItem(
                 title           = 'Apps Wish List',
-                subtitle        = '{}\'s Wish list in AppShopper'.format(self.config.get('username')),
+                subtitle        = '{}\'s Wish list in AppShopper'.format(alfred.config.get('username')),
                 autocomplete    = 'wish',
                 valid           = False
                 )
@@ -339,7 +338,7 @@ class App(object):
         return self.outputFeedback(success, data)
 
     def showWishList(self):
-        username = self.config.get('username')
+        username = alfred.config.get('username')
         if not username:
             alfred.exitWithFeedback(
                 title           = 'AppShopper Username Is Missing.',
@@ -356,7 +355,7 @@ class App(object):
         sub = alfred.argv(2)
         if sub == 'username':
             usr = alfred.argv(3) if alfred.argv(3) else ''
-            old_usr = self.config.get('username') if self.config.get('username') else ''
+            old_usr = alfred.config.get('username') if alfred.config.get('username') else ''
             alfred.exitWithFeedback(
                 title       = 'Set AppShopper username',
                 subtitle    = 'new uername is {}, current: {}'.format(usr, old_usr),
