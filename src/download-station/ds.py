@@ -79,18 +79,8 @@ class DSBase(object):
         waitCacheProcess()
         return alfred.cache.get(name)
 
-    # 获取所有任务
-    def getTasks(self):
-        #! self._tasks 与 缓存中的task是不同
-        if not hasattr(self, '_tasks'):
-            self._tasks = []
-        if self._tasks:
-            return self._tasks
-
-        tasks = self.getCache('tasks')
-        if not tasks:
-            return []
-
+    # 解析任务为本地可用模式
+    def parseTasks(self, tasks):
         # 忽略掉做种的任务
         exclude_status = ['seeding']
         tasks = filter(lambda t: t['status'] not in exclude_status, tasks)
@@ -133,8 +123,11 @@ class DSBase(object):
                 'desc'  : '{hr_size:10}{hr_size_downloaded:10}{progress_percent:8} DL: {hr_speed_download:8} UL: {hr_speed_upload:8}{type_desc:8}{status_desc:15}'.format(**new_task)
                 })
             parsed_tasks.append(new_task)
-        self._tasks = sorted(parsed_tasks, key=lambda t:t['title'].lower())
-        return self._tasks
+        return sorted(parsed_tasks, key=lambda t:t['title'].lower())
+
+    # 获取所有任务
+    def getTasks(self):
+        return self.getCache('tasks')
 
     def getTaskFilters(self):
         return {

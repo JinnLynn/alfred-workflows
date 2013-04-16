@@ -60,7 +60,9 @@ class DSCache(DSBase):
         success, data = self.ds.fetchTaskList()
         if success:
             #? 有时 data会为None WHY?
-            alfred.cache.set('tasks', data['tasks'], TASKS_CACHE_EXPIRE)
+            tasks = self.parseTasks(data['tasks'])
+            if tasks:
+                alfred.cache.set('tasks', tasks, TASKS_CACHE_EXPIRE)
         else:
             pass
             #alfred.log(data) #如果未授权 会出现错误: unknown url type: webapi/DownloadStation/task.cgi
