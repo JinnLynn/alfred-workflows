@@ -34,7 +34,7 @@ A simple way for you to track all apps price, work with [AppShopper][].
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/app-dig) 
 
-*last update: 2013-04-14 version: 1.0*
+*last update: 2013-04-18 version: 2.0*
 
 [AppShopper]: http://appshopper.com/
 
