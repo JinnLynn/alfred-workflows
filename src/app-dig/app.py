@@ -15,10 +15,9 @@ from bs4 import BeautifulSoup
 
 from pprint import pprint
 
-CACHE_EXPIRE = 60 * 30
-
 __version__ = '2.0'
 
+CACHE_EXPIRE = 60 * 30
 default_pages = [
     {
         'title' : 'Apps Going Free for Mac',
@@ -36,7 +35,6 @@ default_pages = [
         'cmd'   : 'apps-going-free-for-ipad'
     },
 ]
-
 more_apps_pages = [
     {
         'title' : 'Popular Changes for {title}',
@@ -87,13 +85,11 @@ more_apps_pages = [
         'page'  : 'all/prices',
     }
 ]
-
 more_apps_page_type = {
     'mac'   : {'title':'Mac', 'platform':'mac', 'device':''},
     'ipad'  : {'title':'iPad', 'platform':'', 'device':'ipad'},
     'iphone': {'title':'iPhone', 'platform':'', 'device':'iphone'}
 }
-
 country_currency = {
     'US':'United States/USD','CA':'Canada/CAD','DE':'Deutschland/EUR','UK':'United Kingdom/GBP',
     'AU':'Australia/AUD','AT':'Austria/EUR','IT':'Italia/EUR','JP':'Japan/JPY','AR':'Argentina/USD',
@@ -222,7 +218,7 @@ class App(object):
             content = self.openUrl(page)
             match = re.search(r'<div class="content">(.*)</div><!-- content -->', content, flags=re.DOTALL)
             if not match:
-                return False, 'parse search page failed.'
+                return False, 'parse page failed.'
             soup = BeautifulSoup(match.group(1))
         except Exception, e:
             return False, e.message
@@ -337,9 +333,18 @@ class App(object):
                 title           = 'Command No Found.'
                 )
         feedback.addItem(
-            title               = 'Apps Search',
-            subtitle            = 'search apps in AppShopper',
-            autocomplete        = 'search ',
+            title               = 'Apps Search for Mac',
+            autocomplete        = 'search-mac ',
+            valid               = False
+            )
+        feedback.addItem(
+            title               = 'Apps Search for iPhone',
+            autocomplete        = 'search-mac ',
+            valid               = False
+            )
+        feedback.addItem(
+            title               = 'Apps Search for iPad',
+            autocomplete        = 'search-ipad ',
             valid               = False
             )
         if alfred.config.get('username'):
@@ -392,6 +397,7 @@ class App(object):
         return self.outputFeedback(success, data)
 
     def search(self):
+        # 搜索字符窜
         query = []
         argv_pos = 2
         while True:
@@ -401,16 +407,27 @@ class App(object):
             query.append(arg)
             argv_pos += 1
         query = ' '.join(query)
+
         if not query:
             alfred.exitWithFeedback(
-                title = 'Search for apps in AppShopper'
+                title = 'Search Apps in AppShopper'
                 )
-        query = urllib.urlencode({
+        params = {
             'search'    : query,
             'platform'  : 'all',
             'device'    : 'all'
-            })
-        query_str = '?{}'.format(query)
+            }
+        # 搜索类型 ios mac
+        cmd = alfred.argv(1).lower()
+        if cmd.endswith('-ios'):
+            params.update(platform='ios')
+        elif cmd.endswith('-mac'):
+            params.update(platform='mac')
+        elif cmd.endswith('-iphone'):
+            params.update(platform='ios', device='iphone')
+        elif cmd.endswith('-ipad'):
+            params.update(platform='ios', device='ipad')
+        query_str = '?{}'.format(urllib.urlencode(params))
         url = self.getUrl('search', query_str)
         success, data = self.fetchDataFromePage(url, False)
         return self.outputFeedback(success, data)
