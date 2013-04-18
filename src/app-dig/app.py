@@ -471,7 +471,7 @@ class App(object):
         feedback.addItem(
             title           = 'Change Country/Currency',
             subtitle        = 'current: {}'.format( self.getContryDesc() ),
-            autocomplete    = 'change-country',
+            autocomplete    = 'change-country ',
             valid           = False
             )
         title = '{} App Icon Showing'.format('Enable' if not self.enable_appiconshow else 'Disable')
