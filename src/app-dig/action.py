@@ -53,7 +53,7 @@ def main():
         'change-country'    : lambda: changeCountry()
     }
     if not cmd or cmd.lower() not in cmd_map.keys():
-        alfred.exit('arguments error.')
+        alfred.exit()
     cmd_map[cmd]()
 
 if __name__ == '__main__':
