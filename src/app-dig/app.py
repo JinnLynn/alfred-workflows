@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#! 强制默认编码为utf-8
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -18,78 +17,104 @@ from pprint import pprint
 
 CACHE_EXPIRE = 60 * 30
 
-__version__ = '1.0'
+__version__ = '2.0'
 
-default_feeds = [
+default_pages = [
     {
         'title' : 'Apps Going Free for Mac',
-        'feed'  : 'http://appshopper.com/feed/paidtofree/?platform=mac',
+        'page'  : 'mac/all/prices/free/',
         'cmd'   : 'apps-going-free-for-mac'
     },
     {
         'title' : 'Apps Going Free for iPhone',
-        'feed'  : 'http://appshopper.com/feed/paidtofree/?device=iPhone',
+        'page'  : 'iphone/all/prices/free/',
         'cmd'   : 'apps-going-free-for-iphone'
     },
     {
         'title' : 'Apps Going Free for iPad',
-        'feed'  : 'http://appshopper.com/feed/paidtofree/?device=iPad',
+        'page'  : 'ipad/all/prices/free/',
         'cmd'   : 'apps-going-free-for-ipad'
     },
 ]
 
-more_apps_feed = [
+more_apps_pages = [
     {
         'title' : 'Popular Changes for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&mode=featured',
+        'page'  : '',
+    },
+    {
+        'title' : 'Popular New Apps for {title}',
+        'page'  : 'new/',
     },
     {
         'title' : 'Popular New Apps (Free) for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&mode=featured&filter=new&type=free',
+        'page'  : 'new/free/',
     },
     {
         'title' : 'Popular New Apps (Paid) for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&mode=featured&filter=new&type=paid',
+        'page'  : 'new/paid/',
     },
     {
         'title' : 'Popular Updates for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&mode=featured&filter=updates',
+        'page'  : 'updates/',
     },
     {
         'title' : 'Popular Price Drops for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&mode=featured&filter=price',
+        'page'  : 'prices/',
     },
     {
         'title' : 'All Changes for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}',
+        'page'  : 'all/',
     },
     {
-        'title' : 'All New Apps  for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&filter=new',
+        'title' : 'All New Apps for {title}',
+        'page'  : 'all/new/',
     },
     {
         'title' : 'All New Apps (Free) for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&filter=new&type=free',
+        'page'  : 'all/new/free/',
+    },
+    {
+        'title' : 'All New Apps (Paid) for {title}',
+        'page'  : 'all/new/paid/',
     },
     {
         'title' : 'All Updates for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&filter=new&type=paid',
-    },
-    {
-        'title' : 'All Updates for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&filter=updates',
+        'page'  : 'all/updates/',
     },
     {
         'title' : 'All Price Drops for {title}',
-        'feed'  : 'http://appshopper.com/feed/?{type}&filter=price',
+        'page'  : 'all/prices',
     }
 ]
 
-more_apps_types = {
-            'mac'   : {'title':'Mac','type':'platform=mac'},
-            'ipad'  : {'title':'iPad','type':'device=ipad'},
-            'iphone': {'title':'iPhone','type':'device=iphone'}
-        }
+more_apps_page_type = {
+    'mac'   : {'title':'Mac', 'platform':'mac', 'device':''},
+    'ipad'  : {'title':'iPad', 'platform':'', 'device':'ipad'},
+    'iphone': {'title':'iPhone', 'platform':'', 'device':'iphone'}
+}
+
+country_currency = {
+    'US':'United States/USD','CA':'Canada/CAD','DE':'Deutschland/EUR','UK':'United Kingdom/GBP',
+    'AU':'Australia/AUD','AT':'Austria/EUR','IT':'Italia/EUR','JP':'Japan/JPY','AR':'Argentina/USD',
+    'AM':'Armenia/USD','BE':'Belgium/EUR','BW':'Botswana/USD','BR':'Brazil/USD','BG':'Bulgaria/EUR',
+    'CL':'Chile/USD','CN':'China/CNY','CO':'Colombia/USD','CR':'Costa Rica/USD','HR':'Croatia/USD',
+    'CZ':'Czech Republic/EUR','DK':'Denmark/DKK','DO':'Dominican Republic/USD','EC':'Ecuador/USD',
+    'SV':'El Salvador/USD','EG':'Egypt/USD','EE':'Estonia/EUR','FI':'Finland/EUR','FR':'France/EUR',
+    'GT':'Guatemala/USD','GR':'Greece/EUR','HN':'Honduras/USD','HK':'Hong Kong/HKD','HU':'Hungary/EUR',
+    'IN':'India/INR','ID':'Indonesia/IDR','IE':'Ireland/EUR','IL':'Israel/ILS','JM':'Jamaica/USD',
+    'JO':'Jordan/USD','KZ':'Kazakhstan/USD','KE':'Kenya/USD','KP':'Korea (north)/USD',
+    'KR':'Korea (south)/USD','KW':'Kuwait/USD','LV':'Latvia/EUR','LB':'Lebanon/USD','LT':'Lithuania/EUR',
+    'LU':'Luxembourg/EUR','MO':'Macau/USD','MK':'Macedonia/USD','MG':'Madagascar/USD','MY':'Malaysia/USD',
+    'MT':'Malta (Republic of)/EUR','ML':'Mali/USD','MU':'Mauritius/USD','MX':'Mexico/MXP',
+    'MD':'Moldova/USD','NL':'Netherlands/EUR','NZ':'New Zealand/NZD','NI':'Nicaragua/USD','NE':'Niger/USD',
+    'NO':'Norway/NOK','PK':'Pakistan/USD','PA':'Panama/USD','PY':'Paraguay/USD','PE':'Peru/USD',
+    'PH':'Philippines/USD','PL':'Poland/EUR','PT':'Portugal/EUR','QA':'Qatar/USD','RO':'Romania/EUR',
+    'RU':'Russia/RUB','SA':'Saudi Arabia/SAR','SN':'Senegal/USD','SG':'Singapore/SGD','SK':'Slovakia/EUR',
+    'SI':'Slovenia/EUR','ZA':'South Africa/ZAR','ES':'Spain/EUR','LK':'Sri Lanka/USD','SE':'Sweden/SEK',
+    'CH':'Switzerland/CHF','TW':'Taiwan/TWD','TH':'Thailand/USD','TN':'Tunisia/USD','TR':'Turkey/TRY',
+    'AE':'UAE/AED','UG':'Uganda/USD','UY':'Uruguay/USD','VE':'Venezuela/USD','VN':'Vietnam/USD'
+    }
 
 class App(object):
     def __init__(self):
@@ -100,9 +125,11 @@ class App(object):
         if not cmd:
             return self.showDefaultList()
         cmd = cmd.lower()
-        for feed in default_feeds:
-            if cmd == feed['cmd']:
-                self.showAppsFromFeed(feed['feed'])
+        for page in default_pages:
+            if cmd == page['cmd']:
+                url = os.path.join('http://appshopper.com', page['page'])
+                self.showAppsFromPage(url)
+                alfred.exit()
 
         self.tryShowMoreApps()
 
@@ -112,19 +139,32 @@ class App(object):
             cmd = 'more-apps'
 
         cmd_map = {
-            'search'    : lambda: self.search(),
-            'wish'      : lambda: self.showWishList(),
-            'setting'   : lambda: self.showSettings(),
-            'more-apps' : lambda: self.showMoreApps()
+            'search'            : lambda: self.search(),
+            'wishlist'          : lambda: self.showWishList(),
+            'setting'           : lambda: self.showSettings(),
+            'more-apps'         : lambda: self.showMoreApps(),
+            'change-country'    : lambda: self.showCountries()
         }
         if cmd in cmd_map.keys():
             return cmd_map[cmd]()
         return self.showDefaultList()
 
+    def getCountry(self):
+        country = alfred.config.get('country', 'US')
+        if country not in country_currency.keys():
+            alfred.config.delete('country')
+            return 'US'
+        return country
+
+    def getContryDesc(self):
+        return country_currency[self.getCountry()]
+
     def openUrl(self, url):
         opener = urllib2.build_opener()
-        opener.addheaders.append(('Cookie', 'AS_country=US; expires=Thu, 12 Dec 2030 00:00:00 ; path=/'))
-        return opener.open(url).read()
+        cookie = 'AS_country={}; expires=Thu, 12 Dec 2030 00:00:00 ; path=/'.format(self.getCountry())
+        opener.addheaders.append(('Cookie', cookie))
+        content = opener.open(url).read()
+        return content
 
     def fetchDataFromFeed(self, feed, cached=True):
         data = alfred.cache.get(feed)
@@ -200,23 +240,46 @@ class App(object):
                     price_tag.find('span').extract()
                     app_price = price_tag.get_text()
                     app_price = '{}{}'.format(app_price, app_cents)
+
+                pricedrop_tag = item.select('.pricedrop')
+                pricedrop = ''
+                if pricedrop_tag:
+                    pricedrop_tag = pricedrop_tag[0]
+                    pricedrop_cents = pricedrop_tag.find('sup').get_text()
+                    if pricedrop_cents:
+                        pricedrop_cents = '.{}'.format(pricedrop_cents)
+                    pricedrop_tag.find('sup').extract()
+                    pricedrop = pricedrop_tag.get_text()
+                    pricedrop = '{}{}'.format(pricedrop, pricedrop_cents)
+
+                app_price_info = app_price
+                if pricedrop:
+                    app_price_info = '{} -> {}'.format(pricedrop, app_price_info)
+
                 app_category = item.select('.category')[0].string.strip()
-                app_version = item.find_all('dd')[2].string.strip()
+                app_lastchange = item.find_all('dd')[0].get_text()
+                app_rating = item.find_all('dd')[1].get_text()
+                app_version = item.find_all('dd')[2].get_text()
                 app_device = item.select('dl > dt > nobr')[0].string.strip()
 
                 icon_tag = item.find('img')
                 app_icon = icon_tag['src'].strip()
                 app_link = icon_tag.find_parent('a')['href'].strip()
+
+                app_desc = 'Price: {}  Version: {}  Rating: {}  Category: {}  Device: {}'.format(
+                    app_price_info, app_version, app_rating, app_category, app_device)
             except Exception, e:
                 continue
             data.append({
                 'name'      : app_name,
                 'link'      : app_link,
-                'desc'      : 'Price: {:6}  Version: {}  Category: {}  Device: {}'.format(app_price, app_version, app_device, app_category),
+                'desc'      : app_desc,
                 'icon'      : app_icon,
                 'store'     : app_store_link,
                 'category'  : app_category
                 })
+        if cached and data:
+            alfred.cache.set(page, data, CACHE_EXPIRE)
         return True, data
 
     def downloadAppIcon(self, data):
@@ -276,10 +339,10 @@ class App(object):
             feedback.addItem(
                 title           = 'Apps Wish List',
                 subtitle        = '{}\'s Wish list in AppShopper'.format(alfred.config.get('username')),
-                autocomplete    = 'wish',
+                autocomplete    = 'wishlist',
                 valid           = False
                 )
-        for item in default_feeds:
+        for item in default_pages:
             feedback.addItem(
                 title           = item['title'],
                 autocomplete    = item['cmd'],
@@ -315,6 +378,10 @@ class App(object):
 
     def showAppsFromFeed(self, feed):
         success, data = self.fetchDataFromFeed(feed)
+        return self.outputFeedback(success, data)
+
+    def showAppsFromPage(self, page):
+        success, data = self.fetchDataFromePage(page)
         return self.outputFeedback(success, data)
 
     def search(self):
@@ -372,6 +439,12 @@ class App(object):
             subtitle        = 'clear all cache',
             arg             = 'clean'
             )
+        feedback.addItem(
+            title           = 'Change Country/Currency',
+            subtitle        = 'current: {}'.format( self.getContryDesc() ),
+            autocomplete    = 'change-country',
+            valid           = False
+            )
         title = '{} App Icon Showing'.format('Enable' if not self.enable_appiconshow else 'Disable')
         feedback.addItem(
             title           = title,
@@ -383,13 +456,13 @@ class App(object):
     def showMoreApps(self):
         sub = alfred.argv(1)
         t = sub[10:].lower()
-        if t not in more_apps_types.keys():
+        if t not in more_apps_page_type.keys():
             self.exitWithFeedback(
                 title = 'Nothing found'
                 )
         feedback = alfred.Feedback()
-        for item in more_apps_feed:
-            title = item['title'].format(**more_apps_types[t])
+        for item in more_apps_pages:
+            title = item['title'].format(**more_apps_page_type[t])
             cmd = '-'.join(title.lower().split(' '))
             feedback.addItem(
                 title           = title,
@@ -401,13 +474,32 @@ class App(object):
     def tryShowMoreApps(self):
         sub = alfred.argv(1)
         for t in ['mac', 'ipad', 'iphone']:
-            for item in more_apps_feed:
-                title = item['title'].format(**more_apps_types[t])
+            for item in more_apps_pages:
+                title = item['title'].format(**more_apps_page_type[t])
                 cmd = '-'.join(title.lower().split(' '))
-                if sub == cmd:
-                    feed = item['feed'].format(**more_apps_types[t])
-                    self.showAppsFromFeed(feed)
-                    alfred.exit()
+                if sub != cmd:
+                    continue
+                page_url = os.path.join(
+                    'http://appshopper.com', 
+                    more_apps_page_type[t]['platform'],
+                    more_apps_page_type[t]['device'],
+                    item['page']
+                    )
+                self.showAppsFromPage(page_url)
+                alfred.exit()
+
+    def showCountries(self):
+        q = alfred.argv(2)
+        feedback = alfred.Feedback()
+        for k,v in country_currency.iteritems():
+            if q and not q.lower() in v.lower():
+                continue
+            feedback.addItem(
+                title   = v,
+                arg     = 'change-country {}'.format(k)
+                )
+        feedback.items.sort(key=lambda i: i.content['title'].lower())
+        feedback.output()
 
 if __name__ == '__main__':
     App().run()

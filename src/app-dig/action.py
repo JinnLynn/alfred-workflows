@@ -33,13 +33,21 @@ def toggleAppIconShowing():
     alfred.config.set(app_icon_show = v)
     alfred.exit('App Icon Showing {}'.format('Enabled' if v else 'Disabled'))
 
+def changeCountry():
+    sub = alfred.argv(2)
+    if not sub:
+        return
+    alfred.config.set(country=sub)
+    alfred.exit('Country/Currency Changed.')
+
 def main():
     cmd = alfred.argv(1)
     cmd_map = {
         'set-username'      : lambda: setUsername(),
         'open-link'         : lambda: openLink(),
         'clean'             : lambda: clearCache(),
-        'app-icon-showing'  : lambda: toggleAppIconShowing()
+        'app-icon-showing'  : lambda: toggleAppIconShowing(),
+        'change-country'    : lambda: changeCountry()
     }
     if not cmd or cmd.lower() not in cmd_map.keys():
         alfred.exit('arguments error.')
