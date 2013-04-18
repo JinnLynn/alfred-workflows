@@ -127,7 +127,7 @@ class App(object):
         cmd = cmd.lower()
         for page in default_pages:
             if cmd == page['cmd']:
-                url = os.path.join('http://appshopper.com', page['page'])
+                url = self.getUrl(page['page'])
                 self.showAppsFromPage(url)
                 alfred.exit()
 
@@ -159,6 +159,12 @@ class App(object):
     def getContryDesc(self):
         return country_currency[self.getCountry()]
 
+    def getUrl(self, *args):
+        url = 'http://appshopper.com'
+        for arg in args:
+            url = os.path.join(url, arg)
+        return url
+
     def openUrl(self, url):
         opener = urllib2.build_opener()
         cookie = 'AS_country={}; expires=Thu, 12 Dec 2030 00:00:00 ; path=/'.format(self.getCountry())
@@ -185,7 +191,7 @@ class App(object):
                 app_icon = soup.find('img').attrs.get('src', '')
                 itunes = soup.find('a')
                 app_store_link = itunes.attrs.get('href', '').lstrip('/')
-                app_store_link = os.path.join('http://appshopper.com/', app_store_link)
+                app_store_link = self.getUrl(app_store_link)
                 # 清除掉该链接节点
                 itunes.clear()
                 lines = soup.text.strip().splitlines()
@@ -229,7 +235,8 @@ class App(object):
                 title_tag = item.select('h3.hovertip')[0]
                 app_name = title_tag.string.strip()
                 price_tag = item.select('.price')[0]
-                app_store_link = os.path.join('http://appshopper.com', price_tag.find('a').attrs.get('href', '').lstrip('/'))
+                store_link = price_tag.find('a').attrs.get('href', '').lstrip('/')
+                app_store_link = self.getUrl(store_link)
                 price_tag.find('a').extract()
                 app_price = price_tag.select('.misc')[0].get_text()
                 if not app_price:
@@ -398,8 +405,13 @@ class App(object):
             alfred.exitWithFeedback(
                 title = 'Search for apps in AppShopper'
                 )
-        query = urllib.urlencode({'search' : query})
-        url = 'http://appshopper.com/search/??cat=&platform=all&device=all&sort=rel&dir=asc&{}'.format(query)
+        query = urllib.urlencode({
+            'search'    : query,
+            'platform'  : 'all',
+            'device'    : 'all'
+            })
+        query_str = '?{}'.format(query)
+        url = self.getUrl('search', query_str)
         success, data = self.fetchDataFromePage(url, False)
         return self.outputFeedback(success, data)
 
@@ -412,7 +424,7 @@ class App(object):
                 autocomplete    = 'setting username',
                 valid           = False
                 )
-        wish_feed = 'http://appshopper.com/feed/user/{}/wishlist'.format(username)
+        wish_feed = self.getUrl('feed', 'user', username, 'wishlist')
         success, data = self.fetchDataFromFeed(wish_feed, False)
         no_found_msg = 'maybe you don\'t share your wifh list, you need to check "Share My Wishlist" in AppShopper Wish List page'
         self.outputFeedback(success, data, no_found_msg)
@@ -479,12 +491,9 @@ class App(object):
                 cmd = '-'.join(title.lower().split(' '))
                 if sub != cmd:
                     continue
-                page_url = os.path.join(
-                    'http://appshopper.com', 
-                    more_apps_page_type[t]['platform'],
-                    more_apps_page_type[t]['device'],
-                    item['page']
-                    )
+                platform = more_apps_page_type[t]['platform']
+                device = more_apps_page_type[t]['device']
+                page_url = self.getUrl(platform, device, item['page'])
                 self.showAppsFromPage(page_url)
                 alfred.exit()
 
