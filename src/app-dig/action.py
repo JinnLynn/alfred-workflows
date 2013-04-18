@@ -8,6 +8,8 @@ sys.setdefaultencoding('utf8')
 import os, subprocess, urllib, urllib2, hashlib
 import alfred
 
+from app import country_currency
+
 def setUsername():
     usr = alfred.argv(2)
     if not usr:
@@ -35,10 +37,11 @@ def toggleAppIconShowing():
 
 def changeCountry():
     sub = alfred.argv(2)
-    if not sub:
+    if not sub or sub not in country_currency.keys():
         return
     alfred.config.set(country=sub)
-    alfred.exit('Country/Currency Changed.')
+    alfred.cache.clean()
+    alfred.exit('Country/Currency has changed to {}.'.format(country_currency[sub]))
 
 def main():
     cmd = alfred.argv(1)
