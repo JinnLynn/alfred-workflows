@@ -347,13 +347,6 @@ class App(object):
             autocomplete        = 'search-ipad ',
             valid               = False
             )
-        if alfred.config.get('username'):
-            feedback.addItem(
-                title           = 'Apps Wish List',
-                subtitle        = '{}\'s Wish list in AppShopper'.format(alfred.config.get('username')),
-                autocomplete    = 'wishlist',
-                valid           = False
-                )
         for item in default_pages:
             feedback.addItem(
                 title           = item['title'],
@@ -378,6 +371,13 @@ class App(object):
             autocomplete        = 'more-apps-ipad',
             valid               = False
             )
+
+        if alfred.config.get('username'):
+            feedback.addItem(
+                title        = '{}\'s Wishlist in AppShopper'.format(alfred.config.get('username')),
+                autocomplete    = 'wishlist',
+                valid           = False
+                )
 
         # 设置入口
         feedback.addItem(
