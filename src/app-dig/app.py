@@ -328,10 +328,6 @@ class App(object):
 
     def showDefaultList(self):
         feedback = alfred.Feedback()
-        if alfred.argv(1):
-            feedback.addItem(
-                title           = 'Command No Found.'
-                )
         feedback.addItem(
             title               = 'Apps Search for Mac',
             autocomplete        = 'search-mac ',
