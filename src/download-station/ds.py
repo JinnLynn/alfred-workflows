@@ -233,8 +233,7 @@ class DSSetting(DSBase):
         # pprint(data)
         if not config:
             feedback.addItem(
-                title       = 'Fetch download station config failed.',
-                subtitle    = '{}'.format(data)
+                title       = 'Fetch download station config failed.'
                 )
         else:
             # eMule的禁用与启用
