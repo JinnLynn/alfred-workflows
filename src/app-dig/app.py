@@ -162,11 +162,9 @@ class App(object):
         return url
 
     def openUrl(self, url):
-        opener = urllib2.build_opener()
-        cookie = 'AS_country={}; expires=Thu, 12 Dec 2030 00:00:00 ; path=/'.format(self.getCountry())
-        opener.addheaders.append(('Cookie', cookie))
-        content = opener.open(url).read()
-        return content
+        cookie = 'AS_country={}'.format(self.getCountry())
+        res = alfred.request.get(url, cookie=cookie)
+        return res.getContent() if res.isSuccess() else ''
 
     def fetchDataFromFeed(self, feed, cached=True):
         data = alfred.cache.get(feed)
@@ -296,15 +294,8 @@ class App(object):
             links.append(img_url)
         alfred.storage.batchDownload(links)
 
-    def getLocalAppIcon(selg, img_url):
-        storage_path = os.path.join('/tmp', alfred.bundleID())
-        _, ext = os.path.splitext(img_url)
-        if not ext:
-            return
-        filename = '{}{}'.format( hashlib.md5(img_url).hexdigest(), ext )
-        filepath = os.path.join(storage_path, filename)
-        if os.path.exists(filepath):
-            return filepath
+    def getLocalAppIcon(self, img_url):
+        return alfred.storage.getLocalIfExists(img_url)
 
     def outputFeedback(self, success, data, no_found_msg=''):
         if not success or not data:
