@@ -65,7 +65,7 @@ class DSCache(DSBase):
                 alfred.cache.set('tasks', tasks, TASKS_CACHE_EXPIRE)
         else:
             pass
-            #alfred.log(data) #如果未授权 会出现错误: unknown url type: webapi/DownloadStation/task.cgi
+            # print(data) #如果未授权 会出现错误: unknown url type: webapi/DownloadStation/task.cgi
 
     def cacheDSInfo(self):
         if alfred.cache.get('dsinfo'):

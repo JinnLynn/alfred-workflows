@@ -80,8 +80,7 @@ class DownloadStation(object):
         self.session = session
         self.last_error = ''
 
-        if not self.session:
-            self.login()
+        self.checkLogin()
 
     def __del__(self):
         pass
@@ -173,6 +172,14 @@ class DownloadStation(object):
         }
         success, data = self.fetch('auth.cgi', paras)
         self.session = ''
+
+    def checkLogin(self):
+        if self.session:
+            success, _ = self.fetchInfo()
+            if success:
+                return True
+        self.session = ''
+        return self.login()
 
     # 获取DS信息
     def fetchInfo(self):

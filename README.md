@@ -3,7 +3,7 @@
 ### INSTALL ALL
 
 ```
-git clone git://github.com/JinnLynn/alfred-workflows.git && cd alfred-workflows && git submodule update --init && python install.py
+git clone --recursive git://github.com/JinnLynn/alfred-workflows.git && python alfred-workflows/install.py
 ```
 
 **NOTE: JUST SYMBOLIC LINKS, SO MUST NOT REMOVE FOLDER alfred-workflows!**
@@ -52,7 +52,7 @@ NOTE: Before using, you **MUST** to configure DS login information with the keyw
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/download-station) 
 
-*last updated: 2013-04-13 version: 1.0*
+*last updated: 2013-04-22 version: 1.0.1*
 
 
 

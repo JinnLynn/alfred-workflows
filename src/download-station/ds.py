@@ -17,7 +17,7 @@ import alfred
 from dslib import *
 import util
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 def createDownloadStationImp():
     session = alfred.cache.get('session')
@@ -27,10 +27,9 @@ def createDownloadStationImp():
         alfred.config.get('pwd', ''),
         session
         )
-    if not session:
-        session = ds.getSession()
-        if session:
-            alfred.cache.set('session', session, DS_SESSION_MAX_ALIVE)
+    cur_session = ds.getSession()
+    if session!=cur_session:
+        alfred.cache.set('session', cur_session, DS_SESSION_MAX_ALIVE)
     return ds
 
 def forkCacheProcess(delay=0):
