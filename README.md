@@ -110,6 +110,18 @@ To search, download, show or save Lyric.
 
 
 
+## Chinese TV EPG
+
+中国内地电视节目单。
+
+![Chinese Dictionary Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/chinese-tv-epg.png)
+
+[Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/chinese-tv-epg.alfredworkflow) 
+ / 
+[Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/chinese-tv-epg)
+
+*last updated: 2013-04-28 version: 1.0*
+
 
 ## Credits
 
