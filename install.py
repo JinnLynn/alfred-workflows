@@ -13,7 +13,7 @@ def exit(msg, retcode=0):
     sys.exit(retcode)
 
 def die(msg):
-    eixt(msg, 1)
+    exit(msg, 1)
 
 def rmAny(path):
     if os.path.isfile(path) or os.path.islink(path):
