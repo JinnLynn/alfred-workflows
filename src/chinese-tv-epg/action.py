@@ -4,7 +4,7 @@ import sys
 
 import alfred
 
-from tvcn import getFavChannels, isChannelFaved, getChannelTitle
+from epg import getFavChannels, isChannelFaved, getChannelTitle
 
 def toggleFavChannel():
     channel = alfred.argv(2)
