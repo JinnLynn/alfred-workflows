@@ -42,29 +42,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>AppShopper</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>2CA38999-27CB-4A95-A211-4BA5B6E69D01</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -104,6 +81,29 @@
 			<key>uid</key>
 			<string>403AC24C-E651-4912-ACFE-077264262E40</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>AppShopper</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>2CA38999-27CB-4A95-A211-4BA5B6E69D01</string>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -112,17 +112,17 @@
 		<key>1EB3E8DC-5ADD-4F42-9FA2-708A5B01C666</key>
 		<dict>
 			<key>ypos</key>
-			<real>220</real>
+			<real>140</real>
 		</dict>
 		<key>2CA38999-27CB-4A95-A211-4BA5B6E69D01</key>
 		<dict>
 			<key>ypos</key>
-			<real>220</real>
+			<real>140</real>
 		</dict>
 		<key>403AC24C-E651-4912-ACFE-077264262E40</key>
 		<dict>
 			<key>ypos</key>
-			<real>220</real>
+			<real>140</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>

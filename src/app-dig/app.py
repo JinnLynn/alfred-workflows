@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 import os, urllib, urllib2, re, hashlib, subprocess, datetime
 try:
@@ -11,6 +8,7 @@ except ImportError:
     import xml.etree.ElementTree as et
 
 import alfred
+alfred.setDefaultEncodingUTF8()
 from bs4 import BeautifulSoup
 
 from pprint import pprint
@@ -158,7 +156,7 @@ class App(object):
     def getUrl(self, *args):
         url = 'http://appshopper.com'
         for arg in args:
-            url = os.path.join(url, arg)
+            url = os.path.join(url, arg.lstrip('/'))
         return url
 
     def openUrl(self, url):
@@ -273,7 +271,7 @@ class App(object):
                 continue
             data.append({
                 'name'      : app_name,
-                'link'      : app_link,
+                'link'      : self.getUrl(app_link),
                 'desc'      : app_desc,
                 'icon'      : app_icon,
                 'store'     : app_store_link,
@@ -309,10 +307,11 @@ class App(object):
             icon = ''
             if self.enable_appiconshow:
                 icon = self.getLocalAppIcon(app['icon'])
+            links = '{},{}'.format(app['store'], app['link'])
             feedback.addItem(
                 title       = app['name'],
                 subtitle    = app['desc'],
-                arg         = 'open-link {}'.format(app['store']),
+                arg         = 'open-link {}'.format(links),
                 icon        = icon if icon else ''
                 )
         feedback.output()
@@ -466,6 +465,12 @@ class App(object):
             title           = title,
             subtitle        = 'enable may take more time to fetch data.',
             arg             = 'app-icon-showing {}'.format('enable' if not self.enable_appiconshow else 'disable')
+            )
+        open_store_link = alfred.config.get('open_store_link', True)
+        feedback.addItem(
+            title           = 'Open iTunes link or Appshopper link?',
+            subtitle        = 'current: {} link. select this item to change.'.format('iTunes' if open_store_link else 'Appshopper'),
+            arg             = 'switch-link-open-type'
             )
         feedback.output()
 

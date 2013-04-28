@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#! 强制默认编码为utf-8
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8') 
-
 import os, subprocess, urllib, urllib2, hashlib
+
 import alfred
+alfred.setDefaultEncodingUTF8()
 
 from app import country_currency
 
@@ -18,10 +15,13 @@ def setUsername():
     alfred.exit('AppShopper username has setted.')
 
 def openLink():
-    link = alfred.argv(2)
-    if not link:
-        alfred.exit('link missing.')
-    subprocess.check_output(['open', link])
+    try:
+        links = alfred.argv(2).strip().split(',')
+        open_store_link = alfred.config.get('open_store_link', True)
+        link = links[0] if open_store_link else links[1]
+        subprocess.check_output(['open', link])
+    except Exception, e:
+        alfred.exit('something error.')
 
 def clearCache():
     alfred.cache.clean()
@@ -43,6 +43,14 @@ def changeCountry():
     alfred.cache.clean()
     alfred.exit('Country/Currency has changed to {}.'.format(country_currency[sub]))
 
+def switchLinkOpenType():
+    alfred.cache.clean()
+    open_store_link = alfred.config.get('open_store_link', True)
+    new_value = False if open_store_link else True
+    alfred.config.set(open_store_link=new_value)
+    alfred.exit('{} link will be opened.'.format('iTunes' if new_value else 'AppShopper'))
+
+
 def main():
     cmd = alfred.argv(1)
     cmd_map = {
@@ -50,7 +58,8 @@ def main():
         'open-link'         : lambda: openLink(),
         'clean'             : lambda: clearCache(),
         'app-icon-showing'  : lambda: toggleAppIconShowing(),
-        'change-country'    : lambda: changeCountry()
+        'change-country'    : lambda: changeCountry(),
+        'switch-link-open-type' : lambda: switchLinkOpenType()
     }
     if not cmd or cmd.lower() not in cmd_map.keys():
         alfred.exit()
