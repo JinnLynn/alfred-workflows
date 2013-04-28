@@ -326,7 +326,7 @@ class App(object):
             )
         feedback.addItem(
             title               = 'Apps Search for iPhone',
-            autocomplete        = 'search-mac ',
+            autocomplete        = 'search-iphone ',
             valid               = False
             )
         feedback.addItem(
