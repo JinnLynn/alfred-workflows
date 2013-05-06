@@ -72,7 +72,7 @@ def dslibHumanReadable(byte):
     return '{:.2f}{}'.format(size, unit)
 
 class DownloadStation(object):
-    def __init__(self, host, usr, pwd, session = None):
+    def __init__(self, host, usr, pwd, session=None):
         self.host = host
         self.usr = usr
         self.pwd = pwd
@@ -87,19 +87,6 @@ class DownloadStation(object):
 
     def die(self, msg):
         pass
-
-    def humanReadable(self, byte):
-        if isinstance(byte, (str, unicode)):
-            byte = int(byte) if byte.isnumeric() else 0
-        size = byte / 1024.0
-        unit = 'KB'
-        if size > 1024:
-            size = size / 1024.0
-            unit = 'MB'
-        if size > 1024:
-            size = size / 1024.0
-            unit = 'GB'
-        return '{:.2f}{}'.format(size, unit)
 
     def getSession(self):
         return self.session
@@ -298,10 +285,3 @@ class DownloadStation(object):
     # 删除任务
     def deleteTask(self, task_id):
         return self.putTask('delete', task_id, 'id')
-
-def createDownloadStation(host, usr, pwd, session = '', last_activity = 0):
-    ds = DownloadStation(host, usr, pwd)
-    session_lived = time.time() - last_activity
-    if session_lived > 0 and session_lived < DS_SESSION_MAX_ALIVE:
-        ds.setSession(session)
-    return ds
