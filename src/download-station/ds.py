@@ -132,7 +132,8 @@ class DSBase(object):
 
     # 获取所有任务
     def getTasks(self):
-        return self.getCache('tasks')
+        cache = self.getCache('tasks')
+        return cache if isinstance(cache, list) else []
 
     def getTaskFilters(self):
         return {
