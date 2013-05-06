@@ -45,7 +45,7 @@ class DSCache(DSBase):
             cmd = cmd.lower()
             if cmd in self.cmds.keys():
                 self.cmds[cmd]()
-        except:
+        except Exception, e:
             pass
         alfred.cache.delete(caching)
 

@@ -50,7 +50,13 @@ def waitCacheProcess():
 
 class DSBase(object):
     def __init__(self):
-        self.ds = createDownloadStationImp()
+        self._ds = None
+
+    @property
+    def ds(self):
+        if self._ds is None:
+            self._ds = createDownloadStationImp()
+        return self._ds
 
     def run(self):
         pass
@@ -84,7 +90,7 @@ class DSBase(object):
         exclude_status = ['seeding']
         tasks = filter(lambda t: t['status'] not in exclude_status, tasks)
 
-        hr = lambda s: self.ds.humanReadable(s)
+        hr = lambda s: dslibHumanReadable(s)
         parsed_tasks = []
         for task in tasks:
             transfer = task['additional']['transfer']
@@ -316,15 +322,15 @@ class DSStatus(DSBase):
                     )
                 )
 
-        download = self.ds.humanReadable(data['speed_download'])
-        upload = self.ds.humanReadable(data['speed_upload'])
+        download = dslibHumanReadable(data['speed_download'])
+        upload = dslibHumanReadable(data['speed_upload'])
         feedback.addItem(
             subtitle = 'Total speed except for eMule',
             title = 'DL: {:8} UL: {}'.format(download, upload)
             )
         if data.has_key('emule_speed_download'):
-            download = self.ds.humanReadable(data['emule_speed_download'])
-            upload = self.ds.humanReadable(data['emule_speed_upload'])
+            download = dslibHumanReadable(data['emule_speed_download'])
+            upload = dslibHumanReadable(data['emule_speed_upload'])
             feedback.addItem(
                 subtitle = 'Total eMule speed',
                 title = 'DL: {:8} UL: {}'.format(download, upload)

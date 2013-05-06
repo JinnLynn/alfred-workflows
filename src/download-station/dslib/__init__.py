@@ -58,7 +58,7 @@ DS_AVAILABLE_CONFIG_KEYS  = [
 
 DS_SESSION_MAX_ALIVE = 60 * 60 * 24
 
-def dslibHumanReadable(self, byte):
+def dslibHumanReadable(byte):
     if isinstance(byte, (str, unicode)):
         byte = int(byte) if byte.isnumeric() else 0
     size = byte / 1024.0
