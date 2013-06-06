@@ -52,7 +52,7 @@ NOTE: Before using, you **MUST** to configure DS login information with the keyw
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/download-station) 
 
-*last updated: 2013-04-22 version: 1.0.1*
+*last updated: 2013-06-06 version: 1.0.2*
 
 
 
