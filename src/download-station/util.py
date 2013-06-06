@@ -15,6 +15,8 @@ def parseURIInfo(uri, is_base64encode = False):
     parsed_uris = []
     rdl = RealDownloadLink()
     for uri in uris:
+        if not uri:
+            continue
         parsed_uris.append(rdl.parse(uri))
     return parsed_uris
 
