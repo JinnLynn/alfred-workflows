@@ -18,7 +18,7 @@ DSCONFIG_CACHE_EXPIRE   = 3600
 class DSCache(DSBase):
     def __init__(self):
         super(DSCache, self).__init__()
-        if not self.isAuthorized():
+        if not self.isAccountInfoExists():
             alfred.exit()
         self.cmds = {
             'all'       : lambda: self.cacheAll(),

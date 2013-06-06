@@ -61,20 +61,19 @@ class DSBase(object):
     def run(self):
         pass
 
-    def checkAuthorization(self):
-        if self.isAuthorized():
+    def checkAccountInfo(self):
+        if self.isAccountInfoExists():
             return
         alfred.exitWithFeedback(
             title           = 'User Account or DS Host Information Missing. ',
             subtitle        = 'To set with `ds setting auth`'
             )
 
-    def isAuthorized(self):
+    def isAccountInfoExists(self):
         usr = alfred.config.get('usr')
         pwd = alfred.config.get('pwd')
         host = alfred.config.get('host')
-        session = alfred.cache.get('session')
-        return usr and pwd and host and session
+        return usr and pwd and host
 
     def getCache(self, name):
         cache = alfred.cache.get(name)
@@ -224,7 +223,7 @@ class DSSetting(DSBase):
             )
 
         # 未设置账户信息等登陆信息
-        if not self.isAuthorized():
+        if not self.isAccountInfoExists():
             feedback.output()
             alfred.exit() # 未授权不显示其它的设置信息，退出
 
@@ -298,7 +297,7 @@ class DSSetting(DSBase):
 class DSStatus(DSBase):
     def __init__(self):
         super(DSStatus, self).__init__()
-        self.checkAuthorization()
+        self.checkAccountInfo()
 
     def run(self):
         success, data = self.ds.fetchStatistic()
@@ -345,7 +344,7 @@ class DSStatus(DSBase):
 class DSTask(DSBase):
     def __init__(self):
         super(DSTask, self).__init__()
-        self.checkAuthorization()
+        self.checkAccountInfo()
         
     def run(self):
         cmd_map = {
