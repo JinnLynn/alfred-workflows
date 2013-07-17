@@ -13,10 +13,8 @@ import bs4
 from pprint import pprint
 
 _baseurl = 'http://tv.cntv.cn/epg'
-_channels_file = './channels.json'
 
 _default_favs = ['cctv1', 'cctv2', 'cctv3']
-_channels = None
 
 def parseWebPage(url, **kwargs):
     try:
@@ -33,6 +31,9 @@ def parseWebPage(url, **kwargs):
         raise e
 
 def fetchChannels():
+    cache = alfred.cache.get('channels-list')
+    if cache:
+        return cache;
     soup = parseWebPage(_baseurl)
     channels = {}
     for item in soup.select('div.md_left_right'):
@@ -46,10 +47,10 @@ def fetchChannels():
             chl_title = c_tag.get_text().strip()
             chl_id = c_tag.attrs['rel'][0]
             channels.update({chl_id:chl_title})
-    if not channels:
-        return
-    with open(_channels_file, 'w') as fp:
-        json.dump(channels, fp, indent=4)
+    if channels:
+        # 缓存24小时
+        alfred.cache.set('channels-list', channels, 3600*24)
+    return channels
 
 def fetchChannelEPG(channel, date, cache_name):
     cache = alfred.cache.get(cache_name)
@@ -97,12 +98,7 @@ def fetchChannelEPGTomorrow(channel):
     return fetchChannelEPG(channel, date, cache_name)
 
 def getChannelList():
-    global _channels
-    if _channels:
-        return _channels
-    with open(_channels_file, 'r') as fp:
-        _channels = json.load(fp)
-    return _channels
+    return fetchChannels()
 
 def getChannelTitle(channel):
     channels = getChannelList()
@@ -244,7 +240,6 @@ def showChannleEPG(channel):
 
 def main():
     cmd_map = {
-        'build-channels'    : lambda: fetchChannels(),
         'live'              : lambda: showLive(),
         'epg'               : lambda: showEPG(),
         'fav'               : lambda: showEPG(),
