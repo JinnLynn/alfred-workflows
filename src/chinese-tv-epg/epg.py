@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 import sys, os, re
 import json
+import warnings
+import re
 from datetime import datetime, timedelta
 
 import alfred
 alfred.setDefaultEncodingUTF8()
-from bs4 import BeautifulSoup
 
+import bs4
 from pprint import pprint
 
 _baseurl = 'http://tv.cntv.cn/epg'
@@ -16,30 +18,38 @@ _channels_file = './channels.json'
 _default_favs = ['cctv1', 'cctv2', 'cctv3']
 _channels = None
 
-def fetchChannels():
+def parseWebPage(url, **kwargs):
     try:
-        res = alfred.request.get(_baseurl)
+        res = alfred.request.get(url, **kwargs)
         content = res.getContent()
-        match = re.search(r'<div id="page_body">(.*)<!--页脚-->', content, flags=re.DOTALL)
-        if not match:
-            return
-        soup = BeautifulSoup(match.group(1))
-        channels = {}
-        for item in soup.select('div.md_left_right'):
-            dl_tag = item.find('dl')
-            # 城市
-            if dl_tag.attrs.get('id', '') == 'cityList':
-                channel_tags = item.select('div.lv3 p a')
-            else:
-                channel_tags = item.select('dd a')
-            for c_tag in channel_tags:
-                chl_title = c_tag.get_text().strip()
-                chl_id = c_tag.attrs['rel'][0]
-                channels.update({chl_id:chl_title})
-        with open(_channels_file, 'w') as fp:
-            json.dump(channels, fp, indent=4)
+        # HACK: 获取节目列表的网页HTML TAG 错误可能造成beautiful soup解析死循环
+        # 需手动修改
+        content = re.sub(r'<a>\n', '</a>\n', content)
+        # 禁止显示BeautifulSoup警告
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            return bs4.BeautifulSoup(content, fromEncoding='utf-8')
     except Exception, e:
         raise e
+
+def fetchChannels():
+    soup = parseWebPage(_baseurl)
+    channels = {}
+    for item in soup.select('div.md_left_right'):
+        dl_tag = item.find('dl')
+        # 城市
+        if dl_tag.attrs.get('id', '') == 'cityList':
+            channel_tags = item.select('div.lv3 p a')
+        else:
+            channel_tags = item.select('dd a')
+        for c_tag in channel_tags:
+            chl_title = c_tag.get_text().strip()
+            chl_id = c_tag.attrs['rel'][0]
+            channels.update({chl_id:chl_title})
+    if not channels:
+        return
+    with open(_channels_file, 'w') as fp:
+        json.dump(channels, fp, indent=4)
 
 def fetchChannelEPG(channel, date, cache_name):
     cache = alfred.cache.get(cache_name)
@@ -52,29 +62,24 @@ def fetchChannelEPG(channel, date, cache_name):
             'channel'   : channel
         }
     schedules = []
-    try:
-        res = alfred.request.get(
-            'http://tv.cntv.cn/index.php', 
-            data=data,
-            referer=_baseurl
-            )
-        content = res.getContent()
-        soup = BeautifulSoup(content)
-        epg_list = soup.select('div#epg_list dd')
-        schedules = []
-        for item in epg_list:
-            # 已播放的
-            a_tags = item.select('a')
-            sche_info = (a_tags[1] if a_tags else item).get_text().strip()
-            first_space = sche_info.find(' ')
-            if first_space < 0:
-                continue
-            schedules.append({
-                'time' : sche_info[0:first_space].strip(),
-                'show' : sche_info[first_space:].strip()
-                })
-    except Exception, e:
-        raise e
+    soup = parseWebPage(
+        'http://tv.cntv.cn/index.php', 
+        data=data,
+        referer=_baseurl
+        )
+    epg_list = soup.select('dl dd')
+    schedules = []
+    for item in epg_list:
+        # 已播放的
+        a_tags = item.select('a')
+        sche_info = (a_tags[0] if a_tags else item).get_text().strip()
+        first_space = sche_info.find(' ')
+        if first_space < 0:
+            continue
+        schedules.append({
+            'time' : sche_info[0:first_space].strip(),
+            'show' : sche_info[first_space:].strip()
+            })
     if not schedules:
         return
     alfred.cache.set(cache_name, {'date':date_str, 'epg':schedules}, 3600*24)
