@@ -123,6 +123,19 @@ To search, download, show or save Lyric.
 *last updated: 2013-04-28 version: 1.0*
 
 
+## YYeTs
+
+人人影视( http://www.yyets.com/ )资源搜索查看。
+
+![YYeTs Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/yyets.png)
+
+[Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/yyets.alfredworkflow) 
+ / 
+[Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/yyets)
+
+*last updated: 2013-07-17 version: 1.0*
+
+
 ## Credits
 
 Created by [JinnLynn][home] under the MIT license. 
