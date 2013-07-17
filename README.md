@@ -3,7 +3,7 @@
 ### INSTALL ALL
 
 ```
-git clone --recursive git://github.com/JinnLynn/alfred-workflows.git && python alfred-workflows/install.py
+git clone --recursive https://github.com/JinnLynn/alfred-workflows.git && python alfred-workflows/install.py
 ```
 
 **NOTE: JUST SYMBOLIC LINKS, SO MUST NOT REMOVE FOLDER alfred-workflows!**
