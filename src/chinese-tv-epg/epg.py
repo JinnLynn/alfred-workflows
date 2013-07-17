@@ -12,8 +12,9 @@ alfred.setDefaultEncodingUTF8()
 import bs4
 from pprint import pprint
 
-_baseurl = 'http://tv.cntv.cn/epg'
+__version__ = '1.1'
 
+_baseurl = 'http://tv.cntv.cn/epg'
 _default_favs = ['cctv1', 'cctv2', 'cctv3']
 
 def parseWebPage(url, **kwargs):
