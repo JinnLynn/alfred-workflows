@@ -125,7 +125,7 @@ To search, download, show or save Lyric.
 
 ## YYeTs
 
-人人影视( http://www.yyets.com/ )资源搜索查看。
+[人人影视](http://www.yyets.com/)资源搜索查看。
 
 ![YYeTs Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/yyets.png)
 
