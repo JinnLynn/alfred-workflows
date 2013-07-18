@@ -6,55 +6,11 @@
 	<string>net.jeeker.awf.YYeTs</string>
 	<key>connections</key>
 	<dict>
-		<key>132826AD-1692-42B4-BD27-094E4E8D2CDA</key>
+		<key>6D7DFA62-A65E-451E-8948-BC3DADA7AB22</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9911E12D-B15D-44DD-9535-002AC655C945</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>28F1B841-1D58-4CEE-A1AE-6BE608AB07E8</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>BE7BF1F1-D773-4BA7-8199-5F9C1376758C</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>414C53EB-DEE1-482F-9D15-A223F679D40A</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>9911E12D-B15D-44DD-9535-002AC655C945</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>A962F8D0-3E88-4D2E-BEA5-54EBDFD4F994</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>9911E12D-B15D-44DD-9535-002AC655C945</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>C38EA660-D98E-4B8A-9C65-1415EDC236A5</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>BE7BF1F1-D773-4BA7-8199-5F9C1376758C</string>
+				<string>D1864AC3-471C-4AE9-A36F-522867435719</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -65,53 +21,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>9911E12D-B15D-44DD-9535-002AC655C945</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>E9443F35-DE97-49C6-A09B-9499ACF6CEBA</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>BE7BF1F1-D773-4BA7-8199-5F9C1376758C</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-		<key>FFC11C13-53DF-4EA2-BA12-9B2C0AC9CA72</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>414C53EB-DEE1-482F-9D15-A223F679D40A</string>
-				<key>modifiers</key>
-				<integer>262144</integer>
-				<key>modifiersubtext</key>
-				<string>拷贝电驴地址到剪切板</string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>A962F8D0-3E88-4D2E-BEA5-54EBDFD4F994</string>
-				<key>modifiers</key>
-				<integer>524288</integer>
-				<key>modifiersubtext</key>
-				<string>拷贝磁力链地址到剪切板</string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>132826AD-1692-42B4-BD27-094E4E8D2CDA</string>
-				<key>modifiers</key>
-				<integer>1048576</integer>
-				<key>modifiersubtext</key>
-				<string>调用download station下载</string>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>D1864AC3-471C-4AE9-A36F-522867435719</string>
+				<string>DC8F25BF-E294-448D-8549-B4484F8F02B2</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -132,34 +42,27 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
 				<key>escaping</key>
-				<integer>127</integer>
+				<integer>126</integer>
+				<key>keyword</key>
+				<string>yy</string>
+				<key>runningsubtext</key>
+				<string>加载中...</string>
 				<key>script</key>
-				<string>python action.py today-copy-emule {query}</string>
+				<string>python yyets.py {query}</string>
+				<key>title</key>
+				<string>人人影视</string>
 				<key>type</key>
 				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>414C53EB-DEE1-482F-9D15-A223F679D40A</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>script</key>
-				<string>python action.py today-copy-magnet {query}</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>A962F8D0-3E88-4D2E-BEA5-54EBDFD4F994</string>
+			<string>6D7DFA62-A65E-451E-8948-BC3DADA7AB22</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -184,36 +87,7 @@
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>9911E12D-B15D-44DD-9535-002AC655C945</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>keyword</key>
-				<string>yy today</string>
-				<key>runningsubtext</key>
-				<string>努力读取数据中...</string>
-				<key>script</key>
-				<string>python yyets.py today {query}</string>
-				<key>subtext</key>
-				<string>也包括昨日与前日更新的文件，可使用格式名称过滤文件，如hdtv, mp4, 1080p等</string>
-				<key>title</key>
-				<string>人人影视 今日更新的文件</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>FFC11C13-53DF-4EA2-BA12-9B2C0AC9CA72</string>
+			<string>DC8F25BF-E294-448D-8549-B4484F8F02B2</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -221,26 +95,9 @@
 			<key>config</key>
 			<dict>
 				<key>escaping</key>
-				<integer>127</integer>
+				<integer>126</integer>
 				<key>script</key>
-				<string>python action.py today-open-ds {query}</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>132826AD-1692-42B4-BD27-094E4E8D2CDA</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>script</key>
-				<string>python action.py today-open-page {query}</string>
+				<string>python action.py {query}</string>
 				<key>type</key>
 				<integer>0</integer>
 			</dict>
@@ -251,162 +108,25 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>126</integer>
-				<key>keyword</key>
-				<string>yy recent</string>
-				<key>runningsubtext</key>
-				<string>努力读取数据中...</string>
-				<key>script</key>
-				<string>python yyets.py recent {query}</string>
-				<key>subtext</key>
-				<string>可使用movie, tv, documentary, openclass, topic过滤相应的资源</string>
-				<key>title</key>
-				<string>人人影视 最近更新的资源</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>28F1B841-1D58-4CEE-A1AE-6BE608AB07E8</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>plusspaces</key>
-				<false/>
-				<key>url</key>
-				<string>{query}</string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>BE7BF1F1-D773-4BA7-8199-5F9C1376758C</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>keyword</key>
-				<string>yy top</string>
-				<key>runningsubtext</key>
-				<string>努力读取数据中...</string>
-				<key>script</key>
-				<string>python yyets.py top</string>
-				<key>subtext</key>
-				<string>最近24小时的热门排行</string>
-				<key>title</key>
-				<string>人人影视 24小时热门资源</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>E9443F35-DE97-49C6-A09B-9499ACF6CEBA</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>keyword</key>
-				<string>yy search</string>
-				<key>runningsubtext</key>
-				<string>努力读取数据中...</string>
-				<key>script</key>
-				<string>python yyets.py search {query}</string>
-				<key>title</key>
-				<string>人人影视 资源搜索...</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>C38EA660-D98E-4B8A-9C65-1415EDC236A5</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>132826AD-1692-42B4-BD27-094E4E8D2CDA</key>
+		<key>6D7DFA62-A65E-451E-8948-BC3DADA7AB22</key>
 		<dict>
 			<key>ypos</key>
-			<real>230</real>
-		</dict>
-		<key>28F1B841-1D58-4CEE-A1AE-6BE608AB07E8</key>
-		<dict>
-			<key>ypos</key>
-			<real>360</real>
-		</dict>
-		<key>414C53EB-DEE1-482F-9D15-A223F679D40A</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
-		</dict>
-		<key>9911E12D-B15D-44DD-9535-002AC655C945</key>
-		<dict>
-			<key>ypos</key>
-			<real>170</real>
-		</dict>
-		<key>A962F8D0-3E88-4D2E-BEA5-54EBDFD4F994</key>
-		<dict>
-			<key>ypos</key>
-			<real>120</real>
-		</dict>
-		<key>BE7BF1F1-D773-4BA7-8199-5F9C1376758C</key>
-		<dict>
-			<key>ypos</key>
-			<real>470</real>
-		</dict>
-		<key>C38EA660-D98E-4B8A-9C65-1415EDC236A5</key>
-		<dict>
-			<key>ypos</key>
-			<real>580</real>
+			<real>140</real>
 		</dict>
 		<key>D1864AC3-471C-4AE9-A36F-522867435719</key>
 		<dict>
 			<key>ypos</key>
-			<real>340</real>
+			<real>140</real>
 		</dict>
-		<key>E9443F35-DE97-49C6-A09B-9499ACF6CEBA</key>
+		<key>DC8F25BF-E294-448D-8549-B4484F8F02B2</key>
 		<dict>
 			<key>ypos</key>
-			<real>470</real>
-		</dict>
-		<key>FFC11C13-53DF-4EA2-BA12-9B2C0AC9CA72</key>
-		<dict>
-			<key>ypos</key>
-			<real>180</real>
+			<real>140</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>

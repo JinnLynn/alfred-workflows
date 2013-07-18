@@ -2,48 +2,55 @@
 import alfred
 alfred.setDefaultEncodingUTF8()
 
-import base64
 import subprocess
 from AppKit import NSPasteboard, NSArray
 
+#! 地址在传递参数中均使用base64编码 防止出错 
+from base64 import b64decode
+
 # 拷贝到剪切板
-def copyToClipboard(word):
-    pb = NSPasteboard.generalPasteboard()
-    pb.clearContents()
-    a = NSArray.arrayWithObject_(word)
-    pb.writeObjects_(a)
+def copyToClipboard():
+    try:
+        word = b64decode(alfred.argv(2))
+        pb = NSPasteboard.generalPasteboard()
+        pb.clearContents()
+        a = NSArray.arrayWithObject_(word)
+        pb.writeObjects_(a)
+        alfred.exit('已拷贝地址到剪切板')
+    except Exception, e:
+        alfred.log(e)
+        alfred.exit('出错啦')
+    
+
+# 打开地址
+def openURL():
+    try:
+        page = b64decode(alfred.argv(2))
+        subprocess.check_output('open "{}"'.format(page), shell=True)
+    except Exception, e:
+        alfred.log(e)
+        alfred.exit('出错啦')
+    
+
+def downloadWithDS():
+    try:
+        link = b64decode(alfred.argv(2))
+        alfred.query('ds create {}'.format(link))
+    except Exception, e:
+        alfred.log(e)
+        alfred.exit('出错啦')
+    
 
 def main():
+    cmds = {
+        'open-url'          : lambda: openURL(),
+        'copy-to-clipboard' : lambda: copyToClipboard(),
+        'download-with-ds'  : lambda: downloadWithDS()
+    }
     cmd = alfred.argv(1)
-    try:
-        links = base64.b64decode(alfred.argv(2)).split(',')
-        page = links[0]
-        emule = links[1]
-        magnet = links[2]
-    except Exception, e:
+    if not cmd or cmd.lower() not in cmds.keys():
         alfred.exit('出错啦')
-    if cmd == 'today-copy-emule':
-        if not emule:
-            alfred.exit('没有电驴地址')
-        copyToClipboard(emule)
-        alfred.exit('电驴地址已拷贝到剪切板')
-    elif cmd == 'today-copy-magnet':
-        if not magnet:
-            alfred.exit('没有磁力链地址')
-        copyToClipboard(magnet)
-        alfred.exit('磁力链地址已拷贝到剪切板')
-    elif cmd == 'today-open-ds':
-        # 优先使用emule
-        l = emule if emule else magnet
-        if not l:
-            alfred.exit('没有下载链接')
-        alfred.query('ds create {}'.format(emule))
-    elif cmd == 'today-open-page':
-        if not page:
-            alfred.exit('没有页面地址')
-        subprocess.check_output('open "{}"'.format(page), shell=True)
-    else:
-        alfred.exit('出错啦')
+    cmds[cmd]();
 
 if __name__ == '__main__':
     main()
