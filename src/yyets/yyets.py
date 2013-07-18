@@ -246,7 +246,7 @@ def recent():
                 subtitle        = item['info'],
                 icon            = alfred.storage.getLocalIfExists(item['img'], True),
                 valid           = False,
-                autocomplete    = 'resource {}'.format(item['id'])
+                autocomplete    = 'resource {} '.format(item['id'])
             )
     except Exception, e:
         alfred.raiseWithFeedback()
@@ -290,7 +290,7 @@ def top():
                 subtitle        = item['info'],
                 icon            = alfred.storage.getLocalIfExists(item['img'], True),
                 valid           = False,
-                autocomplete    = 'resource {id}'.format(**item)
+                autocomplete    = 'resource {id} '.format(**item)
             )
 
     except Exception, e:
@@ -310,7 +310,7 @@ def search():
                 title           = item['title'],
                 subtitle        = item['info'],
                 valid           = False,
-                autocomplete    = 'resource {}'.format(item['id'])
+                autocomplete    = 'resource {} '.format(item['id'])
             )
     except Exception, e:
         alfred.raiseWithFeedback()
@@ -396,7 +396,7 @@ def file():
             title           = fileinfo['filename'],
             subtitle        = subtitle,
             valid           = False,
-            autocomplete    = 'resource {}'.format(res_id),
+            autocomplete    = 'resource {} '.format(res_id),
             icon            = alfred.storage.getLocalIfExists(data['img'], True)
         )
         feedback = fileDownloadFeedback(feedback, data['page'], fileinfo['emule'], fileinfo['magnet'])
@@ -437,13 +437,13 @@ def menu():
     feedback.addItem(
         title           = '人人影视 今日更新的文件',
         subtitle        = '也包括昨日与前日更新的文件，可使用格式名称过滤文件，如hdtv, mp4, 1080p等',
-        autocomplete    = 'today',
+        autocomplete    = 'today ',
         valid           = False
     )
     feedback.addItem(
         title           = '人人影视 最近更新的资源',
         subtitle        = '可使用movie, tv, documentary, openclass, topic过滤相应的资源',
-        autocomplete    = 'recent',
+        autocomplete    = 'recent ',
         valid           = False
     )
     feedback.addItem(
