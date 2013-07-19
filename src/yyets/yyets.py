@@ -12,6 +12,8 @@ import alfred
 alfred.setDefaultEncodingUTF8()
 import bs4
 
+__version__ = '1.5'
+
 _fb_return_top = alfred.Item(title='返回', subtitle='', valid=False, autocomplete='')
 _fb_no_found = alfred.Item(title='没有找到想要的内容', subtitle='', valid=False)
 _fb_no_found_and_return_top = alfred.Item(title='没有找到想要的内容', subtitle='选择返回', valid=False, autocomplete='')
