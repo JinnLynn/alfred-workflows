@@ -52,7 +52,7 @@ NOTE: Before using, you **MUST** to configure DS login information with the keyw
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/download-station) 
  / 
-[Video Demo](http://v.youku.com/v_show/id_XNTQxNDc0MTI0.html)
+[Video Demo](http://youtu.be/CJGUgXmpRo8)
 
 *last updated: 2013-06-06 version: 1.0.2*
 
@@ -125,6 +125,7 @@ To search, download, show or save Lyric.
 *last updated: 2013-07-17 version: 1.1*
 
 
+
 ## YYeTs
 
 [人人影视](http://www.yyets.com/)资源搜索查看。
@@ -137,7 +138,7 @@ PS: 可直接调用Download Station Alfred 2 Workflow下载文件。
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/yyets)
  / 
-[Video Demo](http://v.youku.com/v_show/id_XNTg0ODMxMDI0.html)
+[Video Demo](http://youtu.be/UY2mk0PB9yg)
 
 *last updated: 2013-07-19 version: 1.5*
 
