@@ -278,7 +278,6 @@ def today():
                 valid           = False,
                 autocomplete    = 'today-file {}'.format(b64encode( json.dumps(item) ))
             )
-        
         feedback.output()
     except Exception, e:
         alfred.exitWithFeedback(item=_fb_no_found)   
@@ -290,14 +289,16 @@ def top():
         if not items:
             alfred.exitWithFeedback(item=_fb_no_found)
         feedback = alfred.Feedback()
+        count = 1
         for item in items:
             feedback.addItem(
-                title           = item['title'],
+                title           = '{:02d}. {}'.format(count, item['title']),
                 subtitle        = item['info'],
                 icon            = alfred.storage.getLocalIfExists(item['img'], True),
                 valid           = False,
                 autocomplete    = 'resource {id} '.format(**item)
             )
+            count = count + 1
         feedback.output()
     except Exception, e:
         alfred.exitWithFeedback(item=_fb_no_found)
