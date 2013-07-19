@@ -129,6 +129,8 @@ To search, download, show or save Lyric.
 
 [人人影视](http://www.yyets.com/)资源搜索查看。
 
+PS: 可直接调用Download Station Alfred 2 Workflow下载文件。
+
 ![YYeTs Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/yyets.png)
 
 [Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/yyets.alfredworkflow) 
