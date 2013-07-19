@@ -140,7 +140,7 @@ PS: 可直接调用Download Station Alfred 2 Workflow下载文件。
  / 
 [Video Demo](http://youtu.be/UY2mk0PB9yg)
 
-*last updated: 2013-07-19 version: 1.5*
+*last updated: 2013-07-19 version: 1.5.1*
 
 
 ## Credits
