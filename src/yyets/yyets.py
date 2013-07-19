@@ -240,9 +240,12 @@ def getResourcePageURLByID(res_id):
 
 # 获取最新更新
 def recent():
-    feedback = alfred.Feedback()
     try:
-        for item in fetchRecentItems(alfred.argv(2)):
+        items = fetchRecentItems(alfred.argv(2))
+        if not items:
+            alfred.exitWithFeedback(item=_fb_no_found)
+        feedback = alfred.Feedback()
+        for item in items:
             feedback.addItem(
                 title           = item['title'],
                 subtitle        = item['info'],
@@ -250,23 +253,22 @@ def recent():
                 valid           = False,
                 autocomplete    = 'resource {} '.format(item['id'])
             )
+        feedback.output()
     except Exception, e:
-        alfred.raiseWithFeedback()
-    if feedback.isEmpty():
-        feedback.addItem(title='对不起，没有找到内容。')
-    feedback.output()
+        alfred.exitWithFeedback(item=_fb_no_found) 
 
 # 最近今日更新
 def today():
-    feedback = alfred.Feedback()
     try:
+        items = fetchTodayItems()
         filter_str = alfred.argv(2)
         if filter_str:
             filter_str = filter_str.upper()
+            items = filter(lambda i: filter_str in i['format'], items)
+        if not items:
+            alfred.exitWithFeedback(item=_fb_no_found)
         feedback = alfred.Feedback()
-        for item in fetchTodayItems():
-            if filter_str and filter_str not in item['format']:
-                continue
+        for item in items:
             item['has_emule'] = '有' if item['emule'] else '无'
             item['has_magnet'] = '有' if item['magnet'] else '无'
             subtitle = '类别: {type}  格式: {format}  容量: {size}  日期: {date}  电驴: {has_emule}  磁力链: {has_magnet}'.format(**item)
@@ -276,17 +278,19 @@ def today():
                 valid           = False,
                 autocomplete    = 'today-file {}'.format(b64encode( json.dumps(item) ))
             )
+        
+        feedback.output()
     except Exception, e:
-        alfred.raiseWithFeedback()
-    if feedback.isEmpty():
-        feedback.addItem(title='对不起，没有找到内容。')
-    feedback.output()
+        alfred.exitWithFeedback(item=_fb_no_found)   
 
 # 24小时最热资源
 def top():
-    feedback = alfred.Feedback()
     try:
-        for item in fetchTopItems():
+        items = fetchTopItems()
+        if not items:
+            alfred.exitWithFeedback(item=_fb_no_found)
+        feedback = alfred.Feedback()
+        for item in items:
             feedback.addItem(
                 title           = item['title'],
                 subtitle        = item['info'],
@@ -294,51 +298,49 @@ def top():
                 valid           = False,
                 autocomplete    = 'resource {id} '.format(**item)
             )
-
+        feedback.output()
     except Exception, e:
-        alfred.raiseWithFeedback()
-    if feedback.isEmpty():
-        feedback.addItem(title='对不起，没有找到内容。')
-    feedback.output()
+        alfred.exitWithFeedback(item=_fb_no_found)
 
 def search():
-    word = ' ' .join(sys.argv[2:])
-    if not word:
-        alfred.exitWithFeedback(title='输入搜索关键词')
-    feedback = alfred.Feedback()
     try:
-        for item in fetchSearchResult(word):
+        word = ' ' .join(sys.argv[2:])
+        if not word:
+            alfred.exitWithFeedback(title='输入搜索关键词')
+        items = fetchSearchResult(word)
+        if not items:
+            alfred.exitWithFeedback(item=_fb_no_found)
+        feedback = alfred.Feedback()
+        for item in items:
             feedback.addItem(
                 title           = item['title'],
                 subtitle        = item['info'],
                 valid           = False,
                 autocomplete    = 'resource {} '.format(item['id'])
             )
+        feedback.output()
     except Exception, e:
-        alfred.raiseWithFeedback()
-    if feedback.isEmpty():
-        feedback.addItem(title='对不起，没有找到内容。')
-    feedback.output()
+        alfred.exitWithFeedback(_fb_no_found)    
 
 def resource():
     try:
         res_id = int(alfred.argv(2))
         data = fetchSingleResource(res_id)
         filter_str = alfred.argv(3)
+        files = data['files']
         if filter_str:
             filter_str = filter_str.upper()
+            files = filter(lambda f: filter_str in f['format'], files)
         if not data:
             alfred.exitWithFeedback(title='没有找到相关的内容')
         feedback = alfred.Feedback()
         feedback.addItem(
             title       = data['title'],
-            subtitle    = '打开资源页面，可使用文件类型过滤',
+            subtitle    = '{} 个文件，可使用文件类型过滤，选择此项打开资源页面'.format(len(files)),
             arg         = 'open-url {}'.format( b64encode(getResourcePageURLByID(data['id'])) ),
             icon        = alfred.storage.getLocalIfExists(data['img'], True)
         )
-        for f in data['files']:
-            if filter_str and filter_str not in f['format']:
-                continue
+        for f in files:
             f['has_emule'] = '有' if f['emule'] else '无'
             f['has_magnet'] = '有' if f['magnet'] else '无'
             subtitle = '类型: {format} 容量: {filesize} 电驴: {has_emule} 磁力链: {has_magnet}'.format(**f)
@@ -404,8 +406,7 @@ def file():
         feedback = fileDownloadFeedback(feedback, data['page'], fileinfo['emule'], fileinfo['magnet'])
         feedback.output()
     except Exception, e:
-        raise e
-        alfred.exitWithFeedback(title='没有找到相关的内容')
+        alfred.exitWithFeedback(item=_fb_no_found)
 
 def todayFile():
     try:
@@ -425,8 +426,7 @@ def todayFile():
         )
         feedback.output()
     except Exception, e:
-
-        alfred.exitWithFeedback(title='没有找到相关内容')
+        alfred.exitWithFeedback(item=_fb_no_found)
 
 def menu():
     feedback = alfred.Feedback()
@@ -467,11 +467,14 @@ def main():
         'file'      : lambda: file(),
         'today-file': lambda: todayFile()
     }
-    subcmd = alfred.argv(1)
-    if subcmd and subcmd.lower() in cmds.keys():
-        cmds[subcmd.lower()]()
-    else:
-        cmds['menu']()
+    subcmd = ''
+    try:
+        subcmd = alfred.argv(1).lower()
+    except:
+        pass
+    if subcmd not in cmds.keys():
+        subcmd = 'menu'
+    cmds[subcmd]()
 
 if __name__ == '__main__':
     main()
