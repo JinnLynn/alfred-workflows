@@ -385,17 +385,13 @@ def fileDownloadFeedback(feedback, page, emule, magnet):
 
 def file():
     try:
-        fileinfo = {}
         ids = alfred.argv(2).split(',')
         res_id = int(ids[0])
         file_id = int(ids[1])
         data = fetchSingleResource(res_id)
-        for f in data['files']:
-            if int(f['id']) == file_id:
-                fileinfo = f
-                break
+        fileinfo = filter(lambda f: int(f['id'])==file_id, data['files'])[0]
         feedback = alfred.Feedback()
-        subtitle = '类型: {format} 容量: {filesize} 这里可返回资源列表'.format(**f)
+        subtitle = '类型: {format} 容量: {filesize} 这里可返回资源列表'.format(**fileinfo)
         feedback.addItem(
             title           = fileinfo['filename'],
             subtitle        = subtitle,
