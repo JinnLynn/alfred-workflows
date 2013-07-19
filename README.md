@@ -133,7 +133,7 @@ To search, download, show or save Lyric.
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/yyets)
 
-*last updated: 2013-07-17 version: 1.0*
+*last updated: 2013-07-19 version: 1.5*
 
 
 ## Credits
