@@ -153,8 +153,8 @@ def fetchTopItems():
         items.append(item)
     if not items:
         return []
-    # 缓存5分钟
-    alfred.cache.set('top-items', items, 60*5)
+    # 缓存10分钟
+    alfred.cache.set('top-items', items, 60*10)
     return items
 
 # 获取单个资源信息
@@ -416,7 +416,7 @@ def todayFile():
         )
         feedback = fileDownloadFeedback(feedback, data['page'], data['emule'], data['magnet'])
         feedback.addItem(
-            title           = '返回今日文件更新',
+            title           = '返回 今日文件更新',
             subtitle        = '',
             valid           = False,
             autocomplete    = 'today'

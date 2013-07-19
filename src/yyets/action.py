@@ -20,7 +20,6 @@ def copyToClipboard():
     except Exception, e:
         alfred.log(e)
         alfred.exit('出错啦')
-    
 
 # 打开地址
 def openURL():
@@ -30,7 +29,6 @@ def openURL():
     except Exception, e:
         alfred.log(e)
         alfred.exit('出错啦')
-    
 
 def downloadWithDS():
     try:
@@ -39,7 +37,6 @@ def downloadWithDS():
     except Exception, e:
         alfred.log(e)
         alfred.exit('出错啦')
-    
 
 def main():
     cmds = {
