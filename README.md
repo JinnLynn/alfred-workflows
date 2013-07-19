@@ -51,6 +51,8 @@ NOTE: Before using, you **MUST** to configure DS login information with the keyw
 [Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/download-station.alfredworkflow) 
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/download-station) 
+ / 
+[Video Demo](http://v.youku.com/v_show/id_XNTQxNDc0MTI0.html)
 
 *last updated: 2013-06-06 version: 1.0.2*
 
@@ -132,6 +134,8 @@ To search, download, show or save Lyric.
 [Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/yyets.alfredworkflow) 
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/yyets)
+ / 
+[Video Demo](http://v.youku.com/v_show/id_XNTg0ODMxMDI0.html)
 
 *last updated: 2013-07-19 version: 1.5*
 
