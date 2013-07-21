@@ -408,11 +408,13 @@ def file():
 def todayFile():
     try:
         data = json.loads(b64decode(alfred.argv(2)))
+        res_id = os.path.basename(data['page'])
         feedback = alfred.Feedback()
         feedback.addItem(
             title       = data['filename'],
-            subtitle    = '类别: {type}  格式: {format}  容量: {size}  日期: {date} 这里可访问资源页面'.format(**data),
-            arg         = 'open-url {}'.format(b64encode(data['page']))
+            subtitle    = '类别: {type}  格式: {format}  容量: {size}  日期: {date} 这里可访问资源文件列表'.format(**data),
+            valid           = False,
+            autocomplete    = 'resource {}'.format(res_id)
         )
         feedback = fileDownloadFeedback(feedback, data['page'], data['emule'], data['magnet'])
         feedback.addItem(
