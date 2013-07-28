@@ -341,7 +341,9 @@ def resource():
             arg         = 'open-url {}'.format( b64encode(getResourcePageURLByID(data['id'])) ),
             icon        = alfred.storage.getLocalIfExists(data['img'], True)
         )
+        files_ids = []
         for f in files:
+            files_ids.append(f['id'])
             f['has_emule'] = '有' if f['emule'] else '无'
             f['has_magnet'] = '有' if f['magnet'] else '无'
             subtitle = '类型: {format} 容量: {filesize} 电驴: {has_emule} 磁力链: {has_magnet}'.format(**f)
@@ -350,6 +352,13 @@ def resource():
                 subtitle        = subtitle,
                 valid           = False,
                 autocomplete    = 'file {},{}'.format(data['id'], f['id'])
+            )
+        if len(files_ids) > 1:
+            feedback.addItem(
+                title           = '所有文件',
+                subtitle        = '对当前的所有文件进行批量处理',
+                valid           = False,
+                autocomplete    = 'file {},{}'.format(data['id'], ','.join(files_ids))
             )
         feedback.addItem(item=_fb_return_top)
         feedback.output()
@@ -388,19 +397,40 @@ def file():
     try:
         ids = alfred.argv(2).split(',')
         res_id = int(ids[0])
-        file_id = int(ids[1])
+        file_ids = map(lambda i:int(i), ids[1:])
         data = fetchSingleResource(res_id)
-        fileinfo = filter(lambda f: int(f['id'])==file_id, data['files'])[0]
+        files = filter(lambda f: int(f['id']) in file_ids, data['files'])
+
         feedback = alfred.Feedback()
-        subtitle = '类型: {format} 容量: {filesize} 这里可返回资源列表'.format(**fileinfo)
-        feedback.addItem(
-            title           = fileinfo['filename'],
-            subtitle        = subtitle,
-            valid           = False,
-            autocomplete    = 'resource {} '.format(res_id),
-            icon            = alfred.storage.getLocalIfExists(data['img'], True)
-        )
-        feedback = fileDownloadFeedback(feedback, data['page'], fileinfo['emule'], fileinfo['magnet'])
+        if not files:
+            feedback.addItem(
+                title           = '没有找到想要的内容',
+                subtitle        = '这里可返回资源列表',
+                valid           = False,
+                autocomplete    = 'resource {} '.format(res_id),
+                icon            = alfred.storage.getLocalIfExists(data['img'], True)
+            )
+        elif len(files) == 1:
+            subtitle = '类型: {format} 容量: {filesize} 这里可返回资源列表'.format(**files[0])
+            feedback.addItem(
+                title           = files[0]['filename'],
+                subtitle        = subtitle,
+                valid           = False,
+                autocomplete    = 'resource {} '.format(res_id),
+                icon            = alfred.storage.getLocalIfExists(data['img'], True)
+            )
+            feedback = fileDownloadFeedback(feedback, data['page'], files[0]['emule'], files[0]['magnet'])
+        else:
+            feedback.addItem(
+                title           = '批处理多个文件',
+                subtitle        = '{} 个文件, 这里可返回资源列表'.format(len(files)),
+                valid           = False,
+                autocomplete    = 'resource {}'.format(res_id),
+                icon            = alfred.storage.getLocalIfExists(data['img'], True)
+            )
+            emule = '\n'.join( [f['emule'] for f in files] )
+            magnet = '\n'.join( [f['magnet'] for f in files] )
+            feedback = fileDownloadFeedback(feedback, data['page'], emule, magnet)
         feedback.output()
     except Exception, e:
         alfred.exitWithFeedback(item=_fb_no_found)
