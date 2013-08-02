@@ -487,23 +487,18 @@ def menu():
 
 def main():
     cmds = {
-        'menu'      : lambda: menu(),
-        'recent'    : lambda: recent(),
-        'today'     : lambda: today(),
-        'top'       : lambda: top(),
-        'search'    : lambda: search(),
-        'resource'  : lambda: resource(),
-        'file'      : lambda: file(),
-        'today-file': lambda: todayFile()
+        'menu'      : menu,
+        'recent'    : recent,
+        'today'     : today,
+        'top'       : top,
+        'search'    : search,
+        'resource'  : resource,
+        'file'      : file,
+        'today-file': todayFile
     }
-    subcmd = ''
-    try:
-        subcmd = alfred.argv(1).lower()
-    except:
-        pass
-    if subcmd not in cmds.keys():
-        subcmd = 'menu'
-    cmds[subcmd]()
+    subcmd = alfred.argv(1) or ''
+    subcmd = subcmd.lower()
+    cmds[subcmd]() if subcmd in cmds else cmds['menu']()
 
 if __name__ == '__main__':
     main()
