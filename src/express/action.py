@@ -34,7 +34,7 @@ def cleanCheckedPost():
     new_post = []
     for p in post:
         q = express.querySingle(p['com_code'], p['post_id'])
-        if not q['success'] or not q['checked']:
+        if not q.get('checked', False):
             new_post.append(p)
     alfred.config.set(post=new_post)
     alfred.exit('所有已签收的运单已被清除。')

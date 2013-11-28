@@ -198,7 +198,7 @@ def showSaved():
     if post:
         for p in post[::-1]:
             q = querySingle(p['com_code'], p['post_id'])
-            if q['checked']:
+            if q.get('checked', False):
                 has_checked = True
             item = {}
             item.update(
