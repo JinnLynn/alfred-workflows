@@ -194,9 +194,12 @@ def showCompanyList():
 def showSaved():
     post = alfred.config.get('post')
     feedback = alfred.Feedback()
+    has_checked = False
     if post:
         for p in post[::-1]:
             q = querySingle(p['com_code'], p['post_id'])
+            if q['checked']:
+                has_checked = True
             item = {}
             item.update(
                 title = '{} {}'.format(getCompany(p['com_code'], 'companyname'), p['post_id']),
@@ -208,6 +211,12 @@ def showSaved():
             else:
                 item['subtitle'] = '{} 暂时没有记录，运单号不存在、未记录或已经过期。'.format(formatTimestamp(q['last_update']))
             feedback.addItem(**item)
+        # 有已签收的
+        if has_checked:
+            feedback.addItem(
+                title   = '清除所有已签收的运单？',
+                arg     = 'clean-checked-post'
+            )
     else:
         feedback.addItem(
             title       = '国内快递查询',
