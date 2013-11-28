@@ -144,9 +144,9 @@ Demo: [Youtube](http://youtu.be/UY2mk0PB9yg) [Youku](http://v.youku.com/v_show/i
 
 
 
-## 国内快递查询
+## Express
 
-支持几乎所有国内快递公司快件跟踪查询。
+快递查询，支持几乎所有国内快递公司快件跟踪。
 
 ![Express Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/express.png)
 
