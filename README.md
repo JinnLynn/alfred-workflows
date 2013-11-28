@@ -52,7 +52,7 @@ NOTE: Before using, you **MUST** to configure DS login information with the keyw
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/download-station) 
  / 
-[Video Demo](http://youtu.be/CJGUgXmpRo8)
+Demo: [Youtube](http://youtu.be/CJGUgXmpRo8) [Youku](http://v.youku.com/v_show/id_XNTQxNDc0MTI0.html)
 
 *last updated: 2013-06-06 version: 1.0.2*
 
@@ -138,9 +138,26 @@ PS: 可直接调用Download Station Alfred 2 Workflow下载文件。
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/yyets)
  / 
-[Video Demo](http://youtu.be/UY2mk0PB9yg)
+Demo: [Youtube](http://youtu.be/UY2mk0PB9yg) [Youku](http://v.youku.com/v_show/id_XNTg0ODMxMDI0.html)
 
 *last updated: 2013-07-19 version: 1.5.1*
+
+
+
+## 国内快递查询
+
+支持几乎所有国内快递公司快件跟踪查询。
+
+![Express Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/express.png)
+
+[Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/express.alfredworkflow) 
+ / 
+[Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/express)
+ / 
+Demo: [Youtube](http://youtu.be/FZrEA6lZNc8) [Youku](http://v.youku.com/v_show/id_XNjQwOTMzOTQ4.html)
+
+*last updated: 2013-11-28 version: 1.0*
+
 
 
 ## Credits

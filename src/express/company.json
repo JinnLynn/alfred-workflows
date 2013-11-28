@@ -1,0 +1,2202 @@
+[
+    {
+        "code": "shentong", 
+        "tel": "400-889-5543", 
+        "companyname": "\u7533\u901a\u5feb\u9012", 
+        "telcomplaintnum": "95543", 
+        "freg": "^[0-9]{12}$", 
+        "comurl": "http://www.sto.cn", 
+        "freginfo": "\u7533\u901a\u5355\u53f7\u753112\u4f4d\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u89c1\u4ee5268*\u3001368*\u300158*\u7b49\u5f00\u5934", 
+        "shortname": "\u7533\u901a"
+    }, 
+    {
+        "code": "ems", 
+        "tel": "11183", 
+        "companyname": "EMS", 
+        "telcomplaintnum": "11183", 
+        "freg": "", 
+        "comurl": "http://www.ems.com.cn/", 
+        "freginfo": "EMS\u5355\u53f7\u5f00\u5934\u548c\u7ed3\u5c3e2\u4f4d\u662f\u5b57\u6bcd\uff0c\u4e2d\u95f4\u662f9\u4f4d\u6570\u5b57", 
+        "shortname": "EMS"
+    }, 
+    {
+        "code": "shunfeng", 
+        "tel": "4008-111-111", 
+        "companyname": "\u987a\u4e30\u901f\u8fd0", 
+        "telcomplaintnum": "0755-83151111", 
+        "freg": "^[0-9]{12}$", 
+        "comurl": "http://www.sf-express.com", 
+        "freginfo": "\u987a\u4e30\u5355\u53f7\u753112\u4f4d\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u4ee5\u7535\u8bdd\u533a\u53f7\u540e3\u4f4d\u5f00\u5934", 
+        "shortname": "\u987a\u4e30"
+    }, 
+    {
+        "code": "yunda", 
+        "tel": "400-821-6789", 
+        "companyname": "\u97f5\u8fbe\u5feb\u9012", 
+        "telcomplaintnum": "400-821-6789", 
+        "freg": "", 
+        "comurl": "http://www.yundaex.com", 
+        "freginfo": "\u97f5\u8fbe\u5355\u53f7\u753113\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u97f5\u8fbe"
+    }, 
+    {
+        "code": "yuantong", 
+        "tel": "021-69777888", 
+        "companyname": "\u5706\u901a\u901f\u9012", 
+        "telcomplaintnum": "021-69777888/999", 
+        "freg": "^[A-Za-z0-9]{10}$", 
+        "comurl": "http://www.yto.net.cn", 
+        "freginfo": "\u5706\u901a\u5355\u53f7\u753110\u4f4d\u5b57\u6bcd\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u89c1\u4ee56*\u30018*\u53caV*\u7b49\u5f00\u5934", 
+        "shortname": "\u5706\u901a"
+    }, 
+    {
+        "code": "zhongtong", 
+        "tel": "4008-270-270", 
+        "companyname": "\u4e2d\u901a\u901f\u9012", 
+        "telcomplaintnum": "4008-270-270", 
+        "freg": "^[0-9]{12}$", 
+        "comurl": "http://www.zto.cn", 
+        "freginfo": "\u4e2d\u901a\u5355\u53f7\u753112\u4f4d\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u89c1\u4ee52008**\u30016**\u3001010\u7b49\u5f00\u5934", 
+        "shortname": "\u4e2d\u901a"
+    }, 
+    {
+        "code": "huitongkuaidi", 
+        "tel": "400-956-5656", 
+        "companyname": "\u6c47\u901a\u5feb\u8fd0", 
+        "telcomplaintnum": "400-956-5656", 
+        "freg": "^[A-Za-z0-9]{12,14}$", 
+        "comurl": "http://www.800bestex.com", 
+        "freginfo": "\u6c47\u901a\u5355\u53f7\u753112-14\u4f4d\u6570\u5b57\u5b57\u6bcd\u7ec4\u6210\uff0c\u5e38\u89c1\u4ee550*\u5f00\u5934", 
+        "shortname": "\u6c47\u901a"
+    }, 
+    {
+        "code": "tiantian", 
+        "tel": "4001-888-888", 
+        "companyname": "\u5929\u5929\u5feb\u9012", 
+        "telcomplaintnum": "4001-888-888", 
+        "freg": "", 
+        "comurl": "http://www.ttkdex.com", 
+        "freginfo": "\u5929\u5929\u5355\u53f7\u753112\u621614\u4f4d\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u89c1\u4ee56**\u30015*\u300100*\u7b49\u5f00\u5934", 
+        "shortname": "\u5929\u5929"
+    }, 
+    {
+        "code": "zhaijisong", 
+        "tel": "400-6789-000", 
+        "companyname": "\u5b85\u6025\u9001", 
+        "telcomplaintnum": "400-6789-000", 
+        "freg": "", 
+        "comurl": "http://www.zjs.com.cn", 
+        "freginfo": "\u5b85\u6025\u9001\u5355\u53f7\u753110\u4f4d\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u89c1\u4ee57**\u30016**\u30015**\u7b49\u5f00\u5934", 
+        "shortname": "\u5b85\u6025\u9001"
+    }, 
+    {
+        "code": "xinhongyukuaidi", 
+        "tel": "021-69781999", 
+        "companyname": "\u946b\u98de\u9e3f", 
+        "telcomplaintnum": "tousu@u-link.org", 
+        "freg": "", 
+        "comurl": "http://www.kuaidi100.com/all/xfh.shtml", 
+        "freginfo": "\u946b\u98de\u9e3f\u5feb\u9012\u5355\u53f7\u4e00\u822c\u662f\u753110\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u946b\u98de\u9e3f"
+    }, 
+    {
+        "code": "cces", 
+        "tel": "400-111-1123", 
+        "companyname": "CCES/\u56fd\u901a\u5feb\u9012", 
+        "telcomplaintnum": "400-111-1123", 
+        "freg": "", 
+        "comurl": "http://www.gto365.com", 
+        "freginfo": "\u5e38\u89c1\u7684CCES\u5355\u53f7\u753110\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "CCES"
+    }, 
+    {
+        "code": "quanyikuaidi", 
+        "tel": "400-663-1111", 
+        "companyname": "\u5168\u4e00\u5feb\u9012", 
+        "telcomplaintnum": "021-52695805", 
+        "freg": "^[0-9]{9,12}$", 
+        "comurl": "http://www.unitop-apex.com/", 
+        "freginfo": "\u65e7\u7684\u4e3a9\u4f4d\u6570\u5b57\uff0c\u88abDHL\u5408\u5e76\u540e\u7684\u4e2d\u5916\u8fd0\u5168\u4e00\u4e3a12\u4f4d\u6570\u5b57", 
+        "shortname": "\u5168\u4e00"
+    }, 
+    {
+        "code": "biaojikuaidi", 
+        "tel": "+886 (02) 2562-3533", 
+        "companyname": "\u5f6a\u8bb0\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.pewkee.com", 
+        "freginfo": "", 
+        "shortname": "\u5f6a\u8bb0"
+    }, 
+    {
+        "code": "xingchengjibian", 
+        "tel": "400-668-8400", 
+        "companyname": "\u661f\u6668\u6025\u4fbf", 
+        "telcomplaintnum": "010-58608690-8059", 
+        "freg": "^[0-9]{10,14}$", 
+        "comurl": "http://www.4006688400.com/Search/", 
+        "freginfo": "\u661f\u8fb0\u6025\u4fbf\u5355\u53f7\u67e5\u8be2\u7f16\u7801\u753110\u621614\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u661f\u6668\u6025\u4fbf"
+    }, 
+    {
+        "code": "yafengsudi", 
+        "tel": "400-628-0018", 
+        "companyname": "\u4e9a\u98ce\u901f\u9012", 
+        "telcomplaintnum": "021-31261159", 
+        "freg": "^[A-Za-z0-9]{10,13}$", 
+        "comurl": "http://www.broad-asia.net", 
+        "freginfo": "\u4e9a\u98ce\u6b63\u786e\u7684\u5355\u53f7\u753110\u4f4d\u6570\u5b57\u7ec4\u6210\u6216\u4ee5\u5b57\u6bcd\u5f00\u593413\u4f4d\u7ec4\u6210\uff0c\u5e38\u89c1\u5df2\u5e38\u89c1\u4ee559\u5f00\u5934\u6216BAT\u5f00\u5934", 
+        "shortname": "\u4e9a\u98ce"
+    }, 
+    {
+        "code": "yuanweifeng", 
+        "tel": "400-601-2228", 
+        "companyname": "\u6e90\u4f1f\u4e30", 
+        "telcomplaintnum": "0769-81515303\u30010769-81515300", 
+        "freg": "^[0-9]{8,11}$", 
+        "comurl": "http://www.ywfex.com", 
+        "freginfo": "\u5e38\u89c1\u7684\u6e90\u4f1f\u4e30\u5feb\u9012\u5355\u53f7\u67e5\u8be2\u7801\u4e00\u822c\u4e3a8-11\u7684\u7eaf\u6570\u5b57", 
+        "shortname": "\u6e90\u4f1f\u4e30"
+    }, 
+    {
+        "code": "quanritongkuaidi", 
+        "tel": "020-86298999", 
+        "companyname": "\u5168\u65e5\u901a", 
+        "telcomplaintnum": "", 
+        "freg": "^[0-9]{11,12}$", 
+        "comurl": "http://www.at-express.com/", 
+        "freginfo": "\u5168\u65e5\u901a\u7269\u6d41\u5355\u53f7\u7531\u533a\u53f7+\u6570\u5b57\u768412\u4f4d\u6570\u5b57\u7f16\u7801\u7ec4\u6210", 
+        "shortname": "\u5168\u65e5\u901a"
+    }, 
+    {
+        "code": "anxindakuaixi", 
+        "tel": "400-626-2356", 
+        "companyname": "\u5b89\u4fe1\u8fbe", 
+        "telcomplaintnum": "400-626-2356", 
+        "freg": "^[0-9]{10,12}$", 
+        "comurl": "http://www.anxinda.com", 
+        "freginfo": "\u5e38\u89c1\u7684\u5b89\u4fe1\u8fbe\u5355\u53f7\u753110\u300112\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5b89\u4fe1\u8fbe"
+    }, 
+    {
+        "code": "minghangkuaidi", 
+        "tel": "400-817-4008", 
+        "companyname": "\u6c11\u822a\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.cae.com.cn", 
+        "freginfo": "\u5355\u53f7\u901a\u5e38\u662f\u4ee5CAE\u5f00\u5934\u768412\u4f4d\u82f1\u6587+\u6570\u5b57", 
+        "shortname": "\u6c11\u822a"
+    }, 
+    {
+        "code": "fenghuangkuaidi", 
+        "tel": "010-85826200", 
+        "companyname": "\u51e4\u51f0\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.phoenixexp.com", 
+        "freginfo": "", 
+        "shortname": "\u51e4\u51f0"
+    }, 
+    {
+        "code": "jinguangsudikuaijian", 
+        "tel": "0769-83660666-60", 
+        "companyname": "\u4eac\u5e7f\u901f\u9012", 
+        "telcomplaintnum": "0769-83660666 - 60", 
+        "freg": "^[0-9]{10}$", 
+        "comurl": "http://www.kke.com.hk", 
+        "freginfo": "\u4eac\u5e7f\u901f\u9012\u67e5\u8be2\u5355\u53f7\u4e00\u822c\u662f\u753110\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4eac\u5e7f"
+    }, 
+    {
+        "code": "peisihuoyunkuaidi", 
+        "tel": "010-65489928,65489571,65489469,65489456", 
+        "companyname": "\u914d\u601d\u8d27\u8fd0", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.peisi.cn", 
+        "freginfo": "", 
+        "shortname": "\u914d\u601d"
+    }, 
+    {
+        "code": "ztky", 
+        "tel": "400-000-5566", 
+        "companyname": "\u4e2d\u94c1\u7269\u6d41", 
+        "telcomplaintnum": "400-650-1118", 
+        "freg": "", 
+        "comurl": "http://www.ztky.com ", 
+        "freginfo": "\u4e2d\u94c1\u7269\u6d41\u7684\u5355\u53f7\u4e00\u822c\u7531\u5b57\u6bcd\u6216\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4e2d\u94c1"
+    }, 
+    {
+        "code": "ups", 
+        "tel": "400-820-8388", 
+        "companyname": "UPS", 
+        "telcomplaintnum": "800-820-8388", 
+        "freg": "^[A-Za-z0-9]{7,20}$", 
+        "comurl": "http://www.ups.com/cn", 
+        "freginfo": "\u6807\u51c6\u7f16\u7801\u4e3a7\u523020\u4f4d\u6570\u4e4b\u95f4\u7684\u6570\u5b57\uff0c\u6216\u5b57\u6bcd+\u6570\u5b57", 
+        "shortname": "UPS"
+    }, 
+    {
+        "code": "fedex", 
+        "tel": "400-886-1888", 
+        "companyname": "FedEx-\u56fd\u9645\u4ef6", 
+        "telcomplaintnum": "800-988-1888", 
+        "freg": "", 
+        "comurl": "http://fedex.com/cn", 
+        "freginfo": "FedEx-\u56fd\u9645\u5355\u53f7\u662f\u753112\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "FedEx"
+    }, 
+    {
+        "code": "tnt", 
+        "tel": "800-820-9868", 
+        "companyname": "TNT", 
+        "telcomplaintnum": "800-820-9868", 
+        "freg": "", 
+        "comurl": "http://www.tnt.com.cn", 
+        "freginfo": "\u75319\u4f4d\u6570\u5b57\u7ec4\u6210\u7684\u6216\u8005\u7701\u4efd\u7684\u9996\u5b57\u6bcd+9\u4f4d\u6570\u5b57+WW", 
+        "shortname": "TNT"
+    }, 
+    {
+        "code": "dhl", 
+        "tel": "800-810-8000", 
+        "companyname": "DHL-\u4e2d\u56fd\u4ef6", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.cn.dhl.com", 
+        "freginfo": "dhl\u5feb\u9012\u5355\u53f7\u753110\u4f4d\u621612\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "DHL"
+    }, 
+    {
+        "code": "aae", 
+        "tel": "400-610-0400", 
+        "companyname": "AAE-\u4e2d\u56fd\u4ef6", 
+        "telcomplaintnum": "", 
+        "freg": "^[0-9]{9,10}$", 
+        "comurl": "http://cn.aaeweb.com", 
+        "freginfo": "AAE-\u4e2d\u56fd\u5355\u53f7\u662f\u75319\u4f4d\u621610\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u4ee510*\u300186*\u5f00\u5934", 
+        "shortname": "AAE"
+    }, 
+    {
+        "code": "datianwuliu", 
+        "tel": "400-626-1166", 
+        "companyname": "\u5927\u7530\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "^[A-Za-z0-9]{8,20}$", 
+        "comurl": "http://www.dtw.com.cn", 
+        "freginfo": "\u5927\u7530\u7269\u6d41\u5355\u53f7\u4e00\u822c\u662f\u7531\u4ee56*\u5f00\u593410\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5927\u7530"
+    }, 
+    {
+        "code": "debangwuliu", 
+        "tel": "400-830-5555 ", 
+        "companyname": "\u5fb7\u90a6\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.deppon.com", 
+        "freginfo": "\u5fb7\u90a6\u7684\u8d27\u8fd0\u5355\u53f7\u73b0\u5728\u662f\u4ee51\u62162\u5f00\u5934\u76848\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5fb7\u90a6"
+    }, 
+    {
+        "code": "xinbangwuliu", 
+        "tel": "4008-000-222", 
+        "companyname": "\u65b0\u90a6\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.xbwl.cn", 
+        "freginfo": "\u65b0\u90a6\u7269\u6d41\u67e5\u8be2\u5355\u53f7\u4e00\u822c0\u5f00\u5934\u75318\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210\u7684", 
+        "shortname": "\u65b0\u90a6"
+    }, 
+    {
+        "code": "longbanwuliu", 
+        "tel": "021-39283333", 
+        "companyname": "\u9f99\u90a6\u901f\u9012", 
+        "telcomplaintnum": "021-39283333", 
+        "freg": "^[A-Za-z0-9]{12}$", 
+        "comurl": "http://www.lbex.com.cn", 
+        "freginfo": "\u753112\u4f4d\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u89c1\u4ee516*\u5f00\u5934\uff0c\u4e5f\u6709\u5b57\u6bcd\u5f00\u5934\u7684", 
+        "shortname": "\u9f99\u90a6"
+    }, 
+    {
+        "code": "yibangwuliu", 
+        "tel": "400-800-0666", 
+        "companyname": "\u4e00\u90a6\u901f\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "^[0-9]{10}$", 
+        "comurl": "http://www.ebon-express.com", 
+        "freginfo": "\u4e00\u90a6\u5feb\u9012\u5355\u53f7\u67e5\u8be2\u7f16\u7801\u753110\u4f4d\u6570\u5b57\u7ec4\u5408\uff0c\u5e38\u89c1\u5df280*\u5f00\u5934", 
+        "shortname": "\u4e00\u90a6"
+    }, 
+    {
+        "code": "suer", 
+        "tel": "400-158-9888", 
+        "companyname": "\u901f\u5c14\u5feb\u9012", 
+        "telcomplaintnum": "0769-89339656", 
+        "freg": "^[0-9]{10,12}$", 
+        "comurl": "http://www.sure56.com", 
+        "freginfo": "\u901f\u5c14\u7684\u5feb\u9012\u5355\u53f7\u753112\u4f4d\u6570\u5b57\u7ec4\u6210\u7684", 
+        "shortname": "\u901f\u5c14"
+    }, 
+    {
+        "code": "lianhaowuliu", 
+        "tel": "0769-88620000", 
+        "companyname": "\u8054\u660a\u901a", 
+        "telcomplaintnum": "0769-88620000,85116666", 
+        "freg": "^[0-9]{10,12}$", 
+        "comurl": "http://www.lhtex.com.cn", 
+        "freginfo": "\u8054\u660a\u901a\u5feb\u9012\u5355\u53f7\u753112\u4f4d\u6216\u800510\u4f4d\u6570\u5b57\u7f16\u7801\u7ec4\u6210", 
+        "shortname": "\u8054\u660a\u901a"
+    }, 
+    {
+        "code": "guangdongyouzhengwuliu", 
+        "tel": "020-38181677", 
+        "companyname": "\u5e7f\u4e1c\u90ae\u653f", 
+        "telcomplaintnum": "", 
+        "freg": "^[A-Za-z0-9]{7,20}$", 
+        "comurl": "http://www.ep183.cn/", 
+        "freginfo": "\u5e7f\u4e1c\u90ae\u653f\u753110\u4f4d\u6570\u5b57\u548c\u5b57\u6bcd\u7ec4\u5408\u6216\u80057\u30018\u4f4d\u7684\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5e7f\u4e1c\u90ae\u653f"
+    }, 
+    {
+        "code": "zhongyouwuliu", 
+        "tel": "11183", 
+        "companyname": "\u4e2d\u90ae\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "^[A-Za-z0-9]{8,20}$", 
+        "comurl": "http://www.cnpl.com.cn", 
+        "freginfo": "\u4e00\u822c\u662f\u4ee5A\u6216E\u5f00\u5934\uff0c\u5b57\u6bcd+\u6570\u5b57\u7ec4\u6210\uff0c\u67e5\u8be2\u65f6CNPL\u65e0\u9700\u8f93\u5165", 
+        "shortname": "\u4e2d\u90ae"
+    }, 
+    {
+        "code": "tiandihuayu", 
+        "tel": "400-808-6666", 
+        "companyname": "\u5929\u5730\u534e\u5b87", 
+        "telcomplaintnum": "", 
+        "freg": "^[0-9]{8}$", 
+        "comurl": "http://www.hoau.net", 
+        "freginfo": "\u534e\u5b87\u7269\u6d41\u67e5\u8be2\u5355\u53f7\u662f\u75318\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u534e\u5b87"
+    }, 
+    {
+        "code": "shenghuiwuliu", 
+        "tel": "4008-222-222", 
+        "companyname": "\u76db\u8f89\u7269\u6d41", 
+        "telcomplaintnum": "4008-222-222", 
+        "freg": "^[0-9]{9}$", 
+        "comurl": "http://www.shenghui56.com", 
+        "freginfo": "\u76db\u8f89\u7269\u6d41\u5355\u53f7\u75319\u4f4d\u6570\u5b57\u7f16\u7801\u7ec4\u6210", 
+        "shortname": "\u76db\u8f89"
+    }, 
+    {
+        "code": "changyuwuliu", 
+        "tel": "4007-161-262", 
+        "companyname": "\u957f\u5b87\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://61.145.121.47/custSearch.jsp", 
+        "freginfo": "", 
+        "shortname": "\u957f\u5b87"
+    }, 
+    {
+        "code": "feikangda", 
+        "tel": "010-84223376,84223378", 
+        "companyname": "\u98de\u5eb7\u8fbe", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.fkd.com.cn", 
+        "freginfo": "\u98de\u5eb7\u8fbe\u5355\u53f7\u67e5\u8be2\u7f16\u7801\u5927\u591a\u4ee58\u5f00\u5934\uff0c\u4e00\u822c\u753111\u4f4d\u7684\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u98de\u5eb7\u8fbe"
+    }, 
+    {
+        "code": "yuanzhijiecheng", 
+        "tel": "400-081-2345", 
+        "companyname": "\u5143\u667a\u6377\u8bda", 
+        "telcomplaintnum": "400-08-12345", 
+        "freg": "^[A-Za-z0-9]{10,20}$", 
+        "comurl": "http://www.yjkd.com", 
+        "freginfo": "\u5143\u667a\u5feb\u9012\u67e5\u8be2\u5355\u53f7\u4e00\u822c\u4ee5FD\u5f00\u5934\uff0c\u7531\u6700\u591a11\u4f4d\u6570\u5b57+\u5b57\u6bcd\u5f62\u5f0f\u7ec4\u6210", 
+        "shortname": "\u5143\u667a\u6377\u8bda"
+    }, 
+    {
+        "code": "youzhengguonei", 
+        "tel": "11185", 
+        "companyname": "\u5305\u88f9/\u5e73\u90ae", 
+        "telcomplaintnum": "11185", 
+        "freg": "", 
+        "comurl": "http://yjcx.chinapost.com.cn", 
+        "freginfo": "\u90ae\u653f\u5355\u53f7\u4ee5\u5b57\u6bcd\u5f00\u5934+11\u4f4d\u6570\u5b57\uff0c\u5e38\u89c1KA\u3001SB\u7b49\u5f00\u5934", 
+        "shortname": "\u90ae\u653f\u56fd\u5185"
+    }, 
+    {
+        "code": "youzhengguoji", 
+        "tel": "11185", 
+        "companyname": "\u56fd\u9645\u5305\u88f9", 
+        "telcomplaintnum": "11185", 
+        "freg": "^[a-z-A-Z]{2}[0-9]{9}[a-z-A-Z]{2}$", 
+        "comurl": "http://intmail.183.com.cn/", 
+        "freginfo": "\u753113\u4f4d\u5b57\u6bcd\u548c\u6570\u5b57\u7ec4\u6210\uff0c\u5f00\u5934\u548c\u7ed3\u5c3e\u662f\u5b57\u6bcd\uff0c\u4e2d\u95f4\u662f\u6570\u5b57 ", 
+        "shortname": "\u90ae\u653f\u56fd\u9645"
+    }, 
+    {
+        "code": "wanjiawuliu", 
+        "tel": "021-60448911", 
+        "companyname": "\u4e07\u5bb6\u7269\u6d41", 
+        "telcomplaintnum": "021-60448911", 
+        "freg": "", 
+        "comurl": "http://www.shwj56.com/", 
+        "freginfo": "\u4e07\u5bb6\u7269\u6d41\u5355\u53f7\u67e5\u8be2\u7f16\u7801\u901a\u5e38\u662f\u7531\u57ce\u5e02\u7f16\u7801(\u82f1\u6587)+7\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4e07\u5bb6"
+    }, 
+    {
+        "code": "yuanchengwuliu", 
+        "tel": "400-820-1646", 
+        "companyname": "\u8fdc\u6210\u7269\u6d41", 
+        "telcomplaintnum": "400-820-1646", 
+        "freg": "^[A-Za-z0-9]{5,10}$", 
+        "comurl": "http://www.ycgwl.com/", 
+        "freginfo": "\u8fdc\u6210\u7269\u6d41\u67e5\u8be2\u5355\u53f7\u4e00\u822c\u662f\u4ee500\u5f00\u5934\uff0c\u7531\u6700\u591a10\u4f4d\u7684\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u8fdc\u6210"
+    }, 
+    {
+        "code": "xinfengwuliu", 
+        "tel": "400-830-6333", 
+        "companyname": "\u4fe1\u4e30\u7269\u6d41", 
+        "telcomplaintnum": "4008 306 333\u30010769-81518333", 
+        "freg": "^[0-9]{12}$", 
+        "comurl": "http://www.xf-express.com.cn", 
+        "freginfo": "\u4fe1\u4e30\u5feb\u9012\u6b63\u786e\u7684\u5355\u53f7\u753112\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u89c1\u5df2139*\u5f00\u5934", 
+        "shortname": "\u4fe1\u4e30"
+    }, 
+    {
+        "code": "wenjiesudi", 
+        "tel": "020-88561502,85871501,31683301", 
+        "companyname": "\u6587\u6377\u822a\u7a7a", 
+        "telcomplaintnum": "020-36680069\u3001020-86372740\u3001020-88561502", 
+        "freg": "", 
+        "comurl": "http://www.wjexpress.com", 
+        "freginfo": "", 
+        "shortname": "\u6587\u6377"
+    }, 
+    {
+        "code": "quanchenkuaidi", 
+        "tel": "0769-82026703", 
+        "companyname": "\u5168\u6668\u5feb\u9012", 
+        "telcomplaintnum": "0769-82026701/82026703", 
+        "freg": "^[0-9]{10}$", 
+        "comurl": "http://www.qckd.net/", 
+        "freginfo": "\u5168\u6668\u5355\u53f7\u753110\u4f4d\u6570\u5b57\u7f16\u7801\u7ec4\u6210", 
+        "shortname": "\u5168\u6668"
+    }, 
+    {
+        "code": "jiayiwuliu", 
+        "tel": "400-631-9999", 
+        "companyname": "\u4f73\u6021\u7269\u6d41", 
+        "telcomplaintnum": "400-631-9999", 
+        "freg": "^[0-9]{8}$", 
+        "comurl": "http://www.jiayi56.com/", 
+        "freginfo": "\u4f73\u6021\u7269\u6d41\u67e5\u8be2\u5355\u53f7\u4e00\u822c\u662f\u75318\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4f73\u6021"
+    }, 
+    {
+        "code": "youshuwuliu", 
+        "tel": "400-1111-119", 
+        "companyname": "\u4f18\u901f\u7269\u6d41", 
+        "telcomplaintnum": "400-1111-119", 
+        "freg": "", 
+        "comurl": "http://www.uc56.com", 
+        "freginfo": "\u4f18\u901f\u5355\u53f7\u753112\u4f4d\u6570\u5b57\u7ec4\u6210\uff0cLP\u5f00\u5934\u7684\u4e0d\u662f\u4f18\u901f\u5feb\u9012\u5355\u53f7", 
+        "shortname": "\u4f18\u901f"
+    }, 
+    {
+        "code": "kuaijiesudi", 
+        "tel": "400-830-4888", 
+        "companyname": "\u5feb\u6377\u901f\u9012", 
+        "telcomplaintnum": "400-830-4888", 
+        "freg": "", 
+        "comurl": "http://www.fastexpress.com.cn", 
+        "freginfo": "\u5feb\u6377\u5e38\u89c1\u5355\u53f7\u670913\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5feb\u6377"
+    }, 
+    {
+        "code": "dsukuaidi", 
+        "tel": "0531-88636363", 
+        "companyname": "D\u901f\u5feb\u9012", 
+        "telcomplaintnum": "0531-88626262", 
+        "freg": "", 
+        "comurl": "http://www.d-exp.cn", 
+        "freginfo": "\u5e38\u89c1\u7684\u5355\u53f7\u4ee5DS\u5f00\u5934+9\u4f4d\u7eaf\u6570\u5b57+CN\u7ed3\u5c3e\u517113\u4f4d", 
+        "shortname": "D\u901f"
+    }, 
+    {
+        "code": "quanjitong", 
+        "tel": "400-0179-888", 
+        "companyname": "\u5168\u9645\u901a", 
+        "telcomplaintnum": "021-62966050", 
+        "freg": "^[0-9]{12}$", 
+        "comurl": "http://www.quanjt.com", 
+        "freginfo": "\u5168\u9645\u901a\u7269\u6d41\u5355\u53f7\u7531\u533a\u53f7+\u6570\u5b57\u768412\u4f4d\u6570\u5b57\u7f16\u7801\u7ec4\u6210", 
+        "shortname": "\u5168\u9645\u901a"
+    }, 
+    {
+        "code": "ganzhongnengda", 
+        "tel": "400-620-1111", 
+        "companyname": "\u80fd\u8fbe\u901f\u9012", 
+        "telcomplaintnum": "400-620-1111", 
+        "freg": "^[0-9]{10,12}$", 
+        "comurl": "http://www.nd56.com", 
+        "freginfo": "\u6e2f\u4e2d\u80fd\u8fbe\u5355\u53f7\u4e00\u822c\u4ee588\u5f00\u5934\u768412\u4f4d\u621610\u4f4d\u6570\u5b57", 
+        "shortname": "\u80fd\u8fbe"
+    }, 
+    {
+        "code": "anjiekuaidi", 
+        "tel": "400-056-5656", 
+        "companyname": "\u9752\u5c9b\u5b89\u6377\u5feb\u9012", 
+        "telcomplaintnum": "4000565656", 
+        "freg": "^[A-Za-z0-9]{10,20}$", 
+        "comurl": "http://www.anjelex.com", 
+        "freginfo": "\u5e38\u89c1\u7684\u5b89\u6377\u5355\u53f7\u7531AN+\u5f00\u59348\u4f4d\u6570\u5b57\u6216\u800512\u300113\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5b89\u6377"
+    }, 
+    {
+        "code": "yuefengwuliu", 
+        "tel": "852-23909969", 
+        "companyname": "\u8d8a\u4e30\u7269\u6d41", 
+        "telcomplaintnum": "852-23909969", 
+        "freg": "^[0-9]{10}$", 
+        "comurl": "http://www.yfexpress.com.hk", 
+        "freginfo": "\u5e38\u89c1\u7684\u8d8a\u4e30\u7269\u6d41\u67e5\u8be2\u5355\u53f7\u7f16\u7801\u753110\u7eaf\u6570\u5b57\u7ec4\u6210\uff0c\u5e38\u89c1\u4ee580*\u5f00\u5934", 
+        "shortname": "\u8d8a\u4e30"
+    }, 
+    {
+        "code": "dpex", 
+        "tel": "021-64659883", 
+        "companyname": "DPEX", 
+        "telcomplaintnum": "021-64659883", 
+        "freg": "^[A-Za-z0-9]{8,20}$", 
+        "comurl": "http://www.szdpex.com.cn/", 
+        "freginfo": "DPEX\u5feb\u9012\u67e5\u8be2\u5355\u53f7\u901a\u5e38\u4ee55\u5f00\u5934\uff0c\u753112\u4f4d\u6570\u5b57\u7ec4\u6210\uff0c\u90e8\u5206dpex\u56fd\u9645\u5feb\u9012\u670913\u4f4d\u6570", 
+        "shortname": "DPEX"
+    }, 
+    {
+        "code": "jixianda", 
+        "tel": "021-59766363", 
+        "companyname": "\u6025\u5148\u8fbe", 
+        "telcomplaintnum": "021-59766363", 
+        "freg": "^(500)[0-9]{6}$", 
+        "comurl": "http://www.joust.net.cn/", 
+        "freginfo": "\u6025\u5148\u8fbe\u5355\u53f7\u4e00\u822c\u662f\u7531\u4ee5500*\u5f00\u5934\u76849\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u6025\u5148\u8fbe"
+    }, 
+    {
+        "code": "baifudongfang", 
+        "tel": "010-57169000", 
+        "companyname": "\u767e\u798f\u4e1c\u65b9", 
+        "telcomplaintnum": "010-57169000", 
+        "freg": "", 
+        "comurl": "http://www.ees.com.cn", 
+        "freginfo": "\u767e\u798f\u4e1c\u65b9\u5355\u53f7\u4e00\u822c\u662f\u75319\u4f4d\u6570\u5b57\u7ec4\u6210,\u5e38\u4ee510\u5f00\u5934", 
+        "shortname": "\u767e\u798f\u4e1c\u65b9"
+    }, 
+    {
+        "code": "bht", 
+        "tel": "010-58633508", 
+        "companyname": "BHT", 
+        "telcomplaintnum": "010-58633508", 
+        "freg": "^[A-Za-z0-9]{8,11}$", 
+        "comurl": "http://www.bht-exp.com/", 
+        "freginfo": "\u5e38\u89c1\u7684BHT\u5355\u53f7\u7531BHT+\u5f00\u59348\u4f4d\u6570\u5b57\u6216\u80058\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "BHT"
+    }, 
+    {
+        "code": "wuyuansudi", 
+        "tel": "0592\u20145050535", 
+        "companyname": "\u4f0d\u5706\u901f\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.f5xm.com", 
+        "freginfo": "", 
+        "shortname": "\u4f0d\u5706"
+    }, 
+    {
+        "code": "lanbiaokuaidi", 
+        "tel": "0769-82898999", 
+        "companyname": "\u84dd\u9556\u5feb\u9012", 
+        "telcomplaintnum": "800-988-1888 400-886-1888", 
+        "freg": "^[A-Za-z0-9]{8,20}$", 
+        "comurl": "http://www.bluedart.cn", 
+        "freginfo": "\u84dd\u9556\u5e38\u89c1\u5355\u53f7\u4ee590*\u5f00\u540c\u768413\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u84dd\u9556"
+    }, 
+    {
+        "code": "coe", 
+        "tel": "0755-83575000", 
+        "companyname": "COE", 
+        "telcomplaintnum": "86-755-83575000 ", 
+        "freg": "", 
+        "comurl": "http://www.coe.com.hk", 
+        "freginfo": "COE\u5355\u53f7\u753110\u300112\u4f4d\u6570\u5b57\u7ec4\u6210,\u5e38\u89c1\u4ee5\u533a\u53f7+8\u4f4d\u6570\u5b57\u621666+10\u4e3a\u6570\u5b57", 
+        "shortname": "COE"
+    }, 
+    {
+        "code": "nanjing", 
+        "tel": "025-84510043", 
+        "companyname": "\u5357\u4eac100", 
+        "telcomplaintnum": "025-84510043 84510044", 
+        "freg": "", 
+        "comurl": "http://www.100cskd.com", 
+        "freginfo": "", 
+        "shortname": "\u5357\u4eac100"
+    }, 
+    {
+        "code": "hengluwuliu", 
+        "tel": "400-182-6666", 
+        "companyname": "\u6052\u8def\u7269\u6d41", 
+        "telcomplaintnum": "400-182-6666", 
+        "freg": "^[A-Za-z0-9]{7,20}$", 
+        "comurl": "http://www.e-henglu.com", 
+        "freginfo": "\u6052\u8def\u7269\u6d41\u5355\u53f7\u4ee57-13\u4f4d\u7684\u5b57\u6bcd\u52a0\u6570\u5b57\u7ec4\u5408\uff0c\u5e38\u89c1\u5df28*\u5f00\u5934\u76849\u4f4d\u6570\u5b57\u5355\u53f7", 
+        "shortname": "\u6052\u8def"
+    }, 
+    {
+        "code": "jindawuliu", 
+        "tel": "0755-82262209", 
+        "companyname": "\u91d1\u5927\u7269\u6d41", 
+        "telcomplaintnum": "0755-82262209", 
+        "freg": "^[0-9]{7}$", 
+        "comurl": "http://www.szkingdom.com.cn", 
+        "freginfo": "\u91d1\u5927\u5feb\u9012\u6b63\u786e\u7684\u5355\u53f7\u75317\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u91d1\u5927"
+    }, 
+    {
+        "code": "huaxialongwuliu", 
+        "tel": "400-716-6133", 
+        "companyname": "\u534e\u590f\u9f99", 
+        "telcomplaintnum": "400-716-6133 ", 
+        "freg": "", 
+        "comurl": "http://www.chinadragon56.com", 
+        "freginfo": "\u534e\u590f\u9f99\u7269\u6d41\u7684\u5355\u53f7\u4e00\u822c\u7531\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u534e\u590f\u9f99"
+    }, 
+    {
+        "code": "yuntongkuaidi", 
+        "tel": "0769-81156999", 
+        "companyname": "\u8fd0\u901a\u4e2d\u6e2f", 
+        "telcomplaintnum": "0769-81156999", 
+        "freg": "^[0-9]{9}$", 
+        "comurl": "http://www.ytkd168.com", 
+        "freginfo": "\u8fd0\u901a\u901a\u5e38\u4ee561*\u5f00\u5934\u76849\u4f4d\u5355\u53f7", 
+        "shortname": "\u8fd0\u901a"
+    }, 
+    {
+        "code": "jiajiwuliu", 
+        "tel": "400-820-5566", 
+        "companyname": "\u4f73\u5409\u5feb\u8fd0", 
+        "telcomplaintnum": "400-820-5566", 
+        "freg": "", 
+        "comurl": "http://www.jiaji.com", 
+        "freginfo": "\u4f73\u5409\u5feb\u8fd0\u75319\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4f73\u5409"
+    }, 
+    {
+        "code": "shengfengwuliu", 
+        "tel": "0591-83621111", 
+        "companyname": "\u76db\u4e30\u7269\u6d41", 
+        "telcomplaintnum": "0591-83621111", 
+        "freg": "", 
+        "comurl": "http://www.sfwl.com.cn", 
+        "freginfo": "\u76db\u4e30\u7269\u6d41\u7684\u5355\u53f7\u7531\u5b57\u6bcd\u548c\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u76db\u4e30"
+    }, 
+    {
+        "code": "yuananda", 
+        "tel": "0769-85021875", 
+        "companyname": "\u6e90\u5b89\u8fbe", 
+        "telcomplaintnum": "0769-85021875", 
+        "freg": "", 
+        "comurl": "http://www.yadex.com.cn", 
+        "freginfo": "\u6e90\u5b89\u8fbe\u5feb\u9012\u5355\u53f7\u67e5\u8be2\u7f16\u7801\u4e00\u822c\u4e3a11\u7684\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u6e90\u5b89\u8fbe"
+    }, 
+    {
+        "code": "jiayunmeiwuliu", 
+        "tel": "0769-85515555", 
+        "companyname": "\u52a0\u8fd0\u7f8e", 
+        "telcomplaintnum": "0769-85515555/85166425 ", 
+        "freg": "^[0-9]{10}$", 
+        "comurl": "http://www.tms56.com", 
+        "freginfo": "\u52a0\u8fd0\u7f8e\u5feb\u9012\u6b63\u786e\u7684\u5355\u53f7\u753110\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u52a0\u8fd0\u7f8e"
+    }, 
+    {
+        "code": "wanxiangwuliu", 
+        "tel": "400-820-8088", 
+        "companyname": "\u4e07\u8c61\u7269\u6d41", 
+        "telcomplaintnum": "\uff08021\uff0951035766-8062", 
+        "freg": "", 
+        "comurl": "http://www.ewinshine.com", 
+        "freginfo": "\u4e07\u8c61\u7269\u6d41\u7684\u5355\u53f7\u4e00\u822c\u7531\u5b57\u6bcd\u548c\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4e07\u8c61"
+    }, 
+    {
+        "code": "hongpinwuliu", 
+        "tel": "400-612-1456", 
+        "companyname": "\u5b8f\u54c1\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.hpexpress.com.cn", 
+        "freginfo": "", 
+        "shortname": "\u5b8f\u54c1"
+    }, 
+    {
+        "code": "gls", 
+        "tel": "877-914-5465", 
+        "companyname": "GLS", 
+        "telcomplaintnum": "877-914-5465", 
+        "freg": "", 
+        "comurl": "http://www.gls-group.net", 
+        "freginfo": "", 
+        "shortname": "GLS"
+    }, 
+    {
+        "code": "shangda", 
+        "tel": "400-021-9122", 
+        "companyname": "\u4e0a\u5927\u7269\u6d41", 
+        "telcomplaintnum": "400-021-9122", 
+        "freg": "", 
+        "comurl": "http://www.sundapost.net", 
+        "freginfo": "\u4e0a\u5927\u7269\u6d41\u7684\u5355\u53f7\u4e00\u822c\u7531\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4e0a\u5927"
+    }, 
+    {
+        "code": "zhongtiewuliu", 
+        "tel": "95572", 
+        "companyname": "\u4e2d\u94c1\u5feb\u8fd0", 
+        "telcomplaintnum": "95572", 
+        "freg": "", 
+        "comurl": "http://www.cre.cn ", 
+        "freginfo": "\u4e00\u822c\u662f\u7531\u5b57\u6bcdK\u6216B\u5f00\u5934\uff0c\u517114\u4f4d\u5b57\u6bcd\u4e0e\u6570\u5b57\u7ec4\u5408", 
+        "shortname": "\u4e2d\u94c1"
+    }, 
+    {
+        "code": "yuanfeihangwuliu", 
+        "tel": "0755-29778899", 
+        "companyname": "\u539f\u98de\u822a", 
+        "telcomplaintnum": "0755-29778899 / 29778100", 
+        "freg": "", 
+        "comurl": "http://www.yfhex.com", 
+        "freginfo": "\u539f\u98de\u822a\u5355\u53f7\u753110\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u539f\u98de\u822a"
+    }, 
+    {
+        "code": "haiwaihuanqiu", 
+        "tel": "010-59790107", 
+        "companyname": "\u6d77\u5916\u73af\u7403", 
+        "telcomplaintnum": "010-59790107", 
+        "freg": "^[A-Za-z0-9]{8,20}$", 
+        "comurl": "http://www.haiwaihuanqiu.com/", 
+        "freginfo": "\u6d77\u5916\u73af\u7403\u5e38\u89c1\u5355\u53f7\u6709\u5b57\u6bcd\u5f00\u5934\u768413\u4f4d\u6570\u5b57\u6216\u800520\u4f4d\u7eaf\u6570\u5b57\u7684\u5355\u53f7", 
+        "shortname": "\u6d77\u5916\u73af\u7403"
+    }, 
+    {
+        "code": "santaisudi", 
+        "tel": "400-881-8106  ", 
+        "companyname": "\u4e09\u6001\u901f\u9012", 
+        "telcomplaintnum": "400-881-8106", 
+        "freg": "^[A-Za-z0-9]{5,20}$", 
+        "comurl": "http://www.sfcservice.com/", 
+        "freginfo": "\u4e09\u6001\u5e38\u89c1\u5355\u53f7\u670910\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4e09\u6001"
+    }, 
+    {
+        "code": "jinyuekuaidi", 
+        "tel": "400-638-9288", 
+        "companyname": "\u664b\u8d8a\u5feb\u9012", 
+        "telcomplaintnum": "400-638-9288", 
+        "freg": "", 
+        "comurl": "http://www.byondex.com", 
+        "freginfo": "\u664b\u8d8a\u5feb\u9012\u7684\u5355\u53f7\u4e00\u822c\u753112\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u664b\u8d8a"
+    }, 
+    {
+        "code": "lianbangkuaidi", 
+        "tel": "400-889-1888", 
+        "companyname": "\u8054\u90a6\u5feb\u9012", 
+        "telcomplaintnum": "400-889-1888", 
+        "freg": "^[0-9]{12}$", 
+        "comurl": "http://cndxp.apac.fedex.com/dxp.html", 
+        "freginfo": "\u8054\u90a6\u5feb\u9012\u56fd\u5185\u5355\u53f7\u5e38\u89c1\u4ee512*\u5f00\u593412\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u8054\u90a6"
+    }, 
+    {
+        "code": "feikuaida", 
+        "tel": "400-716-6666", 
+        "companyname": "\u98de\u5feb\u8fbe", 
+        "telcomplaintnum": "400-716-6666", 
+        "freg": "^[0-9]{10}$", 
+        "comurl": "http://www.fkdex.com", 
+        "freginfo": "\u98de\u5feb\u8fbe\u5e38\u89c1\u5355\u53f7\u670910\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u98de\u5feb\u8fbe"
+    }, 
+    {
+        "code": "quanfengkuaidi", 
+        "tel": "400-100-0001", 
+        "companyname": "\u5168\u5cf0\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.qfkd.com.cn", 
+        "freginfo": "\u5168\u5cf0\u5feb\u9012\u5355\u53f7\u4e00\u822c\u753110\u6216\u800512\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5168\u5cf0"
+    }, 
+    {
+        "code": "rufengda", 
+        "tel": "400-010-6660", 
+        "companyname": "\u5982\u98ce\u8fbe", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.rufengda.com", 
+        "freginfo": "\u5982\u98ce\u8fbe\u5355\u53f7\u6216\u8005\u662f\u7eaf\u6570\u5b57\uff0c\u6216\u8005\u5b57\u6bcd\u52a0\u6570\u5b57\u3002", 
+        "shortname": "\u5982\u98ce\u8fbe"
+    }, 
+    {
+        "code": "lejiedi", 
+        "tel": "400-618-1400", 
+        "companyname": "\u4e50\u6377\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.ljd365.com", 
+        "freginfo": "\u4e50\u6377\u9012\u7684\u5355\u53f7\u4e00\u822c\u7531\u5b57\u6bcd\u548c\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4e50\u6377\u9012"
+    }, 
+    {
+        "code": "zhongxinda", 
+        "tel": "400-646-6665", 
+        "companyname": "\u5fe0\u4fe1\u8fbe", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.zhongxind.cn/index.asp", 
+        "freginfo": "\u5fe0\u4fe1\u8fbe\u5feb\u9012\u7684\u5355\u53f7\u4e00\u822c\u7531\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5fe0\u4fe1\u8fbe"
+    }, 
+    {
+        "code": "zhimakaimen", 
+        "tel": "4001-056-056,88056056 ", 
+        "companyname": "\u829d\u9ebb\u5f00\u95e8", 
+        "telcomplaintnum": "4001-056-056/ 88056056 ", 
+        "freg": "", 
+        "comurl": "http://www.zmkmex.com/ ", 
+        "freginfo": "\u829d\u9ebb\u5f00\u95e8\u7684\u5355\u53f7\u7531\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u829d\u9ebb\u5f00\u95e8"
+    }, 
+    {
+        "code": "saiaodi", 
+        "tel": "4000-345-888", 
+        "companyname": "\u8d5b\u6fb3\u9012", 
+        "telcomplaintnum": "4000-345-888", 
+        "freg": "", 
+        "comurl": "http://www.51cod.com ", 
+        "freginfo": "\u8d5b\u6fb3\u9012\u662fB2C\u516c\u53f8\u7684\u843d\u5730\u914d\uff0c\u5355\u53f7\u662f\u5404\u843d\u4f4e\u914d\u7684\u8ba2\u5355\u53f7", 
+        "shortname": "\u8d5b\u6fb3\u9012"
+    }, 
+    {
+        "code": "haihongwangsong", 
+        "tel": "400-632-9988", 
+        "companyname": "\u6d77\u7ea2\u7f51\u9001", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.haihongwangsong.com", 
+        "freginfo": "\u6d77\u7ea2\u7f51\u9001\u7684\u5355\u53f7\u4e00\u822c\u7531\u524d\u540e\u54042\u4f4d\u7684\u5b57\u6bcd\uff0c\u4e2d\u95f48\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u6d77\u7ea2\u7f51\u9001"
+    }, 
+    {
+        "code": "gongsuda", 
+        "tel": "400-111-0005", 
+        "companyname": "\u5171\u901f\u8fbe", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.gongsuda.com", 
+        "freginfo": "\u5171\u901f\u8fbe\u7684\u5355\u53f7\u4e00\u822c\u7531755\u5f00\u5934\u768411\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5171\u901f\u8fbe"
+    }, 
+    {
+        "code": "jialidatong", 
+        "tel": "400-610-3188", 
+        "companyname": "\u5609\u91cc\u5927\u901a", 
+        "telcomplaintnum": "", 
+        "freg": "^(316)[A-Za-z][0-9]{9}$", 
+        "comurl": "http://www.kerryeas.com", 
+        "freginfo": "\u5609\u91cc\u5927\u901a\u7684\u5355\u53f7\u4e00\u822c\u753113\u4f4d\u5b57\u6bcd\u548c\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5609\u91cc\u5927\u901a"
+    }, 
+    {
+        "code": "ocs", 
+        "tel": "400-118-8588", 
+        "companyname": "OCS", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.ocschina.com", 
+        "freginfo": "OCS\u56fd\u9645\u5feb\u9012\u7684\u5355\u53f7\u4e00\u822c\u753111\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "OCS"
+    }, 
+    {
+        "code": "usps", 
+        "tel": "800-275-8777", 
+        "companyname": "USPS", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "https://zh.usps.com", 
+        "freginfo": "USPS\u5355\u53f7\u7684\u8bb0\u5f55\u8d85\u8fc7\u4e00\u4e2a\u6708\u4f1a\u81ea\u52a8\u6e05\u9664", 
+        "shortname": "USPS"
+    }, 
+    {
+        "code": "meiguokuaidi", 
+        "tel": "888-611-1888", 
+        "companyname": "\u7f8e\u56fd\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.us-ex.com", 
+        "freginfo": "\u7f8e\u56fd\u5feb\u9012\u7684\u5355\u53f7\u4e00\u822c\u7531DD\u5f00\u5934US\u7ed3\u5c3e\uff0c\u4e2d\u95f49\u4f4d\u6570\u5b57", 
+        "shortname": "\u7f8e\u56fd"
+    }, 
+    {
+        "code": "lijisong", 
+        "tel": "400-028-5666", 
+        "companyname": "\u7acb\u5373\u9001", 
+        "telcomplaintnum": "400-028-5666", 
+        "freg": "", 
+        "comurl": "http://www.cdljs.com", 
+        "freginfo": "\u7acb\u5373\u9001\u7684\u5355\u53f7\u7531\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u7acb\u5373\u9001"
+    }, 
+    {
+        "code": "yinjiesudi", 
+        "tel": "0755-88250666", 
+        "companyname": "\u94f6\u6377\u901f\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.china-fec.com", 
+        "freginfo": "\u94f6\u6377\u901f\u9012\u7684\u5355\u53f7\u4e00\u822c\u75319-12\u4f4d\u7684\u6570\u5b57\u7ec4\u6210\uff0c\u4e9a\u9a6c\u900a\u7684\u5355\u53f7\u4ee5a\u5f00\u5934", 
+        "shortname": "\u94f6\u6377"
+    }, 
+    {
+        "code": "menduimen", 
+        "tel": "400-700-7676", 
+        "companyname": "\u95e8\u5bf9\u95e8", 
+        "telcomplaintnum": "400-700-7676", 
+        "freg": "", 
+        "comurl": "http://www.szdod.com", 
+        "freginfo": "\u95e8\u5bf9\u95e8\u662f\u4e3a\u5404B2C\u914d\u9001\u7684\u843d\u5730\u914d\uff0c\u5355\u53f7\u662f\u5404B2C\u7684\u8ba2\u5355\u53f7", 
+        "shortname": "\u95e8\u5bf9\u95e8"
+    }, 
+    {
+        "code": "disifang", 
+        "tel": "0755-33933895", 
+        "companyname": "\u9012\u56db\u65b9", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.4px.com", 
+        "freginfo": "\u9012\u56db\u65b9\u7684\u5355\u53f7\u4e00\u822c\u7531\u524d\u540e\u54042\u4f4d\u5b57\u6bcd\uff0c\u4e2d\u95f49\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u9012\u56db\u65b9"
+    }, 
+    {
+        "code": "zhengzhoujianhua", 
+        "tel": "0371-65995266", 
+        "companyname": "\u90d1\u5dde\u5efa\u534e", 
+        "telcomplaintnum": "0371-65995266/86115588 ", 
+        "freg": "", 
+        "comurl": "http://www.zzjhtd.com/", 
+        "freginfo": "\u90d1\u5dde\u5efa\u534e\u7684\u5355\u53f7\u7531\u5b57\u6bcd\u548c\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u90d1\u5dde\u5efa\u534e"
+    }, 
+    {
+        "code": "hebeijianhua", 
+        "tel": "0311-86123186", 
+        "companyname": "\u6cb3\u5317\u5efa\u534e", 
+        "telcomplaintnum": "0311-85886302", 
+        "freg": "", 
+        "comurl": "http://116.255.133.172/hebeiwebsite/index.jsp", 
+        "freginfo": "\u6cb3\u5317\u5efa\u534e\u7684\u5355\u53f7\u7531\u5b57\u6bcd\u548c\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u6cb3\u5317\u5efa\u534e"
+    }, 
+    {
+        "code": "weitepai", 
+        "tel": "400-6363-000", 
+        "companyname": "\u5fae\u7279\u6d3e", 
+        "telcomplaintnum": "400-6363-000", 
+        "freg": "", 
+        "comurl": "http://www.vtepai.com/ ", 
+        "freginfo": "\u5fae\u7279\u6d3e\u5355\u53f7\u4e00\u822c\u7531\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5fae\u7279\u6d3e"
+    }, 
+    {
+        "code": "dhlde", 
+        "tel": "+49 (0) 180 5 345300-1*", 
+        "companyname": "DHL-\u5fb7\u56fd\u4ef6", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.dhl.de/en.html", 
+        "freginfo": "DHL-\u5fb7\u56fd\u5feb\u9012\u5355\u53f7\u4e00\u822c\u670912\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "DHL"
+    }, 
+    {
+        "code": "tonghetianxia", 
+        "tel": "400-0056-516 ", 
+        "companyname": "\u901a\u548c\u5929\u4e0b", 
+        "telcomplaintnum": "400-0056-516 ", 
+        "freg": "", 
+        "comurl": "http://www.cod56.com", 
+        "freginfo": "\u901a\u548c\u5929\u4e0b\u7684\u5355\u53f7\u4e00\u822c\u7531200\u5f00\u5934\u768410\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u901a\u548c\u5929\u4e0b"
+    }, 
+    {
+        "code": "emsguoji", 
+        "tel": "11183", 
+        "companyname": "EMS-\u56fd\u9645\u4ef6", 
+        "telcomplaintnum": "11183", 
+        "freg": "", 
+        "comurl": "http://www.ems.com.cn", 
+        "freginfo": "", 
+        "shortname": "EMS-\u56fd\u9645\u4ef6"
+    }, 
+    {
+        "code": "fedexus", 
+        "tel": "800-463-3339", 
+        "companyname": "FedEx-\u7f8e\u56fd\u4ef6", 
+        "telcomplaintnum": "800-463-3339", 
+        "freg": "", 
+        "comurl": "http://www.fedex.com/us/", 
+        "freginfo": "fedex\u7f8e\u56fd\u7684\u5355\u53f7\u4e00\u822c\u7531\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "FedEx"
+    }, 
+    {
+        "code": "fengxingtianxia", 
+        "tel": "4000-404-909", 
+        "companyname": "\u98ce\u884c\u5929\u4e0b", 
+        "telcomplaintnum": "13975182167", 
+        "freg": "", 
+        "comurl": "http://www.fxtxsy.com", 
+        "freginfo": "\u98ce\u884c\u5929\u4e0b\u7684\u5355\u53f7\u4e00\u822c\u7531\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u98ce\u884c\u5929\u4e0b"
+    }, 
+    {
+        "code": "kangliwuliu", 
+        "tel": "400-156-5156 ", 
+        "companyname": "\u5eb7\u529b\u7269\u6d41", 
+        "telcomplaintnum": "400-156-5156 ", 
+        "freg": "", 
+        "comurl": "http://www.kangliex.com/", 
+        "freginfo": "\u5eb7\u529b\u7269\u6d41\u7684\u5355\u53f7\u4e00\u822c\u753110\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5eb7\u529b"
+    }, 
+    {
+        "code": "kuayue", 
+        "tel": "4008-098-098 ", 
+        "companyname": "\u8de8\u8d8a\u901f\u9012", 
+        "telcomplaintnum": "4008-098-098 ", 
+        "freg": "", 
+        "comurl": "http://www.ky-express.com/", 
+        "freginfo": "\u8de8\u8d8a\u7269\u6d41\u7684\u5355\u53f7\u4e00\u822c\u75317\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u8de8\u8d8a"
+    }, 
+    {
+        "code": "haimengsudi", 
+        "tel": "400-080-6369 ", 
+        "companyname": "\u6d77\u76df\u901f\u9012", 
+        "telcomplaintnum": "400-080-6369 ", 
+        "freg": "", 
+        "comurl": "http://www.hm-express.com", 
+        "freginfo": "\u6d77\u76df\u901f\u9012\u7684\u5355\u53f7\u4e00\u822c\u753110\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u6d77\u76df"
+    }, 
+    {
+        "code": "shenganwuliu", 
+        "tel": "4006-618-169 ", 
+        "companyname": "\u5723\u5b89\u7269\u6d41", 
+        "telcomplaintnum": "4006-618-169", 
+        "freg": "", 
+        "comurl": "http://www.sa56.net", 
+        "freginfo": "\u5723\u5b89\u7269\u6d41\u7684\u5355\u53f7\u4e00\u822c\u75317\u5f00\u5934\u76847\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u5723\u5b89"
+    }, 
+    {
+        "code": "yitongfeihong", 
+        "tel": "61501533-608", 
+        "companyname": "\u4e00\u7edf\u98de\u9e3f", 
+        "telcomplaintnum": "61501028-608", 
+        "freg": "", 
+        "comurl": "http://218.97.241.58:8080/yitongfeihongweb/common?action=toindex", 
+        "freginfo": "", 
+        "shortname": "\u4e00\u7edf\u98de\u9e3f"
+    }, 
+    {
+        "code": "zhongsukuaidi", 
+        "tel": "11183 ", 
+        "companyname": "\u4e2d\u901f\u5feb\u9012", 
+        "telcomplaintnum": "11183 ", 
+        "freg": "", 
+        "comurl": "http://www.ems.com.cn/mainservice/ems/zhong_su_guo_ji_kuai_jian.html", 
+        "freginfo": "\u4e2d\u901f\u5feb\u4ef6\u7684\u5355\u53f7\u4e00\u822c\u7531CT\u5f00\u5934CN\u7ed3\u5c3e\u4e2d\u95f49\u4f4d\u6570\u5b57", 
+        "shortname": "\u4e2d\u901f"
+    }, 
+    {
+        "code": "neweggozzo", 
+        "tel": "400-820-4400", 
+        "companyname": "\u65b0\u86cb\u5965\u7855", 
+        "telcomplaintnum": "400-820-4400", 
+        "freg": "", 
+        "comurl": "http://www.ozzo.com.cn", 
+        "freginfo": "", 
+        "shortname": "\u65b0\u86cb\u5965\u7855"
+    }, 
+    {
+        "code": "ontrac", 
+        "tel": "800-334-5000", 
+        "companyname": "OnTrac", 
+        "telcomplaintnum": "800-334-5000", 
+        "freg": "", 
+        "comurl": "http://www.ontrac.com", 
+        "freginfo": "OnTrac\u5355\u53f7\u4e00\u822c\u7531\u5b57\u6bcd\u548c\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "OnTrac"
+    }, 
+    {
+        "code": "sevendays", 
+        "tel": "400-882-1202", 
+        "companyname": "\u4e03\u5929\u8fde\u9501", 
+        "telcomplaintnum": "400-882-1202", 
+        "freg": "", 
+        "comurl": "http://www.92856.cn", 
+        "freginfo": "\u4e03\u5929\u8fde\u9501\u7269\u6d41\u5355\u53f7\u4e00\u822c\u7531\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u4e03\u5929\u8fde\u9501"
+    }, 
+    {
+        "code": "mingliangwuliu", 
+        "tel": "400-035-6568", 
+        "companyname": "\u660e\u4eae\u7269\u6d41", 
+        "telcomplaintnum": "13632909217 ", 
+        "freg": "", 
+        "comurl": "http://www.szml56.com/", 
+        "freginfo": "\u660e\u4eae\u7269\u6d41\u7684\u5355\u53f7\u7531\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u660e\u4eae"
+    }, 
+    {
+        "code": "vancl", 
+        "tel": "400-600-6888", 
+        "companyname": "\u51e1\u5ba2\u914d\u9001", 
+        "telcomplaintnum": "400-600-6888", 
+        "freg": "", 
+        "comurl": "http://www.vancl.com/", 
+        "freginfo": "\u51e1\u5ba2\u7684\u8ba2\u5355\u4e00\u822c\u6709\u5b57\u6bcd\u548c\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u51e1\u5ba2"
+    }, 
+    {
+        "code": "huaqikuaiyun", 
+        "tel": "400-626-2356", 
+        "companyname": "\u534e\u4f01\u5feb\u8fd0", 
+        "telcomplaintnum": "021-54224687", 
+        "freg": "", 
+        "comurl": "http://www.hqky.co/", 
+        "freginfo": "", 
+        "shortname": "\u534e\u4f01"
+    }, 
+    {
+        "code": "city100", 
+        "tel": "010-52932760 ", 
+        "companyname": "\u57ce\u5e02100", 
+        "telcomplaintnum": "010-52932770", 
+        "freg": "", 
+        "comurl": "http://www.bjcs100.com/", 
+        "freginfo": "", 
+        "shortname": "\u57ce\u5e02100"
+    }, 
+    {
+        "code": "sxhongmajia", 
+        "tel": "0351-5225858", 
+        "companyname": "\u7ea2\u9a6c\u7532\u7269\u6d41", 
+        "telcomplaintnum": "0351- 5225858", 
+        "freg": "", 
+        "comurl": "http://www.hmj.com.cn/", 
+        "freginfo": "", 
+        "shortname": "\u7ea2\u9a6c\u7532"
+    }, 
+    {
+        "code": "suijiawuliu", 
+        "tel": "400-880-9771", 
+        "companyname": "\u7a57\u4f73\u7269\u6d41", 
+        "telcomplaintnum": "13925121894", 
+        "freg": "", 
+        "comurl": "http://www.suijiawl.com", 
+        "freginfo": "", 
+        "shortname": "\u7a57\u4f73"
+    }, 
+    {
+        "code": "feibaokuaidi", 
+        "tel": "400-000-5566", 
+        "companyname": "\u98de\u8c79\u5feb\u9012", 
+        "telcomplaintnum": "400-000-5566", 
+        "freg": "", 
+        "comurl": "http://www.ztky.com/feibao/KJCX.aspx", 
+        "freginfo": "", 
+        "shortname": "\u98de\u8c79"
+    }, 
+    {
+        "code": "chuanxiwuliu", 
+        "tel": "400-777-5656 ", 
+        "companyname": "\u4f20\u559c\u7269\u6d41", 
+        "telcomplaintnum": "400-777-5656 ", 
+        "freg": "", 
+        "comurl": "http://www.cxcod.com/", 
+        "freginfo": "", 
+        "shortname": "\u4f20\u559c"
+    }, 
+    {
+        "code": "jietekuaidi", 
+        "tel": "400-820-8585", 
+        "companyname": "\u6377\u7279\u5feb\u9012", 
+        "telcomplaintnum": "400-820-8585", 
+        "freg": "", 
+        "comurl": "http://www.jet185.com/", 
+        "freginfo": "", 
+        "shortname": "\u6377\u7279"
+    }, 
+    {
+        "code": "longlangkuaidi", 
+        "tel": "021-31171576 61552015", 
+        "companyname": "\u9686\u6d6a\u5feb\u9012", 
+        "telcomplaintnum": "021-31257319 31257329 ", 
+        "freg": "", 
+        "comurl": "http://www.56l6.com/", 
+        "freginfo": "", 
+        "shortname": "\u9686\u6d6a"
+    }, 
+    {
+        "code": "emsen", 
+        "tel": "11183", 
+        "companyname": "EMS-\u82f1\u6587", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.ems.com.cn/english.html", 
+        "freginfo": "EMS\u5355\u53f7\u5f00\u5934\u548c\u7ed3\u5c3e2\u4f4d\u662f\u5b57\u6bcd\uff0c\u4e2d\u95f4\u662f9\u4f4d\u6570\u5b57", 
+        "shortname": "EMS-\u82f1\u6587"
+    }, 
+    {
+        "code": "zhongtianwanyun", 
+        "tel": "0531-68850629", 
+        "companyname": "\u4e2d\u5929\u4e07\u8fd0", 
+        "telcomplaintnum": "0531-68850629", 
+        "freg": "", 
+        "comurl": "http://www.wanyun56.cn/", 
+        "freginfo": "", 
+        "shortname": "\u4e2d\u5929\u4e07\u8fd0"
+    }, 
+    {
+        "code": "hkpost", 
+        "tel": "(852) 2921 2222", 
+        "companyname": "\u9999\u6e2f\u90ae\u653f", 
+        "telcomplaintnum": "(852) 2921 2222", 
+        "freg": "", 
+        "comurl": "http://www.hongkongpost.hk", 
+        "freginfo": "", 
+        "shortname": "\u9999\u6e2f\u90ae\u653f"
+    }, 
+    {
+        "code": "bangsongwuliu", 
+        "tel": "021-20965696", 
+        "companyname": "\u90a6\u9001\u7269\u6d41", 
+        "telcomplaintnum": "021-20965696-823/824", 
+        "freg": "", 
+        "comurl": "http://express.banggo.com", 
+        "freginfo": "", 
+        "shortname": "\u90a6\u9001"
+    }, 
+    {
+        "code": "guotongkuaidi", 
+        "tel": "400-111-1123", 
+        "companyname": "\u56fd\u901a\u5feb\u9012", 
+        "telcomplaintnum": "400-111-1123", 
+        "freg": "", 
+        "comurl": "http://www.gto365.com", 
+        "freginfo": "\u56fd\u901a\u5feb\u9012\u5355\u53f7\u4e00\u822c\u753110\u4f4d\u7eaf\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u56fd\u901a"
+    }, 
+    {
+        "code": "auspost", 
+        "tel": "+61 388479045", 
+        "companyname": "\u6fb3\u5927\u5229\u4e9a\u90ae\u653f", 
+        "telcomplaintnum": "+61 388479045", 
+        "freg": "", 
+        "comurl": "http://auspost.com.au", 
+        "freginfo": "", 
+        "shortname": "auspost"
+    }, 
+    {
+        "code": "canpost", 
+        "tel": "1-866-607-6301", 
+        "companyname": "\u52a0\u62ff\u5927\u90ae.\u653f.", 
+        "telcomplaintnum": "1-866-607-6301", 
+        "freg": "", 
+        "comurl": "http://www.canadapost.ca", 
+        "freginfo": "", 
+        "shortname": "\u52a0\u62ff\u5927\u90ae.\u653f."
+    }, 
+    {
+        "code": "canpostfr", 
+        "tel": "", 
+        "companyname": "\u52a0\u62ff\u5927\u90ae.\u653f.", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u52a0\u62ff\u5927\u90ae.\u653f."
+    }, 
+    {
+        "code": "upsen", 
+        "tel": "", 
+        "companyname": "UPS-\u5168\u7403\u4ef6", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "UPS-\u5168\u7403\u4ef6"
+    }, 
+    {
+        "code": "tnten", 
+        "tel": "", 
+        "companyname": "TNT-\u5168\u7403\u4ef6", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "TNT-\u5168\u7403\u4ef6"
+    }, 
+    {
+        "code": "dhlen", 
+        "tel": "", 
+        "companyname": "DHL-\u5168\u7403\u4ef6", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "DHL"
+    }, 
+    {
+        "code": "shunfengen", 
+        "tel": "1-855-901-1133", 
+        "companyname": "\u987a\u4e30-\u7f8e\u56fd\u4ef6", 
+        "telcomplaintnum": "1-855-901-1133", 
+        "freg": "", 
+        "comurl": "http://www.sf-express.com/us/en/", 
+        "freginfo": "", 
+        "shortname": "\u987a\u4e30-\u7f8e\u56fd\u4ef6"
+    }, 
+    {
+        "code": "huiqiangkuaidi", 
+        "tel": "400-000-0177", 
+        "companyname": "\u6c47\u5f3a\u5feb\u9012", 
+        "telcomplaintnum": "400-000-0177", 
+        "freg": "", 
+        "comurl": "http://www.hq-ex.com/", 
+        "freginfo": "", 
+        "shortname": "\u6c47\u5f3a"
+    }, 
+    {
+        "code": "xiyoutekuaidi", 
+        "tel": "4008400365", 
+        "companyname": "\u5e0c\u4f18\u7279", 
+        "telcomplaintnum": "4008400365", 
+        "freg": "", 
+        "comurl": "http://www.cod365.com/", 
+        "freginfo": "", 
+        "shortname": "\u5e0c\u4f18\u7279"
+    }, 
+    {
+        "code": "haoshengwuliu", 
+        "tel": "400-186-5566", 
+        "companyname": "\u660a\u76db\u7269\u6d41", 
+        "telcomplaintnum": "400-186-5566", 
+        "freg": "", 
+        "comurl": "http://www.hs-express.cn/", 
+        "freginfo": "", 
+        "shortname": "\u660a\u76db"
+    }, 
+    {
+        "code": "shangcheng", 
+        "tel": "400-890-0101", 
+        "companyname": "\u5c1a\u6a59\u7269\u6d41", 
+        "telcomplaintnum": "400-890-0101", 
+        "freg": "", 
+        "comurl": "http://www.suncharms.net/", 
+        "freginfo": "", 
+        "shortname": "\u5c1a\u6a59"
+    }, 
+    {
+        "code": "yilingsuyun", 
+        "tel": "400-1056-400", 
+        "companyname": "\u4ebf\u9886\u901f\u8fd0", 
+        "telcomplaintnum": "400-611-1892", 
+        "freg": "", 
+        "comurl": "http://www.yelee.com.cn/", 
+        "freginfo": "", 
+        "shortname": "\u4ebf\u9886"
+    }, 
+    {
+        "code": "dayangwuliu", 
+        "tel": "400-820-0088", 
+        "companyname": "\u5927\u6d0b\u7269\u6d41", 
+        "telcomplaintnum": "400-820-0088", 
+        "freg": "", 
+        "comurl": "http://www.dayang365.cn/", 
+        "freginfo": "", 
+        "shortname": "\u5927\u6d0b"
+    }, 
+    {
+        "code": "didasuyun", 
+        "tel": "400-687-8123", 
+        "companyname": "\u9012\u8fbe\u901f\u8fd0", 
+        "telcomplaintnum": "400-687-8123", 
+        "freg": "", 
+        "comurl": "http://www.dida.hk/", 
+        "freginfo": "", 
+        "shortname": "\u9012\u8fbe"
+    }, 
+    {
+        "code": "yitongda", 
+        "tel": "0898-65339299", 
+        "companyname": "\u6613\u901a\u8fbe", 
+        "telcomplaintnum": "0898-65339299", 
+        "freg": "", 
+        "comurl": "http://www.etd365.com/", 
+        "freginfo": "", 
+        "shortname": "\u6613\u901a\u8fbe"
+    }, 
+    {
+        "code": "youbijia", 
+        "tel": "400-687-8123", 
+        "companyname": "\u90ae\u5fc5\u4f73", 
+        "telcomplaintnum": "400-687-8123", 
+        "freg": "", 
+        "comurl": "http://www.ubjia.com/", 
+        "freginfo": "", 
+        "shortname": "\u90ae\u5fc5\u4f73"
+    }, 
+    {
+        "code": "yishunhang", 
+        "tel": "4006-018-268 ", 
+        "companyname": "\u4ebf\u987a\u822a", 
+        "telcomplaintnum": "4006-018-268 ", 
+        "freg": "", 
+        "comurl": "http://www.igoex.com/", 
+        "freginfo": "", 
+        "shortname": "\u4ebf\u987a\u822a"
+    }, 
+    {
+        "code": "feihukuaidi", 
+        "tel": "010-51389299", 
+        "companyname": "\u98de\u72d0\u5feb\u9012", 
+        "telcomplaintnum": "18701033953", 
+        "freg": "", 
+        "comurl": "http://www.feihukuaidi.com/", 
+        "freginfo": "", 
+        "shortname": "\u98de\u72d0"
+    }, 
+    {
+        "code": "xiaoxiangchenbao", 
+        "tel": "", 
+        "companyname": "\u6f47\u6e58\u6668\u62a5", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u6f47\u6e58\u6668\u62a5"
+    }, 
+    {
+        "code": "balunzhi", 
+        "tel": "400-636-1516", 
+        "companyname": "\u5df4\u4f26\u652f", 
+        "telcomplaintnum": "400-636-1516", 
+        "freg": "", 
+        "comurl": "http://cnbd.hendari.com/", 
+        "freginfo": "", 
+        "shortname": "\u5df4\u4f26\u652f"
+    }, 
+    {
+        "code": "aramex", 
+        "tel": "", 
+        "companyname": "Aramex", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.aramex.com/", 
+        "freginfo": "", 
+        "shortname": "Aramex"
+    }, 
+    {
+        "code": "minshengkuaidi", 
+        "tel": "0592-3725988", 
+        "companyname": "\u95fd\u76db\u5feb\u9012", 
+        "telcomplaintnum": "0592-3705986", 
+        "freg": "", 
+        "comurl": "http://www.xmms-express.com/", 
+        "freginfo": "", 
+        "shortname": "\u95fd\u76db"
+    }, 
+    {
+        "code": "syjiahuier", 
+        "tel": "024-23904138", 
+        "companyname": "\u4f73\u60e0\u5c14", 
+        "telcomplaintnum": "13304020538 ", 
+        "freg": "", 
+        "comurl": "http://www.jhekd.com/", 
+        "freginfo": "", 
+        "shortname": "\u4f73\u60e0\u5c14"
+    }, 
+    {
+        "code": "minbangsudi", 
+        "tel": "0769-81515303", 
+        "companyname": "\u6c11\u90a6\u901f\u9012", 
+        "telcomplaintnum": "0769-81515303", 
+        "freg": "", 
+        "comurl": "http://www.mbex168.com/", 
+        "freginfo": "", 
+        "shortname": "\u6c11\u90a6"
+    }, 
+    {
+        "code": "shanghaikuaitong", 
+        "tel": "", 
+        "companyname": "\u4e0a\u6d77\u5feb\u901a", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u4e0a\u6d77\u5feb\u901a"
+    }, 
+    {
+        "code": "xiaohongmao", 
+        "tel": "010-67756666", 
+        "companyname": "\u5317\u9752\u5c0f\u7ea2\u5e3d", 
+        "telcomplaintnum": "010-67756666", 
+        "freg": "", 
+        "comurl": "http://www.kuaidi100.com/all/xiaohongmao.shtml", 
+        "freginfo": "", 
+        "shortname": "\u5317\u9752\u5c0f\u7ea2\u5e3d"
+    }, 
+    {
+        "code": "gsm", 
+        "tel": "021-64656011 ", 
+        "companyname": "GSM", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "http://www.gsmnton.com ", 
+        "freginfo": "", 
+        "shortname": "GSM"
+    }, 
+    {
+        "code": "annengwuliu", 
+        "tel": "4001-040-088", 
+        "companyname": "\u5b89\u80fd\u7269\u6d41", 
+        "telcomplaintnum": "4001-040-088", 
+        "freg": "", 
+        "comurl": "http://www.ane56.com/", 
+        "freginfo": "", 
+        "shortname": "\u5b89\u80fd"
+    }, 
+    {
+        "code": "kcs", 
+        "tel": "800-858-5590", 
+        "companyname": "KCS", 
+        "telcomplaintnum": "800-858-5590", 
+        "freg": "", 
+        "comurl": "http://www.kcs56.com", 
+        "freginfo": "", 
+        "shortname": "KCS"
+    }, 
+    {
+        "code": "citylink", 
+        "tel": "603-5565 8399", 
+        "companyname": "City-Link", 
+        "telcomplaintnum": "603-5565 8399", 
+        "freg": "", 
+        "comurl": "http://www.citylinkexpress.com/", 
+        "freginfo": "", 
+        "shortname": "City-Link"
+    }, 
+    {
+        "code": "diantongkuaidi", 
+        "tel": "021-20917385 66282857", 
+        "companyname": "\u5e97\u901a\u5feb\u9012", 
+        "telcomplaintnum": "021-20917385 66282857", 
+        "freg": "", 
+        "comurl": "http://www.shdtkd.com.cn/", 
+        "freginfo": "", 
+        "shortname": "\u5e97\u901a"
+    }, 
+    {
+        "code": "fanyukuaidi", 
+        "tel": "4006-580-358 ", 
+        "companyname": "\u51e1\u5b87\u5feb\u9012", 
+        "telcomplaintnum": "4006-580-358", 
+        "freg": "", 
+        "comurl": "http://www.fanyu56.com.cn/", 
+        "freginfo": "\u51e1\u5b87\u5feb\u9012\u5355\u53f7\u4e00\u822c\u7531\u6570\u5b57\u7ec4\u6210\uff0c\u90e8\u5206\u662f\u8f6c\u8fd0\u5355\u53f7", 
+        "shortname": "\u51e1\u5b87"
+    }, 
+    {
+        "code": "pingandatengfei", 
+        "tel": "4006-230-009", 
+        "companyname": "\u5e73\u5b89\u8fbe\u817e\u98de", 
+        "telcomplaintnum": "4006-230-009", 
+        "freg": "", 
+        "comurl": "http://www.padtf.com/", 
+        "freginfo": "", 
+        "shortname": "\u5e73\u5b89\u8fbe\u817e\u98de"
+    }, 
+    {
+        "code": "guangdongtonglu", 
+        "tel": "", 
+        "companyname": "\u5e7f\u4e1c\u901a\u8def", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u5e7f\u4e1c\u901a\u8def"
+    }, 
+    {
+        "code": "zhongruisudi", 
+        "tel": "400-0375-888", 
+        "companyname": "\u4e2d\u777f\u901f\u9012", 
+        "telcomplaintnum": "0371-56669188", 
+        "freg": "", 
+        "comurl": "http://www.zorel.cn/", 
+        "freginfo": "", 
+        "shortname": "\u4e2d\u777f"
+    }, 
+    {
+        "code": "kuaidawuliu", 
+        "tel": "", 
+        "companyname": "\u5feb\u8fbe\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u5feb\u8fbe"
+    }, 
+    {
+        "code": "jiajikuaidi", 
+        "tel": "", 
+        "companyname": "\u4f73\u5409\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u4f73\u5409"
+    }, 
+    {
+        "code": "adp", 
+        "tel": "1588-1330", 
+        "companyname": "ADP\u56fd\u9645\u5feb\u9012", 
+        "telcomplaintnum": "1588-1330", 
+        "freg": "", 
+        "comurl": "http://www.adpair.co.kr/", 
+        "freginfo": "", 
+        "shortname": "ADP"
+    }, 
+    {
+        "code": "fardarww", 
+        "tel": "0755-27332618", 
+        "companyname": "\u98bf\u8fbe\u56fd\u9645\u5feb\u9012", 
+        "telcomplaintnum": "0755-27332618", 
+        "freg": "", 
+        "comurl": "http://www.fardar.com/", 
+        "freginfo": "", 
+        "shortname": "\u98bf\u8fbe"
+    }, 
+    {
+        "code": "fandaguoji", 
+        "tel": "0755-27332618", 
+        "companyname": "\u98bf\u8fbe\u56fd\u9645\u5feb\u9012(\u82f1\u6587)", 
+        "telcomplaintnum": "0755-27332618", 
+        "freg": "", 
+        "comurl": "http://www.fardar.com/", 
+        "freginfo": "", 
+        "shortname": "\u98bf\u8fbe\u56fd\u9645"
+    }, 
+    {
+        "code": "shlindao", 
+        "tel": "4008-200-112", 
+        "companyname": "\u6797\u9053\u56fd\u9645\u5feb\u9012", 
+        "telcomplaintnum": "4008-200-112", 
+        "freg": "", 
+        "comurl": "http://www.ldxpress.com/", 
+        "freginfo": "", 
+        "shortname": "\u6797\u9053"
+    }, 
+    {
+        "code": "sinoex", 
+        "tel": "010-8041 8611", 
+        "companyname": "\u4e2d\u5916\u8fd0\u901f\u9012(\u4e2d\u6587)", 
+        "telcomplaintnum": "010-8041 8611", 
+        "freg": "", 
+        "comurl": "http://www.sinoex.com.cn", 
+        "freginfo": "", 
+        "shortname": "\u4e2d\u5916\u8fd0"
+    }, 
+    {
+        "code": "zhongwaiyun", 
+        "tel": "010-8041 8611", 
+        "companyname": "\u4e2d\u5916\u8fd0\u901f\u9012", 
+        "telcomplaintnum": "010-8041 8611", 
+        "freg": "", 
+        "comurl": "http://www.sinoex.com.cn/index.aspx", 
+        "freginfo": "", 
+        "shortname": "\u4e2d\u5916\u8fd0\u901f\u9012"
+    }, 
+    {
+        "code": "dechuangwuliu", 
+        "tel": "4006-989-833 ", 
+        "companyname": "\u6df1\u5733\u5fb7\u521b\u7269\u6d41", 
+        "telcomplaintnum": "27966686", 
+        "freg": "", 
+        "comurl": "http://www.dc58.com/", 
+        "freginfo": "\u5355\u53f7\u4e00\u822c\u75318\u4f4d\u6570\u5b57\u7ec4\u6210", 
+        "shortname": "\u6df1\u5733\u5fb7\u521b"
+    }, 
+    {
+        "code": "ldxpres", 
+        "tel": "800-820-1470 ", 
+        "companyname": "\u6797\u9053\u56fd\u9645\u5feb\u9012(\u82f1\u6587)", 
+        "telcomplaintnum": "800-820-1470 ", 
+        "freg": "", 
+        "comurl": "http://www.ldxpress.com/", 
+        "freginfo": "", 
+        "shortname": "\u6797\u9053\u56fd\u9645\u5feb\u9012(\u82f1\u6587)"
+    }, 
+    {
+        "code": "ruidianyouzheng", 
+        "tel": "+46 8 23 22 20", 
+        "companyname": "\u745e\u5178\u90ae.\u653f.", 
+        "telcomplaintnum": "+46 8 23 22 20", 
+        "freg": "", 
+        "comurl": "http://www.posten.se/en", 
+        "freginfo": "", 
+        "shortname": "\u745e\u5178\u90ae.\u653f."
+    }, 
+    {
+        "code": "postenab", 
+        "tel": "+46 771 33 33 10", 
+        "companyname": "Posten AB", 
+        "telcomplaintnum": "+46 771 33 33 10", 
+        "freg": "", 
+        "comurl": "http://www.posten.se/en", 
+        "freginfo": "", 
+        "shortname": "Posten AB"
+    }, 
+    {
+        "code": "nuoyaao", 
+        "tel": "4008 871 871", 
+        "companyname": "\u504c\u4e9a\u5965\u56fd\u9645\u5feb\u9012", 
+        "telcomplaintnum": "4008 871 871", 
+        "freg": "", 
+        "comurl": "http://www.royaleinternational.com/", 
+        "freginfo": "", 
+        "shortname": "\u504c\u4e9a\u5965"
+    }, 
+    {
+        "code": "chengjisudi", 
+        "tel": "4000-523-525 ", 
+        "companyname": "\u57ce\u9645\u901f\u9012", 
+        "telcomplaintnum": "4000-523-525", 
+        "freg": "", 
+        "comurl": "http://chengji-express.com", 
+        "freginfo": "", 
+        "shortname": "\u57ce\u9645"
+    }, 
+    {
+        "code": "xianglongyuntong", 
+        "tel": "4008-908-908", 
+        "companyname": "\u7965\u9f99\u8fd0\u901a\u7269\u6d41", 
+        "telcomplaintnum": "4008-908-908", 
+        "freg": "", 
+        "comurl": "http://www.ldl.com.cn", 
+        "freginfo": "", 
+        "shortname": "\u7965\u9f99\u8fd0\u901a"
+    }, 
+    {
+        "code": "pinsuxinda", 
+        "tel": "400-800-3693 ", 
+        "companyname": "\u54c1\u901f\u5fc3\u8fbe\u5feb\u9012", 
+        "telcomplaintnum": "400-800-3693", 
+        "freg": "", 
+        "comurl": "http://www.psxd88.com/", 
+        "freginfo": "", 
+        "shortname": "\u54c1\u901f\u5fc3\u8fbe"
+    }, 
+    {
+        "code": "yuxinwuliu", 
+        "tel": "0371-66368798\u300166368799", 
+        "companyname": "\u5b87\u946b\u7269\u6d41", 
+        "telcomplaintnum": "0371-66368798\u300166368799", 
+        "freg": "", 
+        "comurl": "http://www.yx56.cn", 
+        "freginfo": "", 
+        "shortname": "\u5b87\u946b"
+    }, 
+    {
+        "code": "peixingwuliu", 
+        "tel": "400-993-0555", 
+        "companyname": "\u966a\u884c\u7269\u6d41", 
+        "telcomplaintnum": "0594-2321515", 
+        "freg": "", 
+        "comurl": "http://www.peixingexpress.com", 
+        "freginfo": "", 
+        "shortname": "\u966a\u884c\u7269\u6d41"
+    }, 
+    {
+        "code": "hutongwuliu", 
+        "tel": "400-060-1656", 
+        "companyname": "\u6237\u901a\u7269\u6d41", 
+        "telcomplaintnum": "13026112511", 
+        "freg": "", 
+        "comurl": "http://www.cnhtwl.com", 
+        "freginfo": "", 
+        "shortname": "\u6237\u901a\u7269\u6d41"
+    }, 
+    {
+        "code": "xianchengliansudi", 
+        "tel": "", 
+        "companyname": "\u897f\u5b89\u57ce\u8054\u901f\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u897f\u5b89\u57ce\u8054\u901f\u9012"
+    }, 
+    {
+        "code": "yujiawuliu", 
+        "tel": "", 
+        "companyname": "\u715c\u5609\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u715c\u5609\u7269\u6d41"
+    }, 
+    {
+        "code": "yiqiguojiwuliu", 
+        "tel": "001-(971) 238-9990", 
+        "companyname": "\u4e00\u67d2\u56fd\u9645\u7269\u6d41", 
+        "telcomplaintnum": "001-(971) 238-9990", 
+        "freg": "", 
+        "comurl": "http://www.17htb.com/", 
+        "freginfo": "", 
+        "shortname": "\u4e00\u67d2\u56fd\u9645\u7269\u6d41"
+    }, 
+    {
+        "code": "fedexcn", 
+        "tel": "", 
+        "companyname": "Fedex\u4e2d\u6587", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "FedEx"
+    }, 
+    {
+        "code": "lianbangkuaidien", 
+        "tel": "", 
+        "companyname": "\u8054\u90a6", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u8054\u90a6"
+    }, 
+    {
+        "code": "zhongtongphone", 
+        "tel": "", 
+        "companyname": "\u4e2d\u901a\uff08\u5e26\u7535\u8bdd\uff09", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u4e2d\u901a\uff08\u5e26\u7535\u8bdd\uff09"
+    }, 
+    {
+        "code": "saiaodimmb", 
+        "tel": "", 
+        "companyname": "\u8d5b\u6fb3\u9012for\u4e70\u5356\u5b9d", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u8d5b\u6fb3\u9012for\u4e70\u5356\u5b9d"
+    }, 
+    {
+        "code": "shanghaiwujiangmmb", 
+        "tel": "", 
+        "companyname": "\u4e0a\u6d77\u65e0\u7586for\u4e70\u5356\u5b9d", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u4e0a\u6d77\u65e0\u7586for\u4e70\u5356\u5b9d"
+    }, 
+    {
+        "code": "singpost", 
+        "tel": "", 
+        "companyname": "\u65b0\u52a0\u5761\u90ae\u653f", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u65b0\u52a0\u5761\u90ae\u653f"
+    }, 
+    {
+        "code": "bpost", 
+        "tel": "+32 (0)2 276 22 74 ", 
+        "companyname": "\u6bd4\u5229\u65f6\u90ae\u653f", 
+        "telcomplaintnum": "+32 (0)2 276 22 74 ", 
+        "freg": "", 
+        "comurl": "http://www.bpostinternational.com/en/index.html", 
+        "freginfo": "", 
+        "shortname": "\u6bd4\u5229\u65f6\u90ae\u653f"
+    }, 
+    {
+        "code": "yinsu", 
+        "tel": "400-007-1118", 
+        "companyname": "\u97f3\u7d20\u5feb\u8fd0", 
+        "telcomplaintnum": "400-007-1118", 
+        "freg": "", 
+        "comurl": "http://www.yskd168.com/", 
+        "freginfo": "", 
+        "shortname": "\u97f3\u7d20\u5feb\u8fd0"
+    }, 
+    {
+        "code": "ndwl", 
+        "tel": "", 
+        "companyname": "\u5357\u65b9\u4f20\u5a92\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u5357\u65b9\u4f20\u5a92\u7269\u6d41"
+    }, 
+    {
+        "code": "sucheng", 
+        "tel": "", 
+        "companyname": "\u901f\u5448\u5b85\u914d", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u901f\u5448\u5b85\u914d"
+    }, 
+    {
+        "code": "chuangyi", 
+        "tel": "", 
+        "companyname": "\u521b\u4e00\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u521b\u4e00\u5feb\u9012"
+    }, 
+    {
+        "code": "dianyi", 
+        "tel": "", 
+        "companyname": "\u4e91\u5357\u6ec7\u9a7f\u7269\u6d41", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u4e91\u5357\u6ec7\u9a7f\u7269\u6d41"
+    }, 
+    {
+        "code": "cqxingcheng", 
+        "tel": "", 
+        "companyname": "\u91cd\u5e86\u661f\u7a0b\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u91cd\u5e86\u661f\u7a0b\u5feb\u9012"
+    }, 
+    {
+        "code": "scxingcheng", 
+        "tel": "", 
+        "companyname": "\u56db\u5ddd\u661f\u7a0b\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u56db\u5ddd\u661f\u7a0b\u5feb\u9012"
+    }, 
+    {
+        "code": "gzxingcheng", 
+        "tel": "", 
+        "companyname": "\u8d35\u5dde\u661f\u7a0b\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u8d35\u5dde\u661f\u7a0b\u5feb\u9012"
+    }, 
+    {
+        "code": "ytkd", 
+        "tel": "", 
+        "companyname": "\u8fd0\u901a\u4e2d\u6e2f\u5feb\u9012", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u8fd0\u901a\u4e2d\u6e2f\u5feb\u9012"
+    }, 
+    {
+        "code": "gatien", 
+        "tel": "4000-804-284", 
+        "companyname": "gati\u5b98\u7f51\u82f1\u6587\u901a\u9053", 
+        "telcomplaintnum": "4000-804-284", 
+        "freg": "", 
+        "comurl": "http://www.gati.com/", 
+        "freginfo": "", 
+        "shortname": "gati\u5b98\u7f51\u82f1\u6587\u901a\u9053"
+    }, 
+    {
+        "code": "gaticn", 
+        "tel": "4000-804-284 ", 
+        "companyname": "gati\u5b98\u7f51\u4e2d\u6587\u901a\u9053", 
+        "telcomplaintnum": "4000-804-284", 
+        "freg": "", 
+        "comurl": "http://www.gaticn.com/", 
+        "freginfo": "", 
+        "shortname": "gati\u5b98\u7f51\u4e2d\u6587\u901a\u9053"
+    }, 
+    {
+        "code": "jcex", 
+        "tel": "", 
+        "companyname": "jcex\u5b98\u7f51\u901a\u9053", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "jcex\u5b98\u7f51\u901a\u9053"
+    }, 
+    {
+        "code": "peex", 
+        "tel": "", 
+        "companyname": "\u6d3e\u5c14\u5feb\u9012\u5b98\u7f51\u901a\u9053", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u6d3e\u5c14\u5feb\u9012\u5b98\u7f51\u901a\u9053"
+    }, 
+    {
+        "code": "kxda", 
+        "tel": "", 
+        "companyname": "\u51ef\u4fe1\u8fbe\u5b98\u7f51\u901a\u9053", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u51ef\u4fe1\u8fbe\u5b98\u7f51\u901a\u9053"
+    }, 
+    {
+        "code": "advancing", 
+        "tel": "", 
+        "companyname": "\u5b89\u8fbe\u4fe1\u5b98\u7f51\u901a\u9053", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u5b89\u8fbe\u4fe1\u5b98\u7f51\u901a\u9053"
+    }, 
+    {
+        "code": "huiwen", 
+        "tel": "", 
+        "companyname": "\u6c47\u6587\u5b98\u7f51\u901a\u9053", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u6c47\u6587\u5b98\u7f51\u901a\u9053"
+    }, 
+    {
+        "code": "yxexpress", 
+        "tel": "", 
+        "companyname": "\u4ebf\u7fd4\u5b98\u7f51\u901a\u9053", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u4ebf\u7fd4\u5b98\u7f51\u901a\u9053"
+    }, 
+    {
+        "code": "donghong", 
+        "tel": "4000-081-556", 
+        "companyname": "\u4e1c\u7ea2\u5408\u4f5c\u901a\u9053", 
+        "telcomplaintnum": "4000-081-556", 
+        "freg": "", 
+        "comurl": "http://www.donghong56.com/", 
+        "freginfo": "", 
+        "shortname": "\u4e1c\u7ea2\u5408\u4f5c\u901a\u9053"
+    }, 
+    {
+        "code": "feiyuanvipshop", 
+        "tel": "4007-031-313", 
+        "companyname": "\u98de\u8fdc\u914d\u9001", 
+        "telcomplaintnum": "4007-031-313", 
+        "freg": "", 
+        "comurl": "http://www.fyps.cn/", 
+        "freginfo": "", 
+        "shortname": "\u98de\u8fdc\u914d\u9001"
+    }, 
+    {
+        "code": "szems", 
+        "tel": "", 
+        "companyname": "\u6df1\u5733EMS", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "\u6df1\u5733EMS"
+    }, 
+    {
+        "code": "hlyex", 
+        "tel": "020-86293333", 
+        "companyname": "\u597d\u8fd0\u6765", 
+        "telcomplaintnum": "020-86293000 ", 
+        "freg": "", 
+        "comurl": "http://www.hlyex.com/", 
+        "freginfo": "", 
+        "shortname": "\u597d\u8fd0\u6765"
+    }, 
+    {
+        "code": "dpexen", 
+        "tel": "", 
+        "companyname": "dpex\u56fd\u9645", 
+        "telcomplaintnum": "", 
+        "freg": "", 
+        "comurl": "", 
+        "freginfo": "", 
+        "shortname": "dpex\u56fd\u9645"
+    }, 
+    {
+        "code": "zengyisudi", 
+        "tel": "4008-456-789 ", 
+        "companyname": "\u589e\u76ca\u901f\u9012", 
+        "telcomplaintnum": "4008-456-789 ", 
+        "freg": "", 
+        "comurl": "http://www.zeny-express.com/", 
+        "freginfo": "", 
+        "shortname": "\u589e\u76ca\u901f\u9012"
+    }, 
+    {
+        "code": "kuaiyouda", 
+        "tel": "4006-068-555", 
+        "companyname": "\u56db\u5ddd\u5feb\u4f18\u8fbe\u901f\u9012", 
+        "telcomplaintnum": "028-85627788", 
+        "freg": "", 
+        "comurl": "http://www.sckyd.net/", 
+        "freginfo": "", 
+        "shortname": "\u56db\u5ddd\u5feb\u4f18\u8fbe\u901f\u9012"
+    }
+]
