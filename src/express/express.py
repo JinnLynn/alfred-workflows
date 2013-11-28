@@ -185,7 +185,7 @@ def showCompanyList():
     for com in companies:
         feedback.addItem(
             title       = com['companyname'],
-            subtitle    = '电话: {} 官方网站: {}'.format(com['tel'], com['comurl']),
+            subtitle    = '代码: {} 电话: {} 官方网站: {}'.format(com['code'], com['tel'], com['comurl']),
             arg         = 'open-url {}'.format(b64encode(com['comurl']))
         )
     feedback.output()
