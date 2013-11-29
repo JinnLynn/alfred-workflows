@@ -195,14 +195,21 @@ def fetchRecentItems(channel):
     return items
 
 
-# 获取今日更新（包括昨日与前天）
+# 获取今日更新
 def fetchTodayItems():
     cache = alfred.cache.get('today-items')
     if cache:
         return cache
     items = []
     soup = parseWebPage('http://www.yyets.com/today')
+    day = ''
     for single in soup.select('table tr.list'):
+        # 只显示最近日期的文件
+        item_day = single.get('day', '')
+        if not day:
+            day = item_day
+        if day != item_day:
+            continue;
         info = single.select('td')
         item = {}
         item.update(**_res_file_tpl)
@@ -586,7 +593,7 @@ def menu():
     if isLogined():
         feedback.addItem(
             title           = '人人影视 今日更新的文件',
-            subtitle        = '也包括昨日与前日更新的文件，可使用格式名称过滤文件，如hdtv, mp4, 1080p等',
+            subtitle        = '如果今天尚无文件，则显示前一天，可使用格式名称过滤文件，如hdtv, mp4, 1080p等',
             autocomplete    = 'today ',
             valid           = False
         )
