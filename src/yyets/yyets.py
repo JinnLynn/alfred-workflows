@@ -16,10 +16,10 @@ __version__ = '1.5.1'
 
 _base_host = 'http://www.yyets.com/'
 
-_fb_return_top = alfred.Item(title='返回', subtitle='', valid=False, autocomplete='')
-_fb_no_found = alfred.Item(title='没有找到想要的内容', subtitle='', valid=False)
-_fb_no_found_and_return_top = alfred.Item(title='没有找到想要的内容', subtitle='选择返回', valid=False, autocomplete='')
-_fb_no_logined = alfred.Item(title='需要登录才能查看', subtitle='选择设置用户名和密码', valid=False, autocomplete='setting ')
+_fb_return = lambda: getReturnLastQueryFeedbackItem()
+_fb_return_top = lambda: alfred.Item(title='返回', valid=False, autocomplete=' ')
+_fb_no_found = lambda: getReturnLastQueryFeedbackItem('没有找到想要的内容')
+_fb_no_logined = lambda: alfred.Item(title='需要登录才能查看', subtitle='选择设置用户名和密码', valid=False, autocomplete='setting ')
 
 # 资源模版
 _res_tpl = {
@@ -42,6 +42,27 @@ _res_file_tpl = {
     'baidu'     : '',
     'update_date' : ''
 }
+
+def recordQuery():
+    current = sys.argv[1:]
+    queries = alfred.cache.get('record-query', {})
+    last = queries.get('current', '')
+    # 不同时才记录
+    if current != last:
+        queries.update(
+            current = current,
+            last    = last
+        )
+    alfred.cache.set('record-query', queries, 600)
+
+def getReturnLastQueryFeedbackItem(title='返回', subtitle='回到上一个操作'):
+    last_query = alfred.cache.get('record-query', {}).get('last', [])
+    return alfred.Item(
+        title       = title,
+        subtitle    = subtitle,
+        valid       = False,
+        autocomplete = ' '.join(last_query)
+    )
 
 def login():
     alfred.cache.delete('cookie')
@@ -321,7 +342,7 @@ def recent():
     try:
         items = fetchRecentItems(alfred.argv(2))
         if not items:
-            alfred.exitWithFeedback(item=_fb_no_found)
+            alfred.exitWithFeedback(item=_fb_no_found())
         feedback = alfred.Feedback()
         for item in items:
             feedback.addItem(
@@ -331,14 +352,15 @@ def recent():
                 valid           = False,
                 autocomplete    = 'resource {} '.format(item['id'])
             )
+        feedback.addItem(item=_fb_return_top())
         feedback.output()
     except Exception, e:
-        alfred.exitWithFeedback(item=_fb_no_found) 
+        alfred.exitWithFeedback(item=_fb_no_found()) 
 
 # 最近今日更新
 def today():
     if not isLogined():
-        alfred.exitWithFeedback(item=_fb_no_logined)
+        alfred.exitWithFeedback(item=_fb_no_logined())
     try:
         items = fetchTodayItems()
         filter_str = alfred.argv(2)
@@ -346,7 +368,7 @@ def today():
             filter_str = filter_str.upper()
             items = filter(lambda i: filter_str in i['format'], items)
         if not items:
-            alfred.exitWithFeedback(item=_fb_no_found)
+            alfred.exitWithFeedback(item=_fb_no_found())
         feedback = alfred.Feedback()
         for item in items:
             item.update(**parseDownloadHas(item))
@@ -357,16 +379,17 @@ def today():
                 valid           = False,
                 autocomplete    = 'today-file {}'.format(item['id'])
             )
+        feedback.addItem(item=_fb_return_top())
         feedback.output()
     except Exception, e:
-        alfred.exitWithFeedback(item=_fb_no_found)   
+        alfred.exitWithFeedback(item=_fb_no_found())   
 
 # 24小时最热资源
 def top():
     try:
         items = fetchTopItems()
         if not items:
-            alfred.exitWithFeedback(item=_fb_no_found)
+            alfred.exitWithFeedback(item=_fb_no_found())
         feedback = alfred.Feedback()
         count = 1
         for item in items:
@@ -378,9 +401,10 @@ def top():
                 autocomplete    = 'resource {id} '.format(**item)
             )
             count = count + 1
+        feedback.addItem(item=_fb_return_top())
         feedback.output()
     except Exception, e:
-        alfred.exitWithFeedback(item=_fb_no_found)
+        alfred.exitWithFeedback(item=_fb_no_found())
 
 def search():
     try:
@@ -389,7 +413,7 @@ def search():
             alfred.exitWithFeedback(title='输入搜索关键词')
         items = fetchSearchResult(word)
         if not items:
-            alfred.exitWithFeedback(item=_fb_no_found)
+            alfred.exitWithFeedback(item=_fb_no_found())
         feedback = alfred.Feedback()
         for item in items:
             feedback.addItem(
@@ -398,9 +422,10 @@ def search():
                 valid           = False,
                 autocomplete    = 'resource {} '.format(item['id'])
             )
+        feedback.addItem(item=_fb_return_top())
         feedback.output()
     except Exception, e:
-        alfred.exitWithFeedback(_fb_no_found)    
+        alfred.exitWithFeedback(_fb_no_found())    
 
 def resource():
     try:
@@ -412,7 +437,7 @@ def resource():
             filter_str = filter_str.upper()
             files = filter(lambda f: filter_str in f['format'], files)
         if not data:
-            alfred.exitWithFeedback(title='没有找到相关的内容')
+            alfred.exitWithFeedback(item=_fb_no_found)
         feedback = alfred.Feedback()
         feedback.addItem(
             title       = data['title'],
@@ -438,10 +463,10 @@ def resource():
                 valid           = False,
                 autocomplete    = 'file {},{}'.format(data['id'], ','.join(files_ids))
             )
-        feedback.addItem(item=_fb_return_top)
+        feedback.addItem(item=_fb_return())
         feedback.output()
     except Exception, e:
-        alfred.exitWithFeedback(item=_fb_no_found_and_return_top)
+        alfred.exitWithFeedback(item=_fb_no_found())
 
 def fileDownloadFeedback(feedback, res_id, emule, magnet, baidu=None):
     if baidu:
@@ -517,11 +542,11 @@ def file():
             feedback = fileDownloadFeedback(feedback, data['page'], emule, magnet)
         feedback.output()
     except Exception, e:
-        alfred.exitWithFeedback(item=_fb_no_found)
+        alfred.exitWithFeedback(item=_fb_no_found())
 
 def todayFile():
     if not isLogined():
-        alfred.exitWithFeedback(item=_fb_no_logined)
+        alfred.exitWithFeedback(item=_fb_no_logined())
     try:
         item_id = alfred.argv(2)
         res_id = item_id.split('-')[0]
@@ -530,7 +555,7 @@ def todayFile():
             if item.get('id') == item_id:
                 break
         if not item:
-            alfred.exitWithFeedback(item=_fb_no_found)
+            alfred.exitWithFeedback(item=_fb_no_found())
         feedback = alfred.Feedback()
         feedback.addItem(
             title       = item['filename'],
@@ -539,15 +564,10 @@ def todayFile():
             autocomplete    = 'resource {}'.format(res_id)
         )
         feedback = fileDownloadFeedback(feedback, res_id, item['emule'], item['magnet'], item['baidu'])
-        feedback.addItem(
-            title           = '返回 今日文件更新',
-            subtitle        = '',
-            valid           = False,
-            autocomplete    = 'today'
-        )
+        feedback.addItem(item=_fb_return())
         feedback.output()
     except Exception, e:
-        alfred.exitWithFeedback(item=_fb_no_found)
+        alfred.exitWithFeedback(item=_fb_no_found())
 
 def setting():
     usr = alfred.argv(2)
@@ -603,6 +623,7 @@ def menu():
     feedback.output()
 
 def main():
+    alfred.cache.cleanExpired()
     cmds = {
         'menu'      : menu,
         'recent'    : recent,
@@ -616,6 +637,9 @@ def main():
     }
     subcmd = alfred.argv(1) or ''
     subcmd = subcmd.lower()
+    # 空 或 有意义的命令才记录
+    if not subcmd or subcmd in cmds:
+        recordQuery()
     cmds[subcmd]() if subcmd in cmds else cmds['menu']()
 
 if __name__ == '__main__':
