@@ -171,25 +171,22 @@ def fetchRecentItems(channel):
     )
     # pprint(soup.select('ul.boxPadd li'))
     for single in soup.select('ul.boxPadd li'):
-        item = {}
         try:
-            # 图片 页面地址
-            item['page'] = single.select('div.f_l_img')[0].a['href']
-            item['img'] = smallPosterURL( single.select('div.f_l_img')[0].img['src'] )
-            top_str = single.select('div.f_l_img')[0].get_text()
-            item['id'] = os.path.basename(item['page'])
             info = single.select('div.f_r_info dl')[0]
-            # 标题
-            item['title'] = info.dt.get_text(' ', strip=True)
+            item = {}
+            item.update(**_res_tpl)
+            item.update(
+                id = int(os.path.basename(single.select('div.f_l_img')[0].a['href'])),
+                title = info.dt.get_text(' ', strip=True),
+                img = smallPosterURL( single.select('div.f_l_img')[0].img['src'] )
+            )
             map(lambda t: t.font.clear(),info.dd.select('span'))
-            # 说明 人气
             item['info'] = '说明: {} 人气: {}'.format(   
                 info.dd.select('span')[0].get_text('', strip=True),
                 info.dd.select('span')[2].get_text('', strip=True)
             )
             items.append(item)
         except Exception, e:
-            # 忽略错误
             continue
     if not items:
         return []
@@ -236,20 +233,20 @@ def fetchTopItems():
     items = []
     soup = parseWebPage('http://www.yyets.com/resourcelist')
     for single in soup.select('ul.top_list2 li'):
-        item = {}
-        # 照片 页面链接
-        img_ele = single.select('div.f_l_img')
-        if img_ele:
-            item['page'] = img_ele[0].a['href']
-            item['img'] = smallPosterURL( img_ele[0].a.img['src'] )
-        item['id'] = os.path.basename(item['page'])
-        info = single.select('div.f_r_info div')
-        if info:
-            # 标题
-            item['title'] = info[0].get_text().strip('《》')
-            item['info'] = '{} {} {}'.format(info[1].get_text(), info[2].get_text(), info[3].get_text())
-        # pprint(item)
-        items.append(item)
+        try:
+            item = {}
+            item.update(**_res_tpl)
+            img_ele = single.select('div.f_l_img')
+            info = single.select('div.f_r_info div')
+            item.update(
+                id = int(os.path.basename(img_ele[0].a['href'])),
+                title = info[0].get_text().strip('《》'),
+                img = smallPosterURL( img_ele[0].a.img['src'] ),
+                info = '{} {} {}'.format(info[1].get_text(), info[2].get_text(), info[3].get_text())
+            )
+            items.append(item)
+        except Exception, e:
+            continue
     if not items:
         return []
     # 缓存10分钟
@@ -282,17 +279,9 @@ def fetchSingleResource(res_id):
             filename = single.select('div.lks .lks-1')[0].get_text(),
             filesize = single.select('div.lks .lks-2')[0].get_text(),
         )
-        for dl in single.select('div.download a'):
-            dl_t = dl.get('type', '')
-            href = dl.get('href', '')
-            if dl_t == 'ed2k':
-                item['emule'] = href
-            if dl_t == 'magnet':
-                item['magnet'] = href
-            if href.startswith('http://pan.baidu.com'):
-                item['baidu'] = href
+        item.update(**parseDownloadLink( single.select('div.download a') ))
         res['files'].append(item)
-    # 缓存60分钟
+    # 缓存10分钟
     if res['files']: 
         alfred.cache.set(cache_name, res, 600)
     return res
@@ -311,13 +300,13 @@ def fetchSearchResult(word):
         }
     )
     for single in soup.select('ul.allsearch li'):
-        item = {}
         try:
-            # 标题 页面地址
-            item['title'] = single.select('div.all_search_li2')[0].get_text()
-            item['page'] = single.select('div.all_search_li2')[0].a['href']
-            item['id'] = os.path.basename(item['page'])
-            # print(single.select('div.all_search_li3')[0].get_text())
+            item = {}
+            item.update(**_res_tpl)
+            item.update(
+                title = single.select('div.all_search_li2')[0].get_text(),
+                id = int(os.path.basename(single.select('div.all_search_li2')[0].a['href']))
+            )
             # 信息
             pub_time = time.localtime(float(single.select('span.time')[0].get_text().strip()))
             update_time = time.localtime(float(single.select('span.time')[1].get_text().strip()))
@@ -327,11 +316,9 @@ def fetchSearchResult(word):
                 time.strftime('%Y-%m-%d %H:%I', update_time),
                 single.select('div.all_search_li3')[0].get_text().strip()
             )
+            items.append(item)
         except Exception, e:
-            # raise e
-            # 忽略错误
             continue
-        items.append(item)
     return items
 
 def getResourcePageURLByID(res_id):
@@ -454,14 +441,16 @@ def resource():
                 title           = f['filename'],
                 subtitle        = subtitle,
                 valid           = False,
-                autocomplete    = 'file {},{}'.format(data['id'], f['id'])
+                autocomplete    = 'file {},{}'.format(data['id'], f['id']),
+                icon            = alfred.storage.getLocalIfExists(data['img'], True)
             )
         if len(files_ids) > 1:
             feedback.addItem(
                 title           = '所有文件',
                 subtitle        = '对当前的所有文件进行批量处理',
                 valid           = False,
-                autocomplete    = 'file {},{}'.format(data['id'], ','.join(files_ids))
+                autocomplete    = 'file {},{}'.format(data['id'], ','.join(files_ids)),
+                icon            = alfred.storage.getLocalIfExists(data['img'], True)
             )
         feedback.addItem(item=_fb_return())
         feedback.output()
