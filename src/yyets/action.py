@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-import alfred
-alfred.setDefaultEncodingUTF8()
-
 import subprocess
 from AppKit import NSPasteboard, NSArray
 
 #! 地址在传递参数中均使用base64编码 防止出错 
 from base64 import b64decode
+
+import alfred
+alfred.setDefaultEncodingUTF8()
+
+import yyets
 
 # 拷贝到剪切板
 def copyToClipboard():
@@ -38,11 +40,25 @@ def downloadWithDS():
         alfred.log(e)
         alfred.exit('出错啦')
 
+def setAccount():
+    usr = alfred.argv(2)
+    pwd = alfred.argv(3)
+    if not usr or not pwd:
+        alfred.exit('信息不完整。')
+    alfred.config.set(
+        usr = usr,
+        pwd = pwd
+    )
+    if yyets.login():
+        alfred.exit('账户信息已保存，并成功登陆。')
+    alfred.exit('账户信息已保存，但尝试登陆失败。')
+
 def main():
     cmds = {
         'open-url'          : lambda: openURL(),
         'copy-to-clipboard' : lambda: copyToClipboard(),
-        'download-with-ds'  : lambda: downloadWithDS()
+        'download-with-ds'  : lambda: downloadWithDS(),
+        'account-setting'    : lambda: setAccount()
     }
     cmd = alfred.argv(1)
     if not cmd or cmd.lower() not in cmds.keys():

@@ -14,12 +14,76 @@ import bs4
 
 __version__ = '1.5.1'
 
+_base_host = 'http://www.yyets.com/'
+
 _fb_return_top = alfred.Item(title='返回', subtitle='', valid=False, autocomplete='')
 _fb_no_found = alfred.Item(title='没有找到想要的内容', subtitle='', valid=False)
 _fb_no_found_and_return_top = alfred.Item(title='没有找到想要的内容', subtitle='选择返回', valid=False, autocomplete='')
+_fb_no_logined = alfred.Item(title='需要登录才能查看', subtitle='选择设置用户名和密码', valid=False, autocomplete='setting ')
+
+# 资源模版
+_res_tpl = {
+    'id'    : 0,
+    'title' : '',
+    'img'   : '',
+    'page'  : 0,
+    'info'  : '',
+    'files' : []
+}
+_res_file_tpl = {
+    'id'        : 0,
+    'info'      : '',
+    'type'      : '',
+    'format'    : '',
+    'filename'  : '',
+    'filesize'  : '',
+    'emule'     : '',
+    'magnet'    : '',
+    'baidu'     : '',
+    'update_date' : ''
+}
+
+def login():
+    alfred.cache.delete('cookie')
+    usr = alfred.config.get('usr')
+    pwd = alfred.config.get('pwd')
+    if not usr or not pwd:
+        return False
+    try:
+        res = alfred.request.post(
+            _base_host + 'user/login/ajaxLogin',
+            data = {
+                'type'      : 'nickname',
+                'account'   : usr,
+                'password'  : pwd,
+                'remember'  : 1
+            }
+        )
+        ret = json.loads(res.getContent())
+        if ret.get('status', 0) == 1:
+            cookies = {}
+            for c in res.cookieJar:
+                if c.name in ['GINFO', 'GKEY']:
+                    cookies[c.name] = c.value
+            alfred.cache.set('cookie', cookies, 3600)
+            return True
+    except Exception, e:
+        pass
+
+def getLoginCookies():
+    cache = alfred.cache.get('cookie')
+    if cache:
+        return cache
+    login()
+    return alfred.cache.get('cookie')
+
+def isLogined():
+    return bool(getLoginCookies())
 
 def parseWebPage(url, **kwargs):
     try:
+        if not kwargs.has_key('cookie') and isLogined():
+            kwargs['cookie'] = getLoginCookies()
         res = alfred.request.get(url, **kwargs)
         content = res.getContent()
         # 禁止显示BeautifulSoup警告
@@ -40,6 +104,26 @@ def smallPosterURL(url):
         return url
     s_basename = '{}{}'.format('s', basename[1:])
     return os.path.join(dirname, s_basename)
+
+# 解析下载地址
+# links 为下载链接bs4对象集合
+def parseDownloadLink(links):
+    dls = {}
+    for link in links:
+        href = link.get('href', '')
+        if href.startswith('ed2k'):
+            dls['emule'] = href
+        elif href.startswith('magnet'):
+            dls['magnet'] = href
+        elif href.startswith('http://pan.baidu.com/'):
+            dls['baidu'] = href
+    return dls
+
+def parseDownloadHas(data):
+    has = {}
+    for i in ['emule', 'magnet', 'baidu']:
+        has['has_' + i] = '有' if data[i] else '无'
+    return has
 
 # 获取最新更新
 def fetchRecentItems(channel):
@@ -89,7 +173,7 @@ def fetchRecentItems(channel):
     if not items:
         return []
     # 缓存10分钟
-    alfred.cache.set(cache_name, items, 60*10)
+    alfred.cache.set(cache_name, items, 600)
     return items
 
 
@@ -99,36 +183,28 @@ def fetchTodayItems():
     if cache:
         return cache
     items = []
-    soup = parseWebPage('http://www.yyets.com/html/today.html')
-    for single in soup.select('div.day_data tr.list'):
-        item = {}
+    soup = parseWebPage('http://www.yyets.com/today')
+    for single in soup.select('table tr.list'):
         info = single.select('td')
-        # 类别
-        item['type'] = info[0].get_text()
-        # 格式
-        item['format'] = info[1].get_text()
-        # 文件名 及 页面链接
-        _tmp = info[2].find('a')
-        if not _tmp:
-            continue
-        item['filename'] = _tmp.get_text()
-        item['page'] = _tmp['href']
-        # 下载链接 只关心电驴 和 磁力链
-        item['emule'] = ''
-        item['magnet'] = ''
-        if info[3].select('a.c'):
-            item['magnet'] = info[3].select('a.c')[0]['href']
-        if info[3].select('a.l'):
-            item['emule'] = info[3].select('a.l')[0]['href']
-        # 容量
-        item['size'] = info[4].get_text()
-        # 更新时间
-        item['date'] = '{} {}'.format(single['day'], info[5].get_text())
+        item = {}
+        item.update(**_res_file_tpl)
+        item.update(
+            type        = info[0].get_text(),
+            format      = info[1].get_text(),
+            filename    = info[2].find('a').get_text(),
+            filesize    = info[4].get_text(),
+            update_date = '{} {}'.format(single['day'], info[5].get_text())
+        )
+        res_id = os.path.basename(info[2].find('a')['href'])
+        # 文件ID 页面没有提供 自定义 资源ID+hash
+        item_id ='{}-{}'.format(res_id, alfred.util.hashDigest(res_id + item['filename']))
+        item['id'] = item_id
+        item.update(**parseDownloadLink( single.select('td.dr_ico a') ))
         items.append(item)
     if not items:
         return []
-    # 缓存5分钟
-    alfred.cache.set('today-items', items, 60*5) 
+    # 缓存
+    alfred.cache.set('today-items', items, 600) 
     return items
 
 # 获取24小时热门榜
@@ -156,46 +232,48 @@ def fetchTopItems():
     if not items:
         return []
     # 缓存10分钟
-    alfred.cache.set('top-items', items, 60*10)
+    alfred.cache.set('top-items', items, 600)
     return items
 
 # 获取单个资源信息
 def fetchSingleResource(res_id):
-    # 缓存最近的一个
-    cache = alfred.cache.get('single-resource')
-    if cache and cache['id'] == res_id:
+    cache_name = 'single-resource-{}'.format(res_id)
+    cache = alfred.cache.get(cache_name)
+    if cache:
         return cache
-    res = {
-        'id'    : res_id,
-        'title' : '',
-        'img'   : '',
-        'page'  : getResourcePageURLByID(res_id),
-        'files' : []
-    }
-    soup = parseWebPage(res['page'])
-    res['title'] = soup.select('h2 strong')[0].get_text('', strip=True)
-    res['img'] = smallPosterURL(soup.select('div.res_infobox div.f_l_img img')[0]['src'])
+    page_url = getResourcePageURLByID(res_id)
+    soup = parseWebPage(page_url)
+    # soup = soup.find('div', class_='AreaLL')
+    res = {}
+    res.update(**_res_tpl)
+    res.update(
+        id      = res_id,
+        title   = soup.select('h2 strong')[0].get_text('', strip=True),
+        img     = smallPosterURL(soup.select('div.res_infobox div.f_l_img img')[0]['src']),
+        page    = page_url
+    )
     for single in soup.select('ul.resod_list li'):
         item = {}
-        item['id'] = single['itemid']
-        # 格式
-        item['format'] = single['format']
-        # 文件名
-        item['filename'] = single.select('span.l span.a')[0].get_text()
-        item['filesize'] = single.select('span.l span.b')[0].get_text()
-        item['emule'] = ''
-        item['magnet'] = ''
-        for l in single.select('span.r a'):
-            if not l.attrs.has_key('type'):
-                continue
-            if l['type'] == 'ed2k':
-                item['emule'] = l['href']
-            if l['type'] == 'magnet':
-                item['magnet'] = l['href']
+        item.update(**_res_file_tpl)
+        item.update(
+            id      = single['itemid'],
+            format  = single['format'],
+            filename = single.select('div.lks .lks-1')[0].get_text(),
+            filesize = single.select('div.lks .lks-2')[0].get_text(),
+        )
+        for dl in single.select('div.download a'):
+            dl_t = dl.get('type', '')
+            href = dl.get('href', '')
+            if dl_t == 'ed2k':
+                item['emule'] = href
+            if dl_t == 'magnet':
+                item['magnet'] = href
+            if href.startswith('http://pan.baidu.com'):
+                item['baidu'] = href
         res['files'].append(item)
-    # 缓存30分钟
+    # 缓存60分钟
     if res['files']: 
-        alfred.cache.set('single-resource', res, 60*30)
+        alfred.cache.set(cache_name, res, 600)
     return res
 
 # 获取搜索结果
@@ -259,6 +337,8 @@ def recent():
 
 # 最近今日更新
 def today():
+    if not isLogined():
+        alfred.exitWithFeedback(item=_fb_no_logined)
     try:
         items = fetchTodayItems()
         filter_str = alfred.argv(2)
@@ -269,14 +349,13 @@ def today():
             alfred.exitWithFeedback(item=_fb_no_found)
         feedback = alfred.Feedback()
         for item in items:
-            item['has_emule'] = '有' if item['emule'] else '无'
-            item['has_magnet'] = '有' if item['magnet'] else '无'
-            subtitle = '类别: {type}  格式: {format}  容量: {size}  日期: {date}  电驴: {has_emule}  磁力链: {has_magnet}'.format(**item)
+            item.update(**parseDownloadHas(item))
+            subtitle = '类别: {type}  格式: {format}  容量: {filesize} 电驴: {has_emule}  磁力链: {has_magnet} 百度盘: {has_baidu} 日期: {update_date}'.format(**item)
             feedback.addItem(
                 title           = item['filename'],
                 subtitle        = subtitle,
                 valid           = False,
-                autocomplete    = 'today-file {}'.format(b64encode( json.dumps(item) ))
+                autocomplete    = 'today-file {}'.format(item['id'])
             )
         feedback.output()
     except Exception, e:
@@ -328,7 +407,7 @@ def resource():
         res_id = int(alfred.argv(2))
         data = fetchSingleResource(res_id)
         filter_str = alfred.argv(3)
-        files = data['files']
+        files = data.get('files', [])
         if filter_str:
             filter_str = filter_str.upper()
             files = filter(lambda f: filter_str in f['format'], files)
@@ -344,9 +423,8 @@ def resource():
         files_ids = []
         for f in files:
             files_ids.append(f['id'])
-            f['has_emule'] = '有' if f['emule'] else '无'
-            f['has_magnet'] = '有' if f['magnet'] else '无'
-            subtitle = '类型: {format} 容量: {filesize} 电驴: {has_emule} 磁力链: {has_magnet}'.format(**f)
+            f.update(**parseDownloadHas(f))
+            subtitle = '类型: {format} 容量: {filesize} 电驴: {has_emule} 磁力链: {has_magnet} 百度盘: {has_baidu}'.format(**f)
             feedback.addItem(
                 title           = f['filename'],
                 subtitle        = subtitle,
@@ -365,7 +443,13 @@ def resource():
     except Exception, e:
         alfred.exitWithFeedback(item=_fb_no_found_and_return_top)
 
-def fileDownloadFeedback(feedback, page, emule, magnet):
+def fileDownloadFeedback(feedback, res_id, emule, magnet, baidu=None):
+    if baidu:
+        feedback.addItem(
+            title       = '打开百度盘',
+            subtitle    = baidu,
+            arg         = 'open-url {}'.format(b64encode(baidu))
+        )
     if emule:
         feedback.addItem(
             title       = '拷贝eMule地址到剪切板',
@@ -389,7 +473,7 @@ def fileDownloadFeedback(feedback, page, emule, magnet):
     if not emule and not magnet:
         feedback.addItem(
             title       = '没有找到电驴或磁力链地址，打开资源页面',
-            arg         = 'open-url {}'.format( b64encode(page) )
+            arg         = 'open-url {}'.format( b64encode(getResourcePageURLByID(res_id)) )
         )
     return feedback
 
@@ -419,7 +503,7 @@ def file():
                 autocomplete    = 'resource {} '.format(res_id),
                 icon            = alfred.storage.getLocalIfExists(data['img'], True)
             )
-            feedback = fileDownloadFeedback(feedback, data['page'], files[0]['emule'], files[0]['magnet'])
+            feedback = fileDownloadFeedback(feedback, data['page'], files[0]['emule'], files[0]['magnet'], files[0]['baidu'])
         else:
             feedback.addItem(
                 title           = '批处理多个文件',
@@ -436,17 +520,25 @@ def file():
         alfred.exitWithFeedback(item=_fb_no_found)
 
 def todayFile():
+    if not isLogined():
+        alfred.exitWithFeedback(item=_fb_no_logined)
     try:
-        data = json.loads(b64decode(alfred.argv(2)))
-        res_id = os.path.basename(data['page'])
+        item_id = alfred.argv(2)
+        res_id = item_id.split('-')[0]
+        item = {}
+        for item in fetchTodayItems():
+            if item.get('id') == item_id:
+                break
+        if not item:
+            alfred.exitWithFeedback(item=_fb_no_found)
         feedback = alfred.Feedback()
         feedback.addItem(
-            title       = data['filename'],
-            subtitle    = '类别: {type}  格式: {format}  容量: {size}  日期: {date} 这里可访问资源文件列表'.format(**data),
+            title       = item['filename'],
+            subtitle    = '类别: {type}  格式: {format}  容量: {filesize}  日期: {update_date} 这里可访问资源文件列表'.format(**item),
             valid           = False,
             autocomplete    = 'resource {}'.format(res_id)
         )
-        feedback = fileDownloadFeedback(feedback, data['page'], data['emule'], data['magnet'])
+        feedback = fileDownloadFeedback(feedback, res_id, item['emule'], item['magnet'], item['baidu'])
         feedback.addItem(
             title           = '返回 今日文件更新',
             subtitle        = '',
@@ -457,6 +549,23 @@ def todayFile():
     except Exception, e:
         alfred.exitWithFeedback(item=_fb_no_found)
 
+def setting():
+    usr = alfred.argv(2)
+    pwd = alfred.argv(3)
+    info = ''
+    if usr:
+        info = '用户名: {} 密码: {}'.format(usr, pwd)
+    elif alfred.config.get('usr'):
+        info = '现有设置: 用户名: {} 密码: ********'.format(alfred.config.get('usr'))
+    feedback = alfred.Feedback()
+    feedback.addItem(
+        title       = '{}用户名和密码'.format('修改' if isLogined() else '设置'),
+        subtitle    = '格式：用户名 密码 {}'.format(info),
+        arg         = 'account-setting {} {}'.format(usr, pwd)
+    )
+    feedback.output()
+
+
 def menu():
     feedback = alfred.Feedback()
     feedback.addItem(
@@ -465,12 +574,13 @@ def menu():
         autocomplete    = 'top',
         valid           = False
     )
-    feedback.addItem(
-        title           = '人人影视 今日更新的文件',
-        subtitle        = '也包括昨日与前日更新的文件，可使用格式名称过滤文件，如hdtv, mp4, 1080p等',
-        autocomplete    = 'today ',
-        valid           = False
-    )
+    if isLogined():
+        feedback.addItem(
+            title           = '人人影视 今日更新的文件',
+            subtitle        = '也包括昨日与前日更新的文件，可使用格式名称过滤文件，如hdtv, mp4, 1080p等',
+            autocomplete    = 'today ',
+            valid           = False
+        )
     feedback.addItem(
         title           = '人人影视 最近更新的资源',
         subtitle        = '可使用movie, tv, documentary, openclass, topic过滤相应的资源',
@@ -483,18 +593,26 @@ def menu():
         autocomplete    = 'search ',
         valid           = False
     )
+
+    feedback.addItem(
+        title           = '{}用户名和密码'.format('修改' if isLogined() else '设置'),
+        subtitle        = '{}查看今日更新文件或某些有版权问题需要，仅支持用户名方式登陆'.format('已设置并成功登陆，' if isLogined() else ' '),
+        valid           = False,
+        autocomplete    = 'setting '
+    )
     feedback.output()
 
 def main():
     cmds = {
         'menu'      : menu,
         'recent'    : recent,
-        'today'     : today,
         'top'       : top,
         'search'    : search,
         'resource'  : resource,
         'file'      : file,
-        'today-file': todayFile
+        'today'     : today,
+        'today-file': todayFile,
+        'setting'   : setting
     }
     subcmd = alfred.argv(1) or ''
     subcmd = subcmd.lower()
