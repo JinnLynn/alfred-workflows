@@ -9,7 +9,7 @@ import alfred
 alfred.setDefaultEncodingUTF8()
 import bs4
 
-__version__ = '1.5.1'
+__version__ = '2.0.0'
 
 _base_host = 'http://www.yyets.com/'
 
