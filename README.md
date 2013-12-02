@@ -93,9 +93,9 @@ To search, download, show or save Lyric.
 
 ## Chinese Dictionary
 
-基于[QQ词典][]的中英互译。
+基于[有道词典](http://dict.youdao.com/)的中英互译。
 
-* ENTER 打开QQ词典页面
+* ENTER 打开有道词典页面
 * CTRL + ENTER 打开爱词霸页面
 * OPTION + ENTER 发音
 * CMD + ENTER 拷贝到剪切板
@@ -106,9 +106,7 @@ To search, download, show or save Lyric.
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/chinese-dictionary)
 
-[QQ词典]: http://dict.qq.com/
-
-*last updated: 2013-04-12 version: 1.0.1*
+*last updated: 2013-12-02 version: 2.0.0*
 
 
 

@@ -6,7 +6,7 @@ from pprint import pprint
 import alfred
 alfred.setDefaultEncodingUTF8()
 
-__version__ = '1.0.1'
+__version__ = '2.0.0'
 
 _api_url = 'http://fanyi.youdao.com/openapi.do'
 _api_version = '1.1'
