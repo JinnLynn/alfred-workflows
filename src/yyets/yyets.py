@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-import warnings
-import time
-import json
+import os, sys
+import time, json, warnings
 from base64 import b64encode, b64decode
-import os
 from pprint import pprint
 
 import alfred
@@ -72,7 +69,7 @@ def login():
         return False
     try:
         res = alfred.request.post(
-            _base_host + 'user/login/ajaxLogin',
+            os.path.join(_base_host, 'user/login/ajaxLogin'),
             data = {
                 'type'      : 'nickname',
                 'account'   : usr,
@@ -163,7 +160,7 @@ def fetchRecentItems(channel):
         return cache
     items = []
     soup = parseWebPage(
-        'http://www.yyets.com/resourcelist',
+        os.path.join(_base_host, 'resourcelist'),
         data = {
             'channel'   : search_channel,
             'sort'      : 'update'
@@ -201,7 +198,7 @@ def fetchTodayItems():
     if cache:
         return cache
     items = []
-    soup = parseWebPage('http://www.yyets.com/today')
+    soup = parseWebPage(os.path.join(_base_host, 'today'))
     day = ''
     for single in soup.select('table tr.list'):
         # 只显示最近日期的文件
@@ -238,7 +235,7 @@ def fetchTopItems():
     if cache:
         return cache
     items = []
-    soup = parseWebPage('http://www.yyets.com/resourcelist')
+    soup = parseWebPage(os.path.join(_base_host, 'resourcelist'))
     for single in soup.select('ul.top_list2 li'):
         try:
             item = {}
@@ -268,7 +265,6 @@ def fetchSingleResource(res_id):
         return cache
     page_url = getResourcePageURLByID(res_id)
     soup = parseWebPage(page_url)
-    # soup = soup.find('div', class_='AreaLL')
     res = {}
     res.update(**_res_tpl)
     res.update(
@@ -299,7 +295,7 @@ def fetchSearchResult(word):
         return []
     items = []
     soup = parseWebPage(
-        'http://www.yyets.com/search/index',
+        os.path.join(_base_host, 'search/index'),
         data = {
             'keyword'   : '{}'.format(word),
             'type'      : 'resource',
@@ -329,7 +325,7 @@ def fetchSearchResult(word):
     return items
 
 def getResourcePageURLByID(res_id):
-    return 'http://www.yyets.com/resource/{}'.format(res_id)
+    return os.path.join(_base_host, 'resource', unicode(res_id))
 
 # 获取最新更新
 def recent():
