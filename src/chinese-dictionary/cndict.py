@@ -1,171 +1,112 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#! 强制默认编码为utf-8
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8') 
-
-import urllib, urllib2, json, time
+import os, sys, json, time
 from pprint import pprint
-from pdb import set_trace
 
-from alfred.feedback import Feedback 
+import alfred
+alfred.setDefaultEncodingUTF8()
 
 __version__ = '1.0.1'
 
-services = {
-    'qq'    : {
-        'api'   : 'http://dict.qq.com/dict',
-        'web'   : 'http://dict.qq.com/dict?f=cloudmore&q={}',
-        'icon'  : 'icon.png',
-    },
-    'iciba' : {
-        'api'   : 'http://dict-co.iciba.com/api/dictionary.php',
-        'web'   : 'http://www.iciba.com/{}',
-        'icon'  : 'iciba-icon.png'
-    }
+_api_url = 'http://fanyi.youdao.com/openapi.do'
+_api_version = '1.1'
+_api_keyfrom = 'awf-Chinese-Dict'
+_api_key = '19965805'
+
+_error_desc = {
+    20 : '要翻译的文本过长。',
+    30 : '无法进行有效的翻译。',
+    40 : '不支持的语言类型。',
+    50 : '无效的key。'
 }
 
-class Dict(object):
-    def __init__(self):
-        self.service = services['qq']
-        self.query_word =''
-        self.feedback = Feedback()
-
-    def fetch(self, word):
-        return {}
-
-    def parse(self, data):
+def fetchData(q):
+    cache_name = 'youdao-fanyi-{}'.format(q)
+    cache = alfred.cache.get(cache_name)
+    if cache:
+        return cache
+    try:
+        req = alfred.request.get(
+            _api_url,
+            data = {
+                'keyfrom'   : _api_keyfrom,
+                'key'       : _api_key,
+                'version'   : _api_version, 
+                'type'      : 'data' ,
+                'doctype'   : 'json',
+                'q'         : q
+            }
+        )
+        data = json.loads( req.getContent() )
+        if data:
+            alfred.cache.set(cache_name, data, 3600*24)
+            return data
+    except Exception, e:
         pass
 
-    def query(self, word):
-        if not word or not isinstance(word, (str, unicode)):
-            return
-        self.query_word = word
-        self.parse( self.fetch(word) )
+def isEnglish(w):
+    for i in w:
+        if ord(i) > 127:
+            return False
+    return True
 
-    def addItem(self, **kwargs):
-        self.feedback.addItem(**kwargs)
+# 清理解释
+# 有道的解释可能出现如 [试验] test
+# 清理[]的内容
+def clearExplain(e):
+    i = e.rfind(']')
+    if i >= 0:
+        return e[i+1:].strip()
+    return e.strip()
 
-    def output(self):
-        if self.feedback.isEmpty():
-            self.addItem(
-                title       = self.query_word, 
-                subtitle    = 'Sorry, no result.', 
-                arg         = self.query_word )
-        print(self.feedback.get(unescape = True))
+def query():
+    tryCleanCache()
+    w = ' '.join(sys.argv[1:]).strip()
+    try:
+        ret = fetchData(w)
+        if not ret:
+            raise Exception('服务器访问失败。')
+        # pprint(ret)
+        if ret.get('errorCode', -1) != 0:
+            error_msg = _error_desc.get(ret.get('errorCode', -1))
+            raise Exception(error_msg if error_msg else '未知错误。' )
+        is_eng = isEnglish(w)
+        feedback = alfred.Feedback()
+        # 有解释
+        basic = ret.get('basic', {})
+        phonetic = basic.get('phonetic', '')
+        feedback.addItem(
+            title       = '{} {}'.format(w, '[{}]'.format(phonetic) if phonetic else ''),
+            subtitle    = '译: {}'.format('; '.join(ret.get('translation', []))),
+            arg         = w
+        )
+        for e in basic.get('explains', []):
+            feedback.addItem(
+                title = e,
+                autocomplete = None if is_eng else clearExplain(e),
+                valid = False
+            )
+        # 网络释义
+        web = ret.get('web', [])
+        if web:
+            feedback.addItem(title='--- 网络释义 ---', valid=False,)
+            for w in web:
+                feedback.addItem(
+                    title       = w.get('key'),
+                    subtitle    = '; '.join(w.get('value')),
+                    valid       = False,
+                    autocomplete = w.get('key')
+                )
+        feedback.output()
+    except Exception, e:
+        alfred.exitWithFeedback(title=w, subtitle='出错了，{}'.format(e), valid=False)
 
-# QQ 词典
-class QQDict(Dict):
-    def __init__(self):
-        super(QQDict, self).__init__()
-        self.service = services['qq']
+def tryCleanCache():
+    if alfred.cache.get('cache-cleaned'):
+        return
+    alfred.cache.cleanExpired()
+    alfred.cache.set('cache-cleaned', True, 3600*24)
 
-        # 从字典中安全的取出值
-        self.save_get_dict_value = lambda d, k: d[k] if d.has_key(k) else ''
-
-    def fetch(self, word):
-        data = {'q': word}
-        data = urllib.urlencode(data)
-        url = '{}?{}'.format(self.service['api'], data)
-        try:
-            requst = urllib2.urlopen(url)
-            res = json.load(requst)
-        except:
-            return {}
-        return res
-
-    def parse(self, data):
-        if not data or not isinstance(data, dict):
-            return
-        if not data.has_key('lang'):
-            return
-        lang = data['lang']
-        if lang == 'eng':
-            self.parseENG(data)
-        elif lang == 'ch':
-            self.parseCH(data)
-
-    # 英译中
-    def parseENG(self, data):
-        if not data.has_key('local') or not data['local'][0]:
-            return
-        local = data['local'][0]
-        try:
-            # 发音 语素
-            word = local['word']
-            mors = []
-            if local.has_key('mor') and local['mor']:
-                for mor in local['mor']:
-                    c = self.save_get_dict_value(mor, 'c')
-                    m = self.save_get_dict_value(mor, 'm')
-                    if not c or not m:
-                        continue
-                    mors.append('{}: {}'.format(c, m))
-            title = self.getWordAndPho(local)
-            subtitle = ' '.join(mors)
-            self.addItem(title = title, subtitle = subtitle, arg = local['word'])
-            # 解释
-            if local.has_key('des') and local['des']:
-                for des in local['des']:
-                    title = self.getDes(des)
-                    if not title:
-                        continue
-                    self.addItem(title = title, arg = word)
-        except Exception, e:
-            raise e
-
-    # 中译英
-    def parseCH(self, data):
-        if not data.has_key('local') or not data['local'][0]:
-            return
-        try:
-            local = data['local'][0]
-            word = local['word']
-            # 发音 英文翻译
-            title = self.getWordAndPho(local)
-            subtitle = '; '.join(local['des']) if local.has_key('des') else ''
-            self.addItem(title = title, subtitle = subtitle, arg = word)
-            # 英文翻译的具体解释
-            if local.has_key('des2'):
-                for des in local['des2']:
-                    title = self.getWordAndPho(des)
-                    subtitle = ''
-                    if des.has_key('des'):
-                        sub_deses = []
-                        for sub_des in des['des']:
-                            sub_des_str = self.getDes(sub_des)
-                            if sub_des_str:
-                                sub_deses.append(sub_des_str)
-                        subtitle = '; '.join(sub_deses)   
-                    self.addItem(title = title, subtitle = subtitle, autocomplete = des['word'])
-                    
-        except Exception, e:
-            raise e
-
-    def getWordAndPho(self, data):
-        word = data['word']
-        pho = ''
-        if data.has_key('pho'):
-            phos = []
-            for sub_pho in data['pho']:
-                if not sub_pho:
-                    continue
-                phos.append('[{}]'.format(sub_pho))
-            pho = ' '.join(phos)
-        return '{} {}'.format(word, pho)
-
-    def getDes(self, data):
-        p = self.save_get_dict_value(data, 'p')
-        d = self.save_get_dict_value(data, 'd')
-        if not p and not d:
-            return ''
-        return '{} {}'.format(p, d).strip()
-
-class iCIBADict(Dict):
-    pass
 
 if __name__ == '__main__':
-    d = QQDict()
-    d.query(sys.argv[1])
-    d.output()
+    query()

@@ -74,30 +74,19 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>63</integer>
-				<key>script</key>
-				<string>say "{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
+				<key>plusspaces</key>
+				<true/>
+				<key>url</key>
+				<string>http://dict.youdao.com/search?q={query}</string>
+				<key>utf8</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>BB562D1A-B800-4206-A35F-125D201B91A9</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>64595E64-C2B3-49E1-AD95-944349519AD9</string>
+			<string>7B9A4F01-98AB-43DB-905D-8CDF5FA00525</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -113,29 +102,23 @@
 			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
 			<string>45A93E3D-F638-4DF9-9FE6-94571F195A96</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
+				<key>autopaste</key>
 				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<true/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>`{query}` has copied to clipboard</string>
-				<key>title</key>
-				<string>Chinese Dictionary</string>
+				<key>clipboardtext</key>
+				<string>{query}</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
-			<string>AA90C9D0-DEAB-4F63-977A-BB820C0ABE97</string>
+			<string>64595E64-C2B3-49E1-AD95-944349519AD9</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -163,6 +146,8 @@
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>09204506-9016-4039-8240-6AE53530988C</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -178,21 +163,50 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>06B45297-5875-40D3-9753-5D1869D09E57</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>plusspaces</key>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
 				<true/>
-				<key>url</key>
-				<string>http://dict.qq.com/dict?f=cloudmore&amp;q={query}</string>
-				<key>utf8</key>
-				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>`{query}` 已拷贝到剪切板</string>
+				<key>title</key>
+				<string>Chinese Dictionary</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>7B9A4F01-98AB-43DB-905D-8CDF5FA00525</string>
+			<string>AA90C9D0-DEAB-4F63-977A-BB820C0ABE97</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>say "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BB562D1A-B800-4206-A35F-125D201B91A9</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
