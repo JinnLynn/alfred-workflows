@@ -9,7 +9,7 @@ from pprint import pprint
 import alfred
 alfred.setDefaultEncodingUTF8()
 
-__version__ = '1.1'
+__version__ = '1.2.0'
 
 _base_host = 'http://www.kuaidi100.com/'
 
