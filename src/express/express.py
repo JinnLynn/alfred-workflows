@@ -16,6 +16,8 @@ _base_host = 'http://www.kuaidi100.com/'
 _expire_day = 3600 * 24
 _expire_year = _expire_day * 365
 
+_post_cache_name = lambda c, p: '-'.join([c, p])
+
 def formatTimestamp(timestamp, format='%Y-%m-%d %H:%M:%S'):
     return datetime.fromtimestamp(timestamp).strftime(format)
 
@@ -84,12 +86,20 @@ def delPost(com_code, post_id):
     post = filter(lambda p: p != to_del, post)
     alfred.config.set(post=post)
     # 删除缓存
-    alfred.cache.delete(com_code + '-' + post_id)
+    alfred.cache.delete(_post_cache_name(com_code, post_id))
     # 清理过期的缓存 
     # 本工作流可能产生大量的无用缓存 需要手动清理
     alfred.cache.cleanExpired()
 
-# 猜测公式代码
+# 清理已签收的运单
+def clearCheckedPost():
+    post = alfred.config.get('post', [])
+    for p in post:
+        q = querySingle(p['com_code'], p['post_id'])
+        if q.get('checked', False):
+            delPost(p['com_code'], p['post_id'])
+
+# 猜测公司代码
 # 优先顺序: 代码 > 短名 > 全名
 def surmiseCompanyCode(q):
     companies = getCompany()
@@ -117,7 +127,7 @@ def queryCompanyCodeByPostID(post_id):
         return None
 
 def querySingle(com_code, post_id):
-    cache_name = com_code + '-' + post_id
+    cache_name = _post_cache_name(com_code, post_id)
     cache = alfred.cache.get(cache_name)
     if cache:
         return cache
@@ -150,11 +160,11 @@ def querySingle(com_code, post_id):
                     'time' : t['ftime'],
                     'content' : t['context']
                 })
-            # 如果已经签收 不需要再更新 缓存一年 否则 缓存5分钟
+            # 如果已经签收 不需要再更新 缓存一天 否则 缓存5分钟
             alfred.cache.set(
                 cache_name,
                 data,
-                _expire_year if data['checked'] else 60*5
+                _expire_day if data['checked'] else 60*5
             )
         # 查询失败
         else:
@@ -215,7 +225,7 @@ def showSaved():
         if has_checked:
             feedback.addItem(
                 title   = '清除所有已签收的运单？',
-                arg     = 'clean-checked-post'
+                arg     = 'clear-checked-post'
             )
     else:
         feedback.addItem(

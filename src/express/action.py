@@ -29,14 +29,8 @@ def postRecord(to_save):
         express.delPost(com_code, post_id)
     alfred.exit('运单 {} 已{}'.format(post_id, '保存' if to_save else '删除'))
 
-def cleanCheckedPost():
-    post = alfred.config.get('post', [])
-    new_post = []
-    for p in post:
-        q = express.querySingle(p['com_code'], p['post_id'])
-        if not q.get('checked', False):
-            new_post.append(p)
-    alfred.config.set(post=new_post)
+def clearCheckedPost():
+    express.clearCheckedPost()
     alfred.exit('所有已签收的运单已被清除。')
 
 def main():
@@ -44,7 +38,7 @@ def main():
         'open-url'  : lambda: openURL(),
         'save-post' : lambda: postRecord(True),
         'del-post'  : lambda: postRecord(False),
-        'clean-checked-post' : lambda: cleanCheckedPost()
+        'clear-checked-post' : lambda: clearCheckedPost()
     }
     cmd = alfred.argv(1)
     if not cmd or cmd.lower() not in cmds.keys():
