@@ -417,7 +417,7 @@ def search():
     try:
         word = ' ' .join(sys.argv[2:])
         if not word:
-            alfred.exitWithFeedback(title='输入搜索关键词')
+            alfred.exitWithFeedback(title='输入搜索关键词', valid=False)
         items = fetchSearchResult(word)
         if not items:
             alfred.exitWithFeedback(item=_fb_no_found())
