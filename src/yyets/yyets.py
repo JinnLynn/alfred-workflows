@@ -297,15 +297,19 @@ def fetchSingleResource(res_id):
         )
         item.update(**parseDownloadLink( single.select('div.download a') ))
         res['files'].append(item)
-    # 缓存10分钟
+    # 缓存60分钟
     if res['files']: 
-        alfred.cache.set(cache_name, res, 600)
+        alfred.cache.set(cache_name, res, 3600)
     return res
 
 # 获取搜索结果
 def fetchSearchResult(word):
     if not word:
         return []
+    cache_name = 'search-' + word.lower()
+    cache = alfred.cache.get(cache_name)
+    if cache:
+        return cache
     items = []
     soup = parseWebPage(
         os.path.join(_base_host, 'search/index'),
@@ -335,6 +339,9 @@ def fetchSearchResult(word):
             items.append(item)
         except Exception, e:
             continue
+    # 缓存10分钟
+    if items:
+        alfred.cache.set(cache_name, items, 600)
     return items
 
 def getResourcePageURLByID(res_id):
