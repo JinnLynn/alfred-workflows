@@ -143,6 +143,19 @@ def parseDownloadHas(data):
         has['has_' + i] = '有' if data[i] else '无'
     return has
 
+# 过滤
+# 以`,`分割 1 文件名  2 格式
+def filterItems(filter_str, items):
+    if filter_str:
+        filters= filter_str.split(',')
+        if len(filters) >= 1:
+            file_filter = filters[0].lower()
+            items = filter(lambda f: file_filter in f['filename'].lower(), items)
+        if len(filters) >= 2:
+            format_filter = filters[1].lower().lower()
+            items = filter(lambda f: format_filter in f['format'].lower(), items)
+    return items
+
 # 获取最新更新
 def fetchRecentItems(channel):
     # channel: movie tv documentary openclass topic
@@ -353,10 +366,7 @@ def today():
         alfred.exitWithFeedback(item=_fb_no_logined())
     try:
         items = fetchTodayItems()
-        filter_str = alfred.argv(2)
-        if filter_str:
-            filter_str = filter_str.upper()
-            items = filter(lambda i: filter_str in i['format'], items)
+        items = filterItems(alfred.argv(2), items)
         if not items:
             alfred.exitWithFeedback(item=_fb_no_found())
         feedback = alfred.Feedback()
@@ -421,17 +431,14 @@ def resource():
     try:
         res_id = int(alfred.argv(2))
         data = fetchSingleResource(res_id)
-        filter_str = alfred.argv(3)
         files = data.get('files', [])
-        if filter_str:
-            filter_str = filter_str.upper()
-            files = filter(lambda f: filter_str in f['format'], files)
+        files = filterItems(alfred.argv(3), files)
         if not data:
             alfred.exitWithFeedback(item=_fb_no_found)
         feedback = alfred.Feedback()
         feedback.addItem(
             title       = data['title'],
-            subtitle    = '{} 个文件，可使用文件类型过滤，选择此项打开资源页面'.format(len(files)),
+            subtitle    = '{} 个文件，可使用`文件名,格式`过滤，如:`s09` `,mp4` `s01e08,hdtv`，选择此项打开资源页面'.format(len(files)),
             arg         = 'open-url {}'.format( b64encode(getResourcePageURLByID(data['id'])) ),
             icon        = alfred.storage.getLocalIfExists(data['img'], True)
         )
@@ -589,7 +596,7 @@ def menu():
     if isLogined():
         feedback.addItem(
             title           = '人人影视 今日更新的文件',
-            subtitle        = '如果今天尚无文件，则显示前一天，可使用格式名称过滤文件，如hdtv, mp4, 1080p等',
+            subtitle        = '若今天尚无文件，则显示前一天，可使用`文件名,格式`过滤，如:`s09` `,mp4` `s01e08,hdtv`',
             autocomplete    = 'today ',
             valid           = False
         )
