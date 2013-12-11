@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import subprocess
+import sys, subprocess
 from base64 import b64decode
 
 import alfred
@@ -33,16 +33,24 @@ def clearCheckedPost():
     express.clearCheckedPost()
     alfred.exit('所有已签收的运单已被清除。')
 
+def setRemark():
+    com_code = alfred.argv(2)
+    post_id = alfred.argv(3)
+    remark = ' '.join(sys.argv[4:])
+    ret = express.changePostRemark(com_code, post_id, remark)
+    alfred.exit('运单 {} 备注已更改。'.format(post_id) if ret else '出错了。')
+
 def main():
     cmds = {
         'open-url'  : lambda: openURL(),
         'save-post' : lambda: postRecord(True),
         'del-post'  : lambda: postRecord(False),
-        'clear-checked-post' : lambda: clearCheckedPost()
+        'clear-checked-post' : lambda: clearCheckedPost(),
+        'remark-setting' : lambda: setRemark()
     }
     cmd = alfred.argv(1)
     if not cmd or cmd.lower() not in cmds.keys():
-        alfred.exit('出错啦')
+        alfred.exit('无效参数。')
     cmds[cmd]();
 
 if __name__ == '__main__':

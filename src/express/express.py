@@ -65,25 +65,31 @@ def getCompany(code=None, key=None):
             return company if key is None else company.get(key, '')
     return ''
 
+def getStoredPost(com_code, post_id):
+    for p in alfred.config.get('post', []):
+        if p.get('com_code') == com_code and p.get('post_id') == post_id:
+            return p
+
 # 运单是否是被存储的
 def isPostStored(com_code, post_id):
-    p = {'com_code':com_code, 'post_id':post_id}
-    return p in alfred.config.get('post', [])
+    return bool(getStoredPost(com_code, post_id))
 
 # 存储运单
 def savePost(com_code, post_id):
-    new = {'com_code':com_code, 'post_id':post_id}
-    post = alfred.config.get('post', [])
-    if new in post:
+    if isPostStored(com_code, post_id):
         return
-    post.append(new)
+    post = alfred.config.get('post', [])
+    post.append({
+        'com_code'  : com_code,
+        'post_id'   : post_id,
+        'remark'    : ''
+    })
     alfred.config.set(post=post)
 
 # 删除运单
 def delPost(com_code, post_id):
-    to_del = {'com_code':com_code, 'post_id':post_id}
     post = alfred.config.get('post', [])
-    post = filter(lambda p: p != to_del, post)
+    post = filter(lambda p: p.get('com_code') != com_code or p.get('post_id') != post_id, post)
     alfred.config.set(post=post)
     # 删除缓存
     alfred.cache.delete(_post_cache_name(com_code, post_id))
@@ -98,6 +104,18 @@ def clearCheckedPost():
         q = querySingle(p['com_code'], p['post_id'])
         if q.get('checked', False):
             delPost(p['com_code'], p['post_id'])
+
+# 修改运单备注
+def changePostRemark(com_code, post_id, remark):
+    if not isPostStored(com_code, post_id):
+        return False
+    post = alfred.config.get('post', [])
+    for p in post:
+        if p.get('com_code') == com_code and p.get('post_id') == post_id:
+            p['remark'] = remark if isinstance(remark, basestring) and remark else ''
+            break;
+    alfred.config.set(post=post)
+    return True
 
 # 猜测公司代码
 # 优先顺序: 代码 > 短名 > 全名
@@ -212,7 +230,7 @@ def showSaved():
                 has_checked = True
             item = {}
             item.update(
-                title = '{} {}'.format(getCompany(p['com_code'], 'companyname'), p['post_id']),
+                title = '{} {} {}'.format(getCompany(p['com_code'], 'companyname'), p['post_id'], p.get('remark', '')),
                 valid = False,
                 autocomplete = '{} {}'.format(p['com_code'], p['post_id'])
             )
@@ -236,7 +254,6 @@ def showSaved():
     feedback.output()
 
 def showSingle(com_code, post_id):
-    post_save_msg = '保存的运单可方便后续跟踪，查询成功的运单将被自动保存。'
     data = querySingle(com_code, post_id)
     feedback = alfred.Feedback()
     if not data.get('success'):
@@ -246,21 +263,18 @@ def showSingle(com_code, post_id):
             icon        = os.path.abspath('./icon-error.png'),
             valid       = False
         )
-        # 丁当保存与否处理
-        stored = isPostStored(com_code, post_id)
-
-        feedback.addItem(
-            title       = '该运单已被保存，删除运单记录？' if stored else '依然保存运单记录？',
-            subtitle    = post_save_msg,
-            icon        = os.path.abspath('./icon-del.png' if stored else './icon-save.png'),
-            arg         = '{} {} {}'.format('del-post' if stored else 'save-post', com_code, post_id)
-        )
     else:
         # 查询成功 自动保存运单方便下次查询
         savePost(com_code, post_id)
+        post = getStoredPost(com_code, post_id)
+        remark = '备注: {} '.format(post.get('remark')) if post.get('remark') else ''
         feedback.addItem(
             title       = '快递公司: {} 运单号: {}'.format(data['com_name'], data['post_id']),
-            subtitle    = '{}最后查询: {}'.format('已签收 ' if data['checked'] else '', formatTimestamp(data['last_update'])),
+            subtitle    = '{}最后查询: {} {}'.format(
+                remark,
+                formatTimestamp(data['last_update']), 
+                '已签收 ' if data['checked'] else ''
+            ),
             valid       = False
         )
         count = len(data['trace'])
@@ -271,13 +285,26 @@ def showSingle(com_code, post_id):
                 valid       = False
             )
             count = count - 1
-        # 运单记录删除操作
+    # 运单是否保存
+    stored = isPostStored(com_code, post_id)
+    # 已保存的 可添加或修改备注
+    if stored:
+        post = getStoredPost(com_code, post_id)
+        remark = post.get('remark')
+        remark = '当前备注: {}'.format(remark) if remark else '运单当前尚无备注信息。'
         feedback.addItem(
-            title       = '该运单已被保存，删除运单记录？',
-            subtitle    = post_save_msg,
-            icon        = os.path.abspath('./icon-del.png'),
-            arg         = 'del-post {} {}'.format(com_code, post_id)
+            title           = '设置或修改备注',
+            subtitle        = remark,
+            icon            = os.path.abspath('./icon-info.png'),
+            valid           = False,
+            autocomplete    = 'remark-{}-{} '.format(com_code, post_id)
         )
+    feedback.addItem(
+        title       = '该运单已被保存，删除运单记录？' if stored else '依然保存运单记录？',
+        subtitle    = '保存的运单可方便后续跟踪，查询成功的运单将被自动保存。',
+        icon        = os.path.abspath('./icon-del.png' if stored else './icon-save.png'),
+        arg         = '{} {} {}'.format('del-post' if stored else 'save-post', com_code, post_id)
+    )
     feedback.output()
 
 def showRecommendCompany(recommend_com_codes, post_id):
@@ -336,6 +363,31 @@ def query():
     # 如果有多个 则列出公司列表
     else:
         showRecommendCompany(com_codes, post_id)
+
+# 设置备注
+def showRemarkSetting():
+    try:
+        _, com_code, post_id = alfred.argv(1).split('-')
+    except Exception, e:
+        alfred.exitWithFeedback(title='参数格式错误。', subtitle='选择返回', valid=False, autocomplete='')
+    post = getStoredPost(com_code, post_id)
+    if not post:
+        alfred.exitWithFeedback(
+            title           = '该运单未被保存', 
+            subtitle        = '仅可对已保存的运单设置备注，选择查询并尝试保存运单', 
+            icon            = os.path.abspath('./icon-error.png'),
+            valid           = False, 
+            autocomplete    = '{} {}'.format(com_code, post_id)
+        )
+    remark = ' '.join(sys.argv[2:])
+    remark_stored = post.get('remark') if post.get('remark') else '-'
+    feedback = alfred.Feedback()
+    feedback.addItem(
+        title       = '为运单【{} {}】设置或修改备注'.format(getCompany(com_code, 'companyname'), post_id),
+        subtitle    = '旧备注: {} 新备注: {}'.format(remark_stored, remark),
+        arg         = 'remark-setting {} {} {}'.format(com_code, post_id, remark)
+    )
+    feedback.output()
     
 def main():
     cmd = alfred.argv(1)
@@ -343,9 +395,12 @@ def main():
     if not cmd:
         return showSaved()
     cmd = cmd.strip().lower()
-    # 快递公司列表 以company开始的关键词都是查询公司列表
+    # 快递公司列表 以company开始的值都是查询公司列表
     if 'company'.startswith(cmd):
         showCompanyList()
+    # 以remark开始的值设置备注
+    elif cmd.startswith('remark'):
+        showRemarkSetting()
     else:
         query()
     
