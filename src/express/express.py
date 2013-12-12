@@ -262,10 +262,11 @@ def showSaved():
 
 def showSingle(com_code, post_id):
     data = querySingle(com_code, post_id)
+    post_info = '{} {}'.format(getCompany(com_code, 'companyname'), post_id)
     feedback = alfred.Feedback()
     if not data.get('success'):
         feedback.addItem(
-            title       = '查询失败，快递公司: {} 运单号: {}'.format(getCompany(com_code, 'companyname'), post_id),
+            title       = '查询失败: {}'.format(post_info),
             subtitle    = data.get('message', ''),
             icon        = os.path.abspath('./icon-error.png'),
             valid       = False
@@ -274,11 +275,10 @@ def showSingle(com_code, post_id):
         # 查询成功 自动保存运单方便下次查询
         savePost(com_code, post_id)
         post = getStoredPost(com_code, post_id)
-        remark = '备注: {} '.format(post.get('remark')) if post.get('remark') else ''
+        remark = post.get('remark', '')
         feedback.addItem(
-            title       = '快递公司: {} 运单号: {}'.format(data['com_name'], data['post_id']),
-            subtitle    = '{}最后查询: {} {}'.format(
-                remark,
+            title       = '{} {}'.format(post_info, remark),
+            subtitle    = '最后查询: {} {}'.format(
                 formatTimestamp(data['last_update']), 
                 '已签收 ' if data['checked'] else ''
             ),
