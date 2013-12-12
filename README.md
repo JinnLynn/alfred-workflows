@@ -146,6 +146,10 @@ Demo: [Youtube](http://youtu.be/UY2mk0PB9yg) [Youku](http://v.youku.com/v_show/i
 
 快递查询，支持几乎所有国内快递公司快件跟踪。
 
+* 自动从运单号判断快递公司
+* 支持运单保存
+* 支持运单备注
+
 ![Express Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/express.png)
 
 [Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/express.alfredworkflow) 
@@ -154,7 +158,7 @@ Demo: [Youtube](http://youtu.be/UY2mk0PB9yg) [Youku](http://v.youku.com/v_show/i
  / 
 Demo: [Youtube](http://youtu.be/FZrEA6lZNc8) [Youku](http://v.youku.com/v_show/id_XNjQwOTMzOTQ4.html)
 
-*last updated: 2013-12-10 version: 1.2.0*
+*last updated: 2013-12-11 version: 1.3.0*
 
 
 
