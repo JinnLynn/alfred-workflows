@@ -65,6 +65,11 @@ def getCompany(code=None, key=None):
             return company if key is None else company.get(key, '')
     return ''
 
+def getComponyLogo(code):
+    path = os.path.abspath('./logos/{}.png'.format(code))
+    if os.path.exists(path):
+        return path
+
 def getStoredPost(com_code, post_id):
     for p in alfred.config.get('post', []):
         if p.get('com_code') == com_code and p.get('post_id') == post_id:
@@ -214,6 +219,7 @@ def showCompanyList():
         feedback.addItem(
             title       = com['companyname'],
             subtitle    = '代码: {} 电话: {} 官方网站: {}'.format(com['code'], com['tel'], com['comurl']),
+            icon        = getComponyLogo(com['code']),
             arg         = 'open-url {}'.format(b64encode(com['comurl']))
         )
     feedback.output()
@@ -230,9 +236,10 @@ def showSaved():
                 has_checked = True
             item = {}
             item.update(
-                title = '{} {} {}'.format(getCompany(p['com_code'], 'companyname'), p['post_id'], p.get('remark', '')),
-                valid = False,
-                autocomplete = '{} {}'.format(p['com_code'], p['post_id'])
+                title           = '{} {} {}'.format(getCompany(p['com_code'], 'companyname'), p['post_id'], p.get('remark', '')),
+                icon            = getComponyLogo(p['com_code']),
+                valid           = False,
+                autocomplete    = '{} {}'.format(p['com_code'], p['post_id'])
             )
             if q.get('success'):
                 item['subtitle'] = '{} {}'.format(formatTimestamp(q['last_update']), q['trace'][0]['content'])
@@ -275,6 +282,7 @@ def showSingle(com_code, post_id):
                 formatTimestamp(data['last_update']), 
                 '已签收 ' if data['checked'] else ''
             ),
+            icon        = getComponyLogo(com_code),
             valid       = False
         )
         count = len(data['trace'])
