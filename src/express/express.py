@@ -265,7 +265,7 @@ def showSingle(com_code, post_id):
     feedback = alfred.Feedback()
     if not data.get('success'):
         feedback.addItem(
-            title       = '查询失败',
+            title       = '查询失败，快递公司: {} 运单号: {}'.format(getCompany(com_code, 'companyname'), post_id),
             subtitle    = data.get('message', ''),
             icon        = os.path.abspath('./icon-error.png'),
             valid       = False
