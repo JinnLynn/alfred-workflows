@@ -34,7 +34,7 @@ def fetchURL(url, **kwargs):
 # 获取快递公司列表或信息
 def getCompany(code=None, key=None):
     cache = alfred.cache.get('company-update')
-    if cache is None:
+    if not cache:
         try:
             res = fetchURL(
                 _base_host + 'js/share/company.js',
@@ -51,14 +51,17 @@ def getCompany(code=None, key=None):
             except Exception, e:
                 pass
             if company:
+                # 保存 设置更新缓存为7天
                 alfred.config.set(company=company)
-                alfred.cache.set('company-update', True, _expire_day)
+                alfred.cache.set('company-update', True, _expire_day*7)
         except Exception, e:
             # 出错了 如果config中已经有值 则无需处理 没有将默认值保存到config
+            # 更新缓存设置为1小时
             if alfred.config.get('company') is None:
                 with open(os.path.abspath('./company.json'), 'r') as fp:
                     alfred.config.set(company=json.load(fp))
-    if code is None:
+                alfred.cache.set('company-update', True, 3600)
+    if not code:
         return alfred.config.get('company')
     for company in alfred.config.get('company'):
         if company['code'] == code:
@@ -183,11 +186,11 @@ def querySingle(com_code, post_id):
                     'time' : t['ftime'],
                     'content' : t['context']
                 })
-            # 如果已经签收 不需要再更新 缓存一天 否则 缓存5分钟
+            # 如果已经签收 不需要再更新 缓存一天 否则 缓存30分钟
             alfred.cache.set(
                 cache_name,
                 data,
-                _expire_day if data['checked'] else 60*5
+                _expire_day if data['checked'] else 60*30
             )
         # 查询失败
         else:
@@ -411,7 +414,6 @@ def main():
         showRemarkSetting()
     else:
         query()
-    
 
 if __name__ == '__main__':
     main()
