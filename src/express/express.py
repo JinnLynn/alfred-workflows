@@ -152,11 +152,14 @@ def queryCompanyCodeByPostID(post_id):
     except Exception, e:
         return None
 
-def querySingle(com_code, post_id):
+# 查询某个特定运单
+def querySingle(com_code, post_id, force=False):
     cache_name = _post_cache_name(com_code, post_id)
     cache = alfred.cache.get(cache_name)
     if cache:
-        return cache
+        # force 强制查询成功的缓存才被直接返回
+        if not force or cache.get('success'):
+            return cache
     try:
         res = fetchURL(
             _base_host + 'query',
@@ -264,7 +267,7 @@ def showSaved():
     feedback.output()
 
 def showSingle(com_code, post_id):
-    data = querySingle(com_code, post_id)
+    data = querySingle(com_code, post_id, True) # 如果缓存是不成功的查询结果 将忽略它
     post_info = '{} {}'.format(getCompany(com_code, 'companyname'), post_id)
     feedback = alfred.Feedback()
     if not data.get('success'):
