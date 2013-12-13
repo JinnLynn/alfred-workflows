@@ -33,34 +33,50 @@ def fetchURL(url, **kwargs):
     except Exception, e:
         pass
 
+# 缓存是否过期
+# 这里的过期跟alfred.cache不一样，last_success的差异可能有不同的过去时间
+def isCacheOutdate(cache, success_expire, fail_expire):
+    last_update = cache.get('last_update', 0)
+    span = time.time() - last_update
+    success = cache.get('last_success', False)
+    expire = success_expire if success else fail_expire
+    return span < 0 or span > expire
+
 # 获取快递公司列表或信息
-# 保存在config而不是cache，保证新的公司信息不会因为cache过期而丢失
 def getCompany(code=None, key=None):
-    cache = alfred.cache.get('company-update')
-    if not cache:
+    cache = alfred.cache.get('company')
+    if not cache or isCacheOutdate(cache, _expire_day*7, 3600):
+        alfred.config.delete('company')  # 删除保存在config中的数据 旧版的保存位置
+        data = {}
         try:
             res = fetchURL(
-                _base_host + 'js/share/company.js',
+                os.path.join(_base_host, 'js/share/company.js'),
                 data = {
                     'version' : time.time()
                 }
             )
             res = res.lstrip('var jsoncom=').rstrip(';').replace("'", '"')
             company = json.loads(res).get('company', [])
-            if company:
-                # 保存 设置更新缓存为7天
-                alfred.config.set(company=company)
-                alfred.cache.set('company-update', True, _expire_day*7)
+            if not company:
+                raise Exception('something error.')
+            data.update(
+                last_success = True,
+                company = company
+            )
         except Exception, e:
-            # 出错了 如果config中已经有值 则无需处理 没有将默认值保存到config
-            # 更新缓存设置为1小时
-            if alfred.config.get('company') is None:
+            # 缓存存在 使用缓存 不在则从company.json获取
+            if cache:
+                company=cache.get('company')
+            else:
                 with open(os.path.abspath('./company.json'), 'r') as fp:
-                    alfred.config.set(company=json.load(fp))
-                alfred.cache.set('company-update', True, 3600)
+                    company=json.load(fp)
+            data.update(last_success=False, company=company)
+        data.update(last_update=time.time())
+        alfred.cache.set('company', data, _expire_year)
+    data = alfred.cache.get('company')
     if not code:
-        return alfred.config.get('company')
-    for company in alfred.config.get('company'):
+        return data.get('company')
+    for company in data.get('company'):
         if company['code'] == code:
             return company if key is None else company.get(key, '')
     return ''
@@ -135,28 +151,15 @@ def surmiseCompanyCode(q):
 def queryCompanyCodeByPostID(post_id):
     try:
         res = fetchURL(
-            _base_host + 'autonumber/auto',
+            os.path.join(_base_host, 'autonumber/auto'),
             data = {
                 'num' : post_id
             }
         )
         coms = json.loads(res)
-        codes = []
-        for com in coms:
-            codes.append(com['comCode'])
-        return codes
+        return [com['comCode'] for com in coms]
     except Exception, e:
         pass
-
-# 是否过期
-# 这里的过期跟alfred.cache不一样，判断的是last_update
-def isPostCacheOutdate(cache):
-    last_update = cache.get('last_update', 0)
-    span = time.time() - last_update
-    success = cache.get('last_success', False)
-    # 有效期 成功 30分钟 失败 1分钟
-    expire = 60 * 30 if success else 60
-    return span < 0 or span > expire
 
 # 查询某个特定运单
 # success 是否曾成功获取过数据 last_success 最近一次是否成功获取数据
@@ -164,7 +167,7 @@ def querySingle(com_code, post_id):
     cache_name = _post_cache_name(com_code, post_id)
     cache = alfred.cache.get(cache_name)
     # 存在 且是 已经签收或未过期
-    if cache and ( cache.get('checked', False) or not isPostCacheOutdate(cache) ):
+    if cache and ( cache.get('checked', False) or not isCacheOutdate(cache, 60*30, 60) ):
         return cache
     data = {}
     try:
