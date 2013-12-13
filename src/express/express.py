@@ -34,6 +34,7 @@ def fetchURL(url, **kwargs):
         pass
 
 # 获取快递公司列表或信息
+# 保存在config而不是cache，保证新的公司信息不会因为cache过期而丢失
 def getCompany(code=None, key=None):
     cache = alfred.cache.get('company-update')
     if not cache:
@@ -46,12 +47,6 @@ def getCompany(code=None, key=None):
             )
             res = res.lstrip('var jsoncom=').rstrip(';').replace("'", '"')
             company = json.loads(res).get('company', [])
-            try:
-                for com in company:
-                    for k in ['serversite', 'url', 'testnu', 'promptinfo', 'queryurl', 'hasvali', 'isavailable']:
-                        del com[k]
-            except Exception, e:
-                pass
             if company:
                 # 保存 设置更新缓存为7天
                 alfred.config.set(company=company)
