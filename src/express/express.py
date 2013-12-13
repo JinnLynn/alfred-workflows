@@ -18,6 +18,8 @@ _expire_year = _expire_day * 365
 
 _post_cache_name = lambda c, p: '-'.join([c, p])
 
+_fb_return = lambda ac='': alfred.Item(title='返回', valid=False, autocomplete=ac)
+
 def formatTimestamp(timestamp, format='%Y-%m-%d %H:%M:%S'):
     return datetime.fromtimestamp(timestamp).strftime(format)
 
@@ -319,6 +321,7 @@ def showSingle(com_code, post_id):
         icon        = os.path.abspath('./icon-del.png' if stored else './icon-save.png'),
         arg         = '{} {} {}'.format('del-post' if stored else 'save-post', com_code, post_id)
     )
+    feedback.addItem(item=_fb_return())
     feedback.output()
 
 def showRecommendCompany(recommend_com_codes, post_id):
@@ -401,6 +404,7 @@ def showRemarkSetting():
         subtitle    = '旧备注: {} 新备注: {}'.format(remark_stored, remark),
         arg         = 'remark-setting {} {} {}'.format(com_code, post_id, remark)
     )
+    feedback.addItem(item=_fb_return('{} {}'.format(com_code, post_id)))
     feedback.output()
     
 def main():
