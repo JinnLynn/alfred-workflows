@@ -245,7 +245,7 @@ def showSaved():
                 autocomplete    = '{} {}'.format(p['com_code'], p['post_id'])
             )
             if q.get('success'):
-                item['subtitle'] = '{} {}'.format(formatTimestamp(q['last_update']), q['trace'][0]['content'])
+                item['subtitle'] = '{time} {content}'.format(**q['trace'][0])
             else:
                 item['subtitle'] = '{} 暂时没有记录，运单号不存在、未记录或已经过期。'.format(formatTimestamp(q['last_update']))
             feedback.addItem(**item)
