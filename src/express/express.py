@@ -99,7 +99,6 @@ def delPost(com_code, post_id):
     # 删除缓存
     alfred.cache.delete(_post_cache_name(com_code, post_id))
     # 清理过期的缓存 
-    # 本工作流可能产生大量的无用缓存 需要手动清理
     alfred.cache.cleanExpired()
 
 # 清理已签收的运单
@@ -147,66 +146,61 @@ def queryCompanyCodeByPostID(post_id):
             codes.append(com['comCode'])
         return codes
     except Exception, e:
-        return None
+        pass
+
+# 是否过期
+# 这里的过期跟alfred.cache不一样，判断的是last_update
+def isPostCacheOutdate(cache):
+    last_update = cache.get('last_update', 0)
+    span = time.time() - last_update
+    success = cache.get('last_success', False)
+    # 有效期 成功 30分钟 失败 1分钟
+    expire = 60 * 30 if success else 60
+    return span < 0 or span > expire
 
 # 查询某个特定运单
-def querySingle(com_code, post_id, force=False):
+# success 是否曾成功获取过数据 last_success 最近一次是否成功获取数据
+def querySingle(com_code, post_id):
     cache_name = _post_cache_name(com_code, post_id)
     cache = alfred.cache.get(cache_name)
-    if cache:
-        # force 强制查询成功的缓存才被直接返回
-        if not force or cache.get('success'):
-            return cache
+    # 存在 且是 已经签收或未过期
+    if cache and ( cache.get('checked', False) or not isPostCacheOutdate(cache) ):
+        return cache
+    data = {}
     try:
         res = fetchURL(
-            _base_host + 'query',
+            os.path.join(_base_host, 'query'),
             data = {
                 'type' : com_code,
                 'postid' : post_id
             }
         )
         res = json.loads(res)
-        data = {'last_update' : time.time()}
-        # 查询成功
-        if res['status'] == '200':
-            data.update(
-                success = True,
-                post_id = res['nu'],
-                checked = True if res['ischeck'] == '1' else False,
-                com_code = res['com'],
-                trace = []
-            )
-            com = getCompany(data['com_code'])
-            data.update(
-                com_name = com.get('companyname', '未知'),
-                com_shortname = com.get('shortname', '未知')
-            )
-            for t in res['data']:
-                data['trace'].append({
-                    'time' : t['ftime'],
-                    'content' : t['context']
-                })
-            # 如果已经签收 不需要再更新 缓存一天 否则 缓存30分钟
-            alfred.cache.set(
-                cache_name,
-                data,
-                _expire_day if data['checked'] else 60*30
-            )
-        # 查询失败
-        else:
-            data.update(
-                success = False,
-                message = res['message']
-            )
-            # 缓存 一分钟
-            alfred.cache.set(cache_name, data, 60)
+        # 失败抛出一个异常
+        if res['status'] != '200':
+            raise Exception(res['message'])
+
+        com = getCompany(res['com'])
+        data.update(
+            success = True,
+            last_success = True,
+            last_message = '',
+            post_id = res['nu'],
+            checked = True if res['ischeck'] == '1' else False,
+            com_code = res['com'],
+            com_name = com.get('companyname', '未知'),
+            com_shortname = com.get('shortname', '未知'),
+            trace = [{'time':t['ftime'], 'content':t['context']} for t in res.get('data', [])]
+        )
     except Exception, e:
-        return {
-            'success' : False,
-            'message' : repr(e),
-            'last_update' : time.time()
-        }
-    return alfred.cache.get(cache_name)
+        # 失败 检查缓存 若有 更新 否则创建
+        data.update(cache if cache else {'success':False})
+        data.update(last_message=str(e), last_success=False)
+    data.update(last_update=time.time())
+    # 缓存长期保存 防止已有成功查询后出现失败的查询无法使用先前的成功结果
+    # 是否过期通过last_update
+    alfred.cache.set(cache_name, data, _expire_day*7)
+    return data
 
 # 显示快递公司列表
 def showCompanyList():
@@ -264,13 +258,13 @@ def showSaved():
     feedback.output()
 
 def showSingle(com_code, post_id):
-    data = querySingle(com_code, post_id, True) # 如果缓存是不成功的查询结果 将忽略它
+    data = querySingle(com_code, post_id)
     post_info = '{} {}'.format(getCompany(com_code, 'companyname'), post_id)
     feedback = alfred.Feedback()
     if not data.get('success'):
         feedback.addItem(
             title       = '查询失败: {}'.format(post_info),
-            subtitle    = data.get('message', ''),
+            subtitle    = data.get('last_message', ''),
             icon        = os.path.abspath('./icon-error.png'),
             valid       = False
         )
@@ -279,11 +273,13 @@ def showSingle(com_code, post_id):
         savePost(com_code, post_id)
         post = getStoredPost(com_code, post_id)
         remark = post.get('remark', '')
+        last_update_info = '' if data.get('last_success') else '本次查询失败，下面显示的是先前的查询结果。'
+        update_info = '已签收 ' if data['checked'] else last_update_info
         feedback.addItem(
             title       = '{} {}'.format(post_info, remark),
             subtitle    = '最后查询: {} {}'.format(
                 formatTimestamp(data['last_update']), 
-                '已签收 ' if data['checked'] else ''
+                update_info
             ),
             icon        = getComponyLogo(com_code),
             valid       = False
