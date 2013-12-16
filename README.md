@@ -158,7 +158,7 @@ Demo: [Youtube](http://youtu.be/UY2mk0PB9yg) [Youku](http://v.youku.com/v_show/i
  / 
 Demo: [Youtube](http://youtu.be/FZrEA6lZNc8) [Youku](http://v.youku.com/v_show/id_XNjQwOTMzOTQ4.html)
 
-*last updated: 2013-12-11 version: 1.3.0*
+*last updated: 2013-12-16 version: 1.4.0*
 
 
 
