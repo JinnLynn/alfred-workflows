@@ -42,6 +42,35 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>126</integer>
+				<key>keyword</key>
+				<string>kd</string>
+				<key>runningsubtext</key>
+				<string>Please Wait...</string>
+				<key>script</key>
+				<string>python express.py {query}</string>
+				<key>subtext</key>
+				<string>直接使用运单号，如:904080779005，快递公司+运单号，如:顺风 904080779005</string>
+				<key>title</key>
+				<string>国内快递查询</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>59AE49E2-9649-4BE0-92A0-8878EAA0FC8E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>126</integer>
 				<key>script</key>
@@ -78,35 +107,6 @@
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>273C1640-9247-4FFF-A05C-1663B6D60D47</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>126</integer>
-				<key>keyword</key>
-				<string>kd</string>
-				<key>runningsubtext</key>
-				<string>Please Wait...</string>
-				<key>script</key>
-				<string>python express.py {query}</string>
-				<key>subtext</key>
-				<string>『kd 运单号』如 kd 12345，『kd 快递公司 运单号』如 kd 顺风 1234</string>
-				<key>title</key>
-				<string>国内快递查询</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>59AE49E2-9649-4BE0-92A0-8878EAA0FC8E</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>

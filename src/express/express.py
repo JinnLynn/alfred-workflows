@@ -255,7 +255,7 @@ def showSaved():
     else:
         feedback.addItem(
             title       = '国内快递查询',
-            subtitle    = '『kd 运单号』如 kd 12345，『kd 快递公司 运单号』如 kd 顺风 1234',
+            subtitle    = '直接使用运单号，如:904080779005，快递公司+运单号，如:顺风 904080779005',
             valid       = False
         )
     feedback.output()
