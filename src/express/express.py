@@ -34,7 +34,7 @@ def fetchURL(url, **kwargs):
         pass
 
 # 缓存是否过期
-# 这里的过期跟alfred.cache不一样，last_success的差异可能有不同的过去时间
+# 这里的过期跟alfred.cache不一样，last_success的差异可能有不同的过期时间
 def isCacheOutdate(cache, success_expire, fail_expire):
     last_update = cache.get('last_update', 0)
     span = time.time() - last_update
@@ -267,7 +267,7 @@ def showSingle(com_code, post_id):
     if not data.get('success'):
         feedback.addItem(
             title       = '查询失败: {}'.format(post_info),
-            subtitle    = data.get('last_message', ''),
+            subtitle    = '{} {}'.format(formatTimestamp(data['last_update']), data.get('last_message', '')),
             icon        = os.path.abspath('./icon-error.png'),
             valid       = False
         )
