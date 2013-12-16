@@ -202,7 +202,10 @@ def querySingle(com_code, post_id):
     data.update(last_update=time.time())
     # 缓存长期保存 防止已有成功查询后出现失败的查询无法使用先前的成功结果
     # 是否过期通过last_update
-    alfred.cache.set(cache_name, data, _expire_day*7)
+    # 如果success=False即尚未有成功的查询 则缩短缓存有效期 
+    # 防止某些非需要的运单号(如输入单号过程中或错误的单号)被长期记录在缓存中
+    expire = _expire_day*7 if data.get('success', False) else 60
+    alfred.cache.set(cache_name, data, expire)
     return data
 
 # 显示快递公司列表
