@@ -38,9 +38,9 @@ def fetchData(q):
             }
         )
         data = json.loads( req.getContent() )
-        if data:
+        if isinstance(data, dict) and data.get('errorCode', -1) == 0:
             alfred.cache.set(cache_name, data, 3600*24)
-            return data
+        return data
     except Exception, e:
         pass
 
