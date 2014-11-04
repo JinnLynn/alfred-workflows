@@ -168,48 +168,43 @@ def fetchRecentItems(channel):
         if not search_channel:
             return []
     cache_name = 'recent-{}-items'.format(search_channel)
-    cache = alfred.cache.get(cache_name)
-    if cache:
-        return cache
-    items = []
-    soup = parseWebPage(
-        os.path.join(_base_host, 'resourcelist'),
-        data = {
-            'channel'   : search_channel,
-            'sort'      : 'update'
-        }
-    )
-    # pprint(soup.select('ul.boxPadd li'))
-    for single in soup.select('ul.boxPadd li'):
-        try:
-            info = single.select('div.f_r_info dl')[0]
-            item = {}
-            item.update(**_res_tpl)
-            item.update(
-                id = int(os.path.basename(single.select('div.f_l_img')[0].a['href'])),
-                title = info.dt.get_text(' ', strip=True),
-                img = smallPosterURL( single.select('div.f_l_img')[0].img['src'] )
-            )
-            map(lambda t: t.font.clear(),info.dd.select('span'))
-            item['info'] = '说明: {} 人气: {}'.format(   
-                info.dd.select('span')[0].get_text('', strip=True),
-                info.dd.select('span')[2].get_text('', strip=True)
-            )
-            items.append(item)
-        except Exception, e:
-            continue
-    if not items:
-        return []
-    # 缓存10分钟
-    alfred.cache.set(cache_name, items, 600)
-    return items
+    @alfred.cached(cache_name, expire=600)
+    def _fetchRecentItems():
+        items = []
+        soup = parseWebPage(
+            os.path.join(_base_host, 'resourcelist'),
+            data = {
+                'channel'   : search_channel,
+                'sort'      : 'update'
+            }
+        )
+        # pprint(soup.select('ul.boxPadd li'))
+        for single in soup.select('ul.boxPadd li'):
+            try:
+                info = single.select('div.f_r_info dl')[0]
+                item = {}
+                item.update(**_res_tpl)
+                item.update(
+                    id = int(os.path.basename(single.select('div.f_l_img')[0].a['href'])),
+                    title = info.dt.get_text(' ', strip=True),
+                    img = smallPosterURL( single.select('div.f_l_img')[0].img['src'] )
+                )
+                map(lambda t: t.font.clear(),info.dd.select('span'))
+                item['info'] = '说明: {} 人气: {}'.format(   
+                    info.dd.select('span')[0].get_text('', strip=True),
+                    info.dd.select('span')[2].get_text('', strip=True)
+                )
+                items.append(item)
+            except Exception, e:
+                continue
+        if items:
+            return items
+    return _fetchRecentItems()
 
 
 # 获取今日更新
+@alfred.cached('today-items', expire=600)
 def fetchTodayItems():
-    cache = alfred.cache.get('today-items')
-    if cache:
-        return cache
     items = []
     soup = parseWebPage(os.path.join(_base_host, 'today'))
     day = ''
@@ -236,17 +231,12 @@ def fetchTodayItems():
         item['id'] = item_id
         item.update(**parseDownloadLink( single.select('td.dr_ico a') ))
         items.append(item)
-    if not items:
-        return []
-    # 缓存
-    alfred.cache.set('today-items', items, 600) 
-    return items
+    if items:
+        return items
 
 # 获取24小时热门榜
+@alfred.cached('top-items', expire=600)
 def fetchTopItems():
-    cache = alfred.cache.get('top-items')
-    if cache:
-        return cache
     items = []
     soup = parseWebPage(os.path.join(_base_host, 'resourcelist'))
     for single in soup.select('ul.top_list2 li'):
@@ -264,85 +254,78 @@ def fetchTopItems():
             items.append(item)
         except Exception, e:
             continue
-    if not items:
-        return []
-    # 缓存10分钟
-    alfred.cache.set('top-items', items, 600)
-    return items
+    if items:
+        return items
 
 # 获取单个资源信息
 def fetchSingleResource(res_id):
     cache_name = 'single-resource-{}'.format(res_id)
-    cache = alfred.cache.get(cache_name)
-    if cache:
-        return cache
-    page_url = getResourcePageURLByID(res_id)
-    soup = parseWebPage(page_url)
-    res = {}
-    res.update(**_res_tpl)
-    res.update(
-        id      = res_id,
-        title   = soup.select('h2 strong')[0].get_text('', strip=True),
-        img     = smallPosterURL(soup.select('div.res_infobox div.f_l_img img')[0]['src']),
-        page    = page_url
-    )
-    for single in soup.select('ul.resod_list li'):
-        item = {}
-        item.update(**_res_file_tpl)
-        item.update(
-            id      = single['itemid'],
-            format  = single['format'],
-            filename = single.select('div.lks .lks-1')[0].get_text(),
-            filesize = single.select('div.lks .lks-2')[0].get_text(),
+    @alfred.cached(cache_name, expire=3600)
+    def _fetchSingleResource():
+        page_url = getResourcePageURLByID(res_id)
+        soup = parseWebPage(page_url)
+        res = {}
+        res.update(**_res_tpl)
+        res.update(
+            id      = res_id,
+            title   = soup.select('h2 strong')[0].get_text('', strip=True),
+            img     = smallPosterURL(soup.select('div.res_infobox div.f_l_img img')[0]['src']),
+            page    = page_url
         )
-        item.update(**parseDownloadLink( single.select('div.download a') ))
-        res['files'].append(item)
-    # 缓存60分钟
-    if res['files']: 
-        alfred.cache.set(cache_name, res, 3600)
-    return res
+        for single in soup.select('ul.resod_list li'):
+            item = {}
+            item.update(**_res_file_tpl)
+            item.update(
+                id      = single['itemid'],
+                format  = single['format'],
+                filename = single.select('div.lks .lks-1')[0].get_text(),
+                filesize = single.select('div.lks .lks-2')[0].get_text(),
+            )
+            item.update(**parseDownloadLink( single.select('div.download a') ))
+            res['files'].append(item)
+        # 缓存60分钟
+        if res['files']: 
+            return res
+    return _fetchSingleResource()
 
 # 获取搜索结果
 def fetchSearchResult(word):
     if not word:
         return []
-    cache_name = 'search-' + word.lower()
-    cache = alfred.cache.get(cache_name)
-    if cache:
-        return cache
-    items = []
-    soup = parseWebPage(
-        os.path.join(_base_host, 'search/index'),
-        data = {
-            'keyword'   : '{}'.format(word),
-            'type'      : 'resource',
-            'order'     : 'uptime'
-        }
-    )
-    for single in soup.select('ul.allsearch li'):
-        try:
-            item = {}
-            item.update(**_res_tpl)
-            item.update(
-                title = single.select('div.all_search_li2')[0].get_text(),
-                id = int(os.path.basename(single.select('div.all_search_li2')[0].a['href']))
-            )
-            # 信息
-            pub_time = time.localtime(float(single.select('span.time')[0].get_text().strip()))
-            update_time = time.localtime(float(single.select('span.time')[1].get_text().strip()))
-            item['info'] = '类型:{} 发布时间:{} 更新时间:{} {}'.format(
-                single.select('div.all_search_li1')[0].get_text().strip(),
-                time.strftime('%Y-%m-%d %H:%I', pub_time),
-                time.strftime('%Y-%m-%d %H:%I', update_time),
-                single.select('div.all_search_li3')[0].get_text().strip()
-            )
-            items.append(item)
-        except Exception, e:
-            continue
-    # 缓存10分钟
-    if items:
-        alfred.cache.set(cache_name, items, 600)
-    return items
+    cache_name = 'search-{}'.format(word.lower())
+    @alfred.cached(cache_name, expire = 600)
+    def _fetchSearchResult():
+        items = []
+        soup = parseWebPage(
+            os.path.join(_base_host, 'search/index'),
+            data = {
+                'keyword'   : '{}'.format(word),
+                'type'      : 'resource',
+                'order'     : 'uptime'
+            }
+        )
+        for single in soup.select('ul.allsearch li'):
+            try:
+                item = {}
+                item.update(**_res_tpl)
+                item.update(
+                    title = single.select('div.all_search_li2')[0].get_text(),
+                    id = int(os.path.basename(single.select('div.all_search_li2')[0].a['href']))
+                )
+                # 信息
+                pub_time = time.localtime(float(single.select('span.time')[0].get_text().strip()))
+                update_time = time.localtime(float(single.select('span.time')[1].get_text().strip()))
+                item['info'] = '类型:{} 发布时间:{} 更新时间:{} {}'.format(
+                    single.select('div.all_search_li1')[0].get_text().strip(),
+                    time.strftime('%Y-%m-%d %H:%I', pub_time),
+                    time.strftime('%Y-%m-%d %H:%I', update_time),
+                    single.select('div.all_search_li3')[0].get_text().strip()
+                )
+                items.append(item)
+            except Exception, e:
+                continue
+        return items
+    return _fetchSearchResult()
 
 def getResourcePageURLByID(res_id):
     return os.path.join(_base_host, 'resource', unicode(res_id))
@@ -495,12 +478,13 @@ def fileDownloadFeedback(feedback, res_id, emule, magnet, baidu=None):
         )
     # 使用download station Workflow 下载 eMule优先
     #? 如何判断workflow已安装
-    if emule or magnet:
-        feedback.addItem(
-            title       = '使用Download Station Workflow下载',
-            subtitle    = '优先使用电驴地址下载',
-            arg         = 'download-with-ds {}'.format( b64encode(emule if emule else magnet))
-        )
+    if alfred.isWorkflowWorking('net.jeeker.awf.DownloadStation'):
+        if emule or magnet:
+            feedback.addItem(
+                title       = '使用Download Station Workflow下载',
+                subtitle    = '优先使用电驴地址下载',
+                arg         = 'download-with-ds {}'.format( b64encode(emule if emule else magnet))
+            )
     if not emule and not magnet:
         feedback.addItem(
             title       = '没有找到电驴或磁力链地址，打开资源页面',

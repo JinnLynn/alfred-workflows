@@ -42,17 +42,27 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
 				<key>escaping</key>
-				<integer>62</integer>
+				<integer>126</integer>
+				<key>keyword</key>
+				<string>tv</string>
+				<key>runningsubtext</key>
+				<string>努力加载数据中...</string>
 				<key>script</key>
-				<string>python action.py {query}</string>
+				<string>python epg.py {query}</string>
+				<key>title</key>
+				<string>国内电视频道节目单</string>
 				<key>type</key>
 				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>23027990-9ACF-4037-8FB5-B4F97128D16C</string>
+			<string>7F370D86-6CBF-4127-B81A-D5E05F221696</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -84,27 +94,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
 				<key>escaping</key>
-				<integer>126</integer>
-				<key>keyword</key>
-				<string>tv</string>
-				<key>runningsubtext</key>
-				<string>努力加载数据中...</string>
+				<integer>62</integer>
 				<key>script</key>
-				<string>python epg.py {query}</string>
-				<key>title</key>
-				<string>国内电视频道节目单</string>
+				<string>python action.py {query}</string>
 				<key>type</key>
 				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>7F370D86-6CBF-4127-B81A-D5E05F221696</string>
+			<string>23027990-9ACF-4037-8FB5-B4F97128D16C</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>

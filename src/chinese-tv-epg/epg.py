@@ -31,10 +31,8 @@ def parseWebPage(url, **kwargs):
     except Exception, e:
         raise e
 
+@alfred.cached('channels-list')
 def fetchChannels():
-    cache = alfred.cache.get('channels-list')
-    if cache:
-        return cache;
     soup = parseWebPage(_baseurl)
     channels = {}
     for item in soup.select('div.md_left_right'):
@@ -48,44 +46,40 @@ def fetchChannels():
             chl_title = c_tag.get_text().strip()
             chl_id = c_tag.attrs['rel'][0]
             channels.update({chl_id:chl_title})
-    if channels:
-        # 缓存24小时
-        alfred.cache.set('channels-list', channels, 3600*24)
     return channels
 
 def fetchChannelEPG(channel, date, cache_name):
-    cache = alfred.cache.get(cache_name)
     date_str = date.strftime('%Y-%m-%d')
-    if cache and cache['date']==date_str:
-        return cache['epg']
-    data = {
-            'action'    : 'epg-list',
-            'date'      : date_str,
-            'channel'   : channel
-        }
-    schedules = []
-    soup = parseWebPage(
-        'http://tv.cntv.cn/index.php', 
-        data=data,
-        referer=_baseurl
-        )
-    epg_list = soup.select('dl dd')
-    schedules = []
-    for item in epg_list:
-        # 已播放的
-        a_tags = item.select('a')
-        sche_info = (a_tags[0] if a_tags else item).get_text().strip()
-        first_space = sche_info.find(' ')
-        if first_space < 0:
-            continue
-        schedules.append({
-            'time' : sche_info[0:first_space].strip(),
-            'show' : sche_info[first_space:].strip()
-            })
-    if not schedules:
-        return
-    alfred.cache.set(cache_name, {'date':date_str, 'epg':schedules}, 3600*24)
-    return schedules
+    @alfred.cached(cache_name, _get_check=lambda d: d['date']==date_str)
+    def _fetch():
+        data = {
+                'action'    : 'epg-list',
+                'date'      : date_str,
+                'channel'   : channel
+            }
+        schedules = []
+        soup = parseWebPage(
+            'http://tv.cntv.cn/index.php', 
+            data=data,
+            referer=_baseurl
+            )
+        epg_list = soup.select('dl dd')
+        schedules = []
+        for item in epg_list:
+            # 已播放的
+            a_tags = item.select('a')
+            sche_info = (a_tags[0] if a_tags else item).get_text().strip()
+            first_space = sche_info.find(' ')
+            if first_space < 0:
+                continue
+            schedules.append({
+                'time' : sche_info[0:first_space].strip(),
+                'show' : sche_info[first_space:].strip()
+                })
+        if not schedules:
+            return
+        return {'date':date_str, 'epg':schedules}
+    return _fetch()
 
 
 def fetchChannelEPGToday(channel):
@@ -111,6 +105,7 @@ def getCurrentAndNextProgram(channel):
     schedules = fetchChannelEPGToday(channel)
     if not schedules:
         return {}, {}
+    schedules = schedules['epg']
     current = {}
     next = {}
     schedules = sorted(schedules, key=lambda s:s['time'])
@@ -233,7 +228,7 @@ def showChannleEPG(channel):
         subtitle    = '已收藏，选择这项可以取消收藏。' if is_faved else '未收藏，选择这项可以收藏',
         arg         = 'toggle-fav {}'.format(channel)
         )
-    for item in schedules:
+    for item in schedules['epg']:
         feedback.addItem(
             title = '{time} {show}'.format(**item)
             )
