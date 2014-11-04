@@ -20,29 +20,31 @@ _error_desc = {
     50 : '无效的key。'
 }
 
+@alfred.cached('cache-cleaned')
+def tryCleanCache():
+    alfred.cache.cleanExpired()
+    return True
+
 def fetchData(q):
-    cache_name = 'youdao-fanyi-{}'.format(q)
-    cache = alfred.cache.get(cache_name)
-    if cache:
-        return cache
-    try:
-        req = alfred.request.get(
-            _api_url,
-            data = {
-                'keyfrom'   : _api_keyfrom,
-                'key'       : _api_key,
-                'version'   : _api_version, 
-                'type'      : 'data' ,
-                'doctype'   : 'json',
-                'q'         : q
-            }
-        )
-        data = json.loads( req.getContent() )
-        if isinstance(data, dict) and data.get('errorCode', -1) == 0:
-            alfred.cache.set(cache_name, data, 3600*24)
-        return data
-    except Exception, e:
-        pass
+    cache_name = 'youdao-fanyi-{}'.format(q.lower())
+    @alfred.cached(cache_name, _set_check=lambda d: isinstance(d, dict) and d.get('errorCode', -1) == 0)
+    def _fetch():
+        try:
+            req = alfred.request.get(
+                _api_url,
+                data = {
+                    'keyfrom'   : _api_keyfrom,
+                    'key'       : _api_key,
+                    'version'   : _api_version, 
+                    'type'      : 'data' ,
+                    'doctype'   : 'json',
+                    'q'         : q
+                }
+            )
+            return json.loads( req.getContent() )
+        except Exception, e:
+            pass
+    return _fetch()
 
 def isEnglish(w):
     for i in w:
@@ -100,13 +102,6 @@ def query():
         feedback.output()
     except Exception, e:
         alfred.exitWithFeedback(title=w, subtitle='出错了，{}'.format(e), valid=False)
-
-def tryCleanCache():
-    if alfred.cache.get('cache-cleaned'):
-        return
-    alfred.cache.cleanExpired()
-    alfred.cache.set('cache-cleaned', True, 3600*24)
-
 
 if __name__ == '__main__':
     query()
