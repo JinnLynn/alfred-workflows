@@ -60,6 +60,17 @@
 				<string>发音（取决于你系统的Text to Speech）</string>
 			</dict>
 		</array>
+		<key>7AEB8EF4-E621-422F-91D0-A85C081D56B1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>09204506-9016-4039-8240-6AE53530988C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>JinnLynn</string>
@@ -119,6 +130,33 @@
 			<string>64595E64-C2B3-49E1-AD95-944349519AD9</string>
 			<key>version</key>
 			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>hotkey</key>
+				<integer>40</integer>
+				<key>hotmod</key>
+				<integer>1966080</integer>
+				<key>hotstring</key>
+				<string>K</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>7AEB8EF4-E621-422F-91D0-A85C081D56B1</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -232,6 +270,11 @@
 		<dict>
 			<key>ypos</key>
 			<real>190</real>
+		</dict>
+		<key>7AEB8EF4-E621-422F-91D0-A85C081D56B1</key>
+		<dict>
+			<key>ypos</key>
+			<real>200</real>
 		</dict>
 		<key>7B9A4F01-98AB-43DB-905D-8CDF5FA00525</key>
 		<dict>
