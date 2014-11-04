@@ -74,12 +74,20 @@ def query():
             raise Exception(error_msg if error_msg else '未知错误。' )
         is_eng = isEnglish(w)
         feedback = alfred.Feedback()
-        # 有解释
+        translation = ret.get('translation', [])
+        # 基本解释
         basic = ret.get('basic', {})
-        phonetic = basic.get('phonetic', '')
+        phonetic = basic.get('phonetic')
+        us_phonetic = basic.get('us-phonetic')
+        uk_phonetic = basic.get('uk-phonetic')
+        ph_out = []
+        us_phonetic and ph_out.append('美[{}]'.format(us_phonetic))
+        uk_phonetic and ph_out.append('英[{}]'.format(uk_phonetic))
+        if not ph_out and phonetic:
+            ph_out.append('[{}]'.format(phonetic))
         feedback.addItem(
-            title       = '{} {}'.format(w, '[{}]'.format(phonetic) if phonetic else ''),
-            subtitle    = '译: {}'.format('; '.join(ret.get('translation', []))),
+            title       = ' '.join(ph_out) if ph_out else w,
+            subtitle    = '译: {}'.format('; '.join(translation)) if translation else '',
             arg         = w
         )
         for e in basic.get('explains', []):
