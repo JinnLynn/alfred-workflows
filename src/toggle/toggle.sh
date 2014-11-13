@@ -35,3 +35,7 @@ function toggle_desktop_icons {
         echo "Success, all desktop icons are showing."
     fi
 }
+
+function toggle_fn {
+    osascript toggle-fn.applescript && echo "Function key behavior toggled"
+}

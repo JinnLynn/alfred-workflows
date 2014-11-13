@@ -32,6 +32,11 @@ TOGGLES = [
         'arg'       : 'desktop-icons',
         'title'     : 'Toggle Desktop Icons Show/Hide',
         'cmd'       : lambda: doShellScript('. toggle.sh && toggle_desktop_icons')
+    },
+    {
+        'arg'       : 'fn',
+        'title'     : 'Toggle fn Key Behavior',
+        'cmd'       : lambda: doShellScript('. toggle.sh && toggle_fn')
     }
 ]
 

@@ -17,6 +17,17 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>1FF0F392-DF50-4CCD-82E4-E113702EAB9C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2B314273-25F7-47E1-ACF3-1D7A28D710A5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>2B314273-25F7-47E1-ACF3-1D7A28D710A5</key>
 		<array>
 			<dict>
@@ -28,7 +39,29 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>3B4717CE-9B75-4F34-AEB9-A12054DE87A9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2B314273-25F7-47E1-ACF3-1D7A28D710A5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>591C5CAF-19B1-4B2C-B12D-AA1D37F7AFF9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2B314273-25F7-47E1-ACF3-1D7A28D710A5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>9216ECCD-D0FF-4979-A793-F45B3CBDC82F</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -54,7 +87,7 @@
 	<key>createdby</key>
 	<string>JinnLynn</string>
 	<key>description</key>
-	<string></string>
+	<string>Toggle some feature on or off</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -80,11 +113,15 @@
 				<false/>
 				<key>modsmode</key>
 				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>B818BCF3-2579-476B-B916-F7F0987F3E19</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -105,11 +142,44 @@
 				<false/>
 				<key>modsmode</key>
 				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.trigger.hotkey</string>
 			<key>uid</key>
 			<string>591C5CAF-19B1-4B2C-B12D-AA1D37F7AFF9</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>3</integer>
+				<key>argumenttext</key>
+				<string>fn</string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>9216ECCD-D0FF-4979-A793-F45B3CBDC82F</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -125,6 +195,8 @@
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
 			<string>2B314273-25F7-47E1-ACF3-1D7A28D710A5</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -148,12 +220,72 @@
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>C6F0BC67-A161-4814-B2BB-C6CB624A4F36</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>3</integer>
+				<key>argumenttext</key>
+				<string>hidden-files</string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>1FF0F392-DF50-4CCD-82E4-E113702EAB9C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>3</integer>
+				<key>argumenttext</key>
+				<string>desktop-icons</string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>0</integer>
+				<key>hotstring</key>
+				<string></string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>3B4717CE-9B75-4F34-AEB9-A12054DE87A9</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>2</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>62</integer>
 				<key>keyword</key>
@@ -161,7 +293,7 @@
 				<key>script</key>
 				<string>python toggle.py</string>
 				<key>subtext</key>
-				<string>toggle wifi, bluetooth, hidden files, etc.</string>
+				<string>toggle wifi, bluetooth, hidden files, fn key, etc.</string>
 				<key>title</key>
 				<string>Toggle</string>
 				<key>type</key>
@@ -173,6 +305,8 @@
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>0D270E40-D689-4AE1-8C6F-133B2B1DE2E9</string>
+			<key>version</key>
+			<integer>0</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -182,17 +316,32 @@
 		<key>0D270E40-D689-4AE1-8C6F-133B2B1DE2E9</key>
 		<dict>
 			<key>ypos</key>
-			<real>290</real>
+			<real>590</real>
+		</dict>
+		<key>1FF0F392-DF50-4CCD-82E4-E113702EAB9C</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
 		</dict>
 		<key>2B314273-25F7-47E1-ACF3-1D7A28D710A5</key>
 		<dict>
 			<key>ypos</key>
-			<real>180</real>
+			<real>330</real>
+		</dict>
+		<key>3B4717CE-9B75-4F34-AEB9-A12054DE87A9</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
 		</dict>
 		<key>591C5CAF-19B1-4B2C-B12D-AA1D37F7AFF9</key>
 		<dict>
 			<key>ypos</key>
 			<real>130</real>
+		</dict>
+		<key>9216ECCD-D0FF-4979-A793-F45B3CBDC82F</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
 		</dict>
 		<key>B818BCF3-2579-476B-B916-F7F0987F3E19</key>
 		<dict>
@@ -202,7 +351,7 @@
 		<key>C6F0BC67-A161-4814-B2BB-C6CB624A4F36</key>
 		<dict>
 			<key>ypos</key>
-			<real>180</real>
+			<real>330</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
