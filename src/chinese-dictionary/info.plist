@@ -60,11 +60,33 @@
 				<string>发音（取决于你系统的Text to Speech）</string>
 			</dict>
 		</array>
+		<key>3272517A-F104-4912-9834-C5EF1333D846</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5D6B40AB-DC63-4958-B0AF-EE9BB021199C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>7AEB8EF4-E621-422F-91D0-A85C081D56B1</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>09204506-9016-4039-8240-6AE53530988C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>A4C62EAD-24B3-4F5C-8BC0-6ECF622930A6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3272517A-F104-4912-9834-C5EF1333D846</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -246,6 +268,75 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>62</integer>
+				<key>script</key>
+				<string>python translate.py "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3272517A-F104-4912-9834-C5EF1333D846</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<true/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<true/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>快速翻译</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>5D6B40AB-DC63-4958-B0AF-EE9BB021199C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>1</integer>
+				<key>hotkey</key>
+				<integer>38</integer>
+				<key>hotmod</key>
+				<integer>1966080</integer>
+				<key>hotstring</key>
+				<string>J</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>A4C62EAD-24B3-4F5C-8BC0-6ECF622930A6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -261,10 +352,20 @@
 			<key>ypos</key>
 			<real>200</real>
 		</dict>
+		<key>3272517A-F104-4912-9834-C5EF1333D846</key>
+		<dict>
+			<key>ypos</key>
+			<real>510</real>
+		</dict>
 		<key>45A93E3D-F638-4DF9-9FE6-94571F195A96</key>
 		<dict>
 			<key>ypos</key>
 			<real>140</real>
+		</dict>
+		<key>5D6B40AB-DC63-4958-B0AF-EE9BB021199C</key>
+		<dict>
+			<key>ypos</key>
+			<real>510</real>
 		</dict>
 		<key>64595E64-C2B3-49E1-AD95-944349519AD9</key>
 		<dict>
@@ -280,6 +381,11 @@
 		<dict>
 			<key>ypos</key>
 			<real>10</real>
+		</dict>
+		<key>A4C62EAD-24B3-4F5C-8BC0-6ECF622930A6</key>
+		<dict>
+			<key>ypos</key>
+			<real>510</real>
 		</dict>
 		<key>AA90C9D0-DEAB-4F63-977A-BB820C0ABE97</key>
 		<dict>

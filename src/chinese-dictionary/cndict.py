@@ -26,7 +26,7 @@ def tryCleanCache():
     return True
 
 def fetchData(q):
-    cache_name = 'youdao-fanyi-{}'.format(q.lower())
+    cache_name = 'youdao-fanyi-{}'.format(q.lower().replace(' ', '_'))
     @alfred.cached(cache_name, _set_check=lambda d: isinstance(d, dict) and d.get('errorCode', -1) == 0)
     def _fetch():
         try:
@@ -61,17 +61,21 @@ def clearExplain(e):
         return e[i+1:].strip()
     return e.strip()
 
+def translate(w):
+    ret = fetchData(w)
+    if not ret:
+        raise Exception('服务器访问失败。')
+    # pprint(ret)
+    if ret.get('errorCode', -1) != 0:
+        error_msg = _error_desc.get(ret.get('errorCode', -1))
+        raise Exception(error_msg if error_msg else '未知错误。' )
+    return ret
+
 def query():
     tryCleanCache()
     w = ' '.join(sys.argv[1:]).strip()
     try:
-        ret = fetchData(w)
-        if not ret:
-            raise Exception('服务器访问失败。')
-        # pprint(ret)
-        if ret.get('errorCode', -1) != 0:
-            error_msg = _error_desc.get(ret.get('errorCode', -1))
-            raise Exception(error_msg if error_msg else '未知错误。' )
+        ret = translate(w)
         is_eng = isEnglish(w)
         feedback = alfred.Feedback()
         translation = ret.get('translation', [])
