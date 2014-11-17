@@ -162,6 +162,20 @@ Demo: [Youtube](http://youtu.be/FZrEA6lZNc8) [Youku](http://v.youku.com/v_show/i
 
 
 
+## iCloud Tabs
+
+Access your iCloud tabs directly from Alfred 2. 
+
+![iCloud Tabs Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/icloud-tabs.gif)
+
+[Direct Download](https://github.com/JinnLynn/alfred-workflows/raw/master/bin/icloud-tabs.alfredworkflow) 
+ / 
+[Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/icloud-tabs)
+
+*last updated: 2014-11-17 version: 1.0.0*
+
+
+
 ## Credits
 
 Created by [JinnLynn][home] under the MIT license. 
