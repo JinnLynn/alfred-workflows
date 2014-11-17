@@ -99,6 +99,7 @@ To search, download, show or save Lyric.
 * CTRL + ENTER 打开爱词霸页面
 * OPTION + ENTER 发音
 * CMD + ENTER 拷贝到剪切板
+* 快速翻译 选中文本快捷键操作在通知中返回结果
 
 ![Chinese Dictionary Screenshot](https://raw.github.com/JinnLynn/alfred-workflows/master/bin/chinese-dictionary.png)
 
@@ -106,7 +107,7 @@ To search, download, show or save Lyric.
  / 
 [Source](https://github.com/JinnLynn/alfred-workflows/tree/master/src/chinese-dictionary)
 
-*last updated: 2013-12-02 version: 2.0.0*
+*last updated: 2014-11-17 version: 2.1.0*
 
 
 
